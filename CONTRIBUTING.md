@@ -50,7 +50,7 @@ Thank you for your interest in contributing to our impact-based flood forecastin
 
 ## Code of Conduct
 
-Please review and adhere to our [Code of Conduct](./CodeofConduct.md) when participating in our community.
+Please review and adhere to our [Code of Conduct](./CODE_OF_CONDUCT.md) when participating in our community.
 
 ## Contact Us
 
