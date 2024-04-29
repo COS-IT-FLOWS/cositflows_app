@@ -34,7 +34,7 @@ Thank you for your interest in contributing to our impact-based flood forecastin
         bash
         git push origin my-feature
 
-9. **Create a Pull Request (PR)** : Go to the [original repository](https://github.com/your/repository) and create a pull request from your forked repository. Provide a clear description of your changes and why they are beneficial.
+9. **Create a Pull Request (PR)** : Go to the original repository and create a pull request from your forked repository. Provide a clear description of your changes and why they are beneficial.
 
 10. **Participate in Code Review**: Participate in the code review process by addressing any feedback or suggestions provided by reviewers.
 
