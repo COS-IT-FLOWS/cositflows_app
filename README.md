@@ -29,7 +29,7 @@ All development activity is coordinated through the [CoS-IT-FloWS github page](h
 
 EQUINOCT is an early stage tech start-up formed in July 2020, that aims at building community data portals in data scarce regions that can facilitate real-time visualization, analysis,monitoring, and impact-based early warnings of climate change impacts using data sourced from communities through building local community partnerships.
 
-CoS-IT-FloWS is a Decision Support System [Model](./Model) that integrates hyper-local real time monitoring to provide river basin level impact based flood forecasting and multi-hazard warnings. It aims at leveraging meterological and infrastructural data such as rainfall, groundwater and reservoir levels to accurately predict region-wise flood probability, utilizing both hydrological and machine learning approaches for a hyper local forecast system.
+CoS-IT-FloWS is a Decision Support System [Model](./[Model](https://cos-it-flows-documentation.readthedocs.io/en/latest/Model/) that integrates hyper-local real time monitoring to provide river basin level impact based flood forecasting and multi-hazard warnings. It aims at leveraging meterological and infrastructural data such as rainfall, groundwater and reservoir levels to accurately predict region-wise flood probability, utilizing both hydrological and machine learning approaches for a hyper local forecast system.
 
 ## Open Source
 
