@@ -4,7 +4,7 @@ Thank you for your interest in contributing to our impact-based flood forecastin
 
 ## Getting Started
 
-1. **Fork the Repository**: Start by forking the [cos-it-flows repository](https://github.com/COS-IT-FLOWS) to your GitHub account.
+1. **Fork the Repository**: Start by forking the [cos-it-flows repository](https://github.com/COS-IT-FLOWS/cositflows_app) to your GitHub account.
 
 2. **Clone the Repository**: Clone the forked repository to your local machine using the following command:
 
