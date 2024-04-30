@@ -33,7 +33,7 @@ CoS-IT-FloWS is a Decision Support System [Model](https://cos-it-flows-documenta
 
 ## Open Source
 
-We encourage any users who have modified (or would like to modify) CoS-IT-FloWS, either to fix bugs or develop new features, to contact us and coordinate development work with us. The CoS-IT-FloWS system source code is archived in Git and is publicly available through GitHub. To access the source code, visit GitHub, create an account, and visit [github.com/COS-IT-FLOWS/COS-IT-FLOWS_app](https://github.com/COS-IT-FLOWS/COS-IT-FLOWS-Documentation).
+We encourage any users who have modified (or would like to modify) CoS-IT-FloWS, either to fix bugs or develop new features, to contact us and coordinate development work with us. The CoS-IT-FloWS system source code is archived in Git and is publicly available through GitHub. To access the source code, visit GitHub, create an account, and visit [github.com/COS-IT-FLOWS/cositflows_app](https://github.com/COS-IT-FLOWS/cositflows_app).
 
 CoS-IT-FloWS is an open source development model and is released under the terms of the [MIT License](./LICENSE).
 
