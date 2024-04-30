@@ -17,7 +17,7 @@ class Postprocessing:
         observed_unscaled = self.scaler.inverse_transform(observed)
         return predict_unscaled, observed_unscaled
 
-    def plot_data(self, df, title, xlabel, ylabel1, ylabel2, ylim2):
+    def plot_data(self, df, title, xlabel, ylabel1, ylabel2, ylim2, out_path):
         """
         Plots the given data using matplotlib.
         """
@@ -40,5 +40,5 @@ class Postprocessing:
         plt.title(title)
         fig.tight_layout()  # otherwise the right y-label is slightly clipped
         #save as 2 different files
-        plt.savefig('Output/plot/lstm_rf_gwl.png')
+        plt.savefig(f'Output/plot/{out_path}.png')
         plt.show()

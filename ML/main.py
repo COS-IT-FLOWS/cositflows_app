@@ -1,17 +1,19 @@
 import config
 import multiprocessing
-import preprocess
 from model import Model
+from preprocess import Preprocessing
 from postprocess import Postprocessing
 import pandas as pd
 import numpy as np
-import pickle
+from sklearn.preprocessing import StandardScaler
 
-def run_model1(Preprocessing, Postprocessing):
+def run_model1(Preprocessing, Postprocessing, out_flag):
     
     # Load data
-    data = Preprocessing.load_data('Input/rf_api_90days.csv')
-    print(data)
+    Preprocessing = Preprocessing()
+    cols_to_use = ['date','rainfall','gwl']
+    data = Preprocessing.load_data(config.DATA_FILE, cols_to_use)
+    # print(data)
     
     # Normalize data
     data_scaled, scaler = Preprocessing.normalize_data()
@@ -42,7 +44,7 @@ def run_model1(Preprocessing, Postprocessing):
     predicted = predicted.reshape(-1, predicted.shape[-1])
     observed = observed.reshape(-1, observed.shape[-1])
     
-    print(observed.shape, predicted.shape)
+    # print(observed.shape, predicted.shape)
     predict_unscaled, observed_unscaled = Postprocessing.inverse_transform_data(predicted, observed)
 
      # Create DataFrame
@@ -52,14 +54,16 @@ def run_model1(Preprocessing, Postprocessing):
     df['gwl_prd'] = predict_unscaled[:, 1]
 
     # Plot data
-    Postprocessing.plot_data(df, 'Rainfall & Groundwater Level', 'months', 'rainfall(mm)', 'ground_water_level(m)', (14, 0))
+    Postprocessing.plot_data(df, 'Rainfall & Groundwater Level', 'months', 'rainfall(mm)', 'ground_water_level(m)', (14, 0), str(out_flag))
 
-def run_model2(Preprocessing, Postprocessing):
+def run_model2(Preprocessing, Postprocessing, out_flag):
     
     # Load data
-    data_with_date = Preprocessing.load_data(config.DATA_FILE)
+    # Preprocessing = Preprocessing()
+    cols_to_use= ['date','rainfall','gwl','api']
+    data_with_date = Preprocessing.load_data(config.DATA_FILE, cols_to_use)
     data = data_with_date[['rainfall', 'api', 'gwl']]
-    print(data)
+    # print(data)
 
     # Normalize data
     data_scaled,scaler = Preprocessing.normalize_data()
@@ -79,17 +83,26 @@ def run_model2(Preprocessing, Postprocessing):
 
     # Make predictions
     test_predict = lstm.model.predict(test_X)
-    test_predict = np.reshape(test_predict, test_X.shape)
-    predicted = np.array((test_X, test_predict)).T
+    
+    # Combine test_X and test_predict_reshaped
+    test_X = np.reshape(test_X,(test_X.shape[0],test_X.shape[1]))
+    # print(test_X.shape)
+    predicted = np.concatenate((test_X, test_predict), axis=1)
+    # print(predicted.shape)
 
     # Inverse transform data
-    Postprocessing = Postprocessing(scaler)
-    test_Y= np.reshape(test_Y,test_X.shape)
-    observed = np.array((test_X, test_Y)).T
+    # Postprocessing = Postprocessing(scaler)
+    test_Y = np.reshape(test_Y, (test_X.shape[0], 1))
+    # print(test_Y.shape)
     
-    predicted = predicted.reshape(-1, predicted.shape[-1])
-    observed = observed.reshape(-1, observed.shape[-1])
-    
+    # Combine test_X and test_Y_reshaped
+    observed = np.concatenate((test_X, test_Y), axis=1)
+    # print(observed.shape)
+
+    # Reshape predicted and observed arrays
+    # predicted = predicted.reshape(-1, predicted.shape[-1])
+    # observed = observed.reshape(-1, observed.shape[-1])
+
     print(observed.shape, predicted.shape)
     predict_unscaled,observed_unscaled = Postprocessing.inverse_transform_data(predicted,observed)
 
@@ -102,13 +115,14 @@ def run_model2(Preprocessing, Postprocessing):
     df.index = data.index[Preprocessing.train_size:]
 
     # Plot data
-    Postprocessing.plot_data(df, 'Rainfall, API & Groundwater Level', 'months', 'rainfall(mm)', 'ground_water_level(m)')
+    Postprocessing.plot_data(df, 'Rainfall, API & Groundwater Level', 'months', 'rainfall(mm)', 'ground_water_level(m)',(14,0), str(out_flag))
 
 if __name__ == '__main__':
-    Preprocessing = preprocess.Preprocessing(config.DATA_FILE)
-    #run_model1(Preprocessing, Postprocessing)
-    run_model2(Preprocessing, Postprocessing)
+    # run_model1(Preprocessing, Postprocessing)
+    # run_model2(Preprocessing, Postprocessing)
     
-"""  with multiprocessing.get_context('spawn').Pool(2) as executor:
-        executor.starmap(run_model1, [(Preprocessing,)])
-        executor.starmap(run_model2, [(Preprocessing,)]) """
+    with multiprocessing.get_context('spawn').Pool(4) as executor:
+        executor.starmap(run_model1, [(Preprocessing,Postprocessing, 1), (Preprocessing, Postprocessing, 2)])
+        # executor.starmap(run_model2, [(Preprocessing,Postprocessing, 2)])
+        # executor.starmap(run_model1, [(Preprocessing,Postprocessing, 3)])
+        # executor.starmap(run_model2, [(Preprocessing,Postprocessing, 4)])  

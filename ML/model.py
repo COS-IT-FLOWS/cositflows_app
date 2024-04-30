@@ -19,4 +19,4 @@ class Model:
         """
         Trains the given model on the given training data.
         """
-        self.model.fit(train_X, train_Y, epochs=num_epochs, batch_size=batch_size, verbose=2)
+        self.model.fit(train_X, train_Y, epochs=num_epochs, batch_size=batch_size, verbose=0)

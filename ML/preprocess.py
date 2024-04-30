@@ -4,18 +4,18 @@ from sklearn.preprocessing import StandardScaler
 
 class Preprocessing:
     
-    def __init__(self, data_file):
+    def __init__(self):
         """
         Initializes the class with the given data file.
         """
-        self.data = self.load_data(data_file)
+        pass
 
-    def load_data(self,data_file):
+    def load_data(self, data_file, cols_to_use):
         """
         Loads the data from the given file and returns it as a pandas DataFrame.
         """
-        data = pd.read_csv(data_file, index_col='date', usecols=['date','rainfall','gwl','api'])
-        return data
+        self.data = pd.read_csv(data_file, index_col='date', usecols = cols_to_use)
+        return self.data
 
     def normalize_data(self):
         """
