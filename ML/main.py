@@ -33,6 +33,8 @@ def run_model1(Preprocessing, Postprocessing, out_flag):
 
     # Make predictions
     test_predict = lstm.model.predict(test_X)
+    #print(test_predict.shape)
+    
     test_predict = np.reshape(test_predict, test_X.shape)
     predicted = np.array((test_X, test_predict)).T
 
@@ -59,7 +61,7 @@ def run_model1(Preprocessing, Postprocessing, out_flag):
 def run_model2(Preprocessing, Postprocessing, out_flag):
     
     # Load data
-    # Preprocessing = Preprocessing()
+    Preprocessing = Preprocessing()
     cols_to_use= ['date','rainfall','gwl','api']
     data_with_date = Preprocessing.load_data(config.DATA_FILE, cols_to_use)
     data = data_with_date[['rainfall', 'api', 'gwl']]
@@ -91,7 +93,7 @@ def run_model2(Preprocessing, Postprocessing, out_flag):
     # print(predicted.shape)
 
     # Inverse transform data
-    # Postprocessing = Postprocessing(scaler)
+    Postprocessing = Postprocessing(scaler)
     test_Y = np.reshape(test_Y, (test_X.shape[0], 1))
     # print(test_Y.shape)
     
@@ -103,8 +105,8 @@ def run_model2(Preprocessing, Postprocessing, out_flag):
     # predicted = predicted.reshape(-1, predicted.shape[-1])
     # observed = observed.reshape(-1, observed.shape[-1])
 
-    print(observed.shape, predicted.shape)
-    predict_unscaled,observed_unscaled = Postprocessing.inverse_transform_data(predicted,observed)
+    # print(observed.shape, predicted.shape)
+    predict_unscaled, observed_unscaled = Postprocessing.inverse_transform_data(predicted, observed)
 
     # Create DataFrame
     df = pd.DataFrame()
@@ -117,12 +119,17 @@ def run_model2(Preprocessing, Postprocessing, out_flag):
     # Plot data
     Postprocessing.plot_data(df, 'Rainfall, API & Groundwater Level', 'months', 'rainfall(mm)', 'ground_water_level(m)',(14,0), str(out_flag))
 
+def parallelize(run_model,Preprocessing,Postprocessing,out_flag):
+    run_model(Preprocessing,Postprocessing,out_flag)
+    
+    
 if __name__ == '__main__':
     # run_model1(Preprocessing, Postprocessing)
     # run_model2(Preprocessing, Postprocessing)
     
     with multiprocessing.get_context('spawn').Pool(4) as executor:
-        executor.starmap(run_model1, [(Preprocessing,Postprocessing, 1), (Preprocessing, Postprocessing, 2)])
+        # executor.starmap(run_model2, [(Preprocessing,Postprocessing, 1), (Preprocessing, Postprocessing, 2)])
+        executor.starmap(parallelize, [(run_model1,Preprocessing,Postprocessing, 1), (run_model2,Preprocessing, Postprocessing, 2)])
         # executor.starmap(run_model2, [(Preprocessing,Postprocessing, 2)])
         # executor.starmap(run_model1, [(Preprocessing,Postprocessing, 3)])
         # executor.starmap(run_model2, [(Preprocessing,Postprocessing, 4)])  
