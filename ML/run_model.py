@@ -7,7 +7,7 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 
-def run_model(Preprocessing, Postprocessing, out_flag):
+def Run_model(Preprocessing, Postprocessing, out_flag):
     
     # Load data
     Preprocessing = Preprocessing()
