@@ -31,7 +31,7 @@ class Preprocessing:
         Splits the given data into training and testing sets.
         """
         self.train_size = int(len(self.data_scaled) * train_test_split_ratio)
-        test_size = len(self.data_scaled) - self.train_size
+        self.test_size = len(self.data_scaled) - self.train_size
         self.train_data, self.test_data = self.data_scaled[0:self.train_size, :], self.data_scaled[self.train_size:len(self.data_scaled), :]
 
     def reshape_data(self):
