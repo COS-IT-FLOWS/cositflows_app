@@ -153,19 +153,18 @@ def run_model(Preprocessing, Postprocessing, model_index):
     #---------------------------------------------
     test_predict = np.reshape(test_predict, (test_X.shape[0], 1))
     test_X = np.reshape(test_X,(test_X.shape[:-1]))
-    print(test_predict.shape, test_X.shape)
+    #print(test_predict.shape, test_X.shape)
     predicted = np.concatenate((test_X, test_predict),axis=config[model_index]['axis'])
-    print(predicted.shape)
+    #print(predicted.shape)
     
     # Inverse transform data
     Postprocessing = Postprocessing(scaler)
     test_Y=np.reshape(test_Y,(test_X.shape[0],1))
-    print(test_Y.shape)
+    #print(test_Y.shape)
     
     #Combine test_X and test_Y_reshaped
     observed=np.concatenate((test_X,test_Y),axis=config[model_index]['axis'])
     
-   
     predicted = predicted.reshape(-1, predicted.shape[-1])
     observed = observed.reshape(-1, observed.shape[-1])
     
@@ -175,25 +174,24 @@ def run_model(Preprocessing, Postprocessing, model_index):
      # Homogenize- Create DataFrame
     df = pd.DataFrame()
     df['rainfall(mm)'] = data['rainfall'][Preprocessing.train_size:len(data)]
-    if out_flag == 1:
+    if config[model_index]['num'] == 2:
         df['api'] = data['api'][Preprocessing.train_size:len(data)]
-    df['ground_water_level(m)'] = observed_unscaled[:, out_flag]
-    df['gwl_prd'] = predict_unscaled[:, out_flag]
+    df['ground_water_level(m)'] = observed_unscaled[:, config[model_index]['num']]
+    df['gwl_prd'] = predict_unscaled[:, config[model_index]['num']]
     df.index = data.index[Preprocessing.train_size:]
 
     # Plot data
-    if out_flag == 1:
-        Postprocessing.plot_data(df, 'Rainfall & Groundwater Level', 'months', 'rainfall(mm)', 'ground_water_level(m)', (14, 0), str(out_flag))
+    if config[model_index]['num'] == 1:
+        Postprocessing.plot_data(df, 'Rainfall & Groundwater Level', 'months', 'rainfall(mm)', 'ground_water_level(m)', (14, 0), str(config[model_index]['num']))
     else :
-        Postprocessing.plot_data(df, 'Rainfall, API & Groundwater Level', 'months', 'rainfall(mm)', 'ground_water_level(m)',(14,0), str(out_flag))
+        Postprocessing.plot_data(df, 'Rainfall, API & Groundwater Level', 'months', 'rainfall(mm)', 'ground_water_level(m)',(14,0), str(config[model_index]['num']))
     
 if __name__ == '__main__':
     #run_model1(Preprocessing, Postprocessing,5)
     # run_model(Preprocessing, Postprocessing,'model_1')
-    run_model(Preprocessing, Postprocessing,'model_2')
     
-    # with multiprocessing.get_context('spawn').Pool(4) as executor:
-    #     executor.starmap(Run_model, [(Preprocessing,Postprocessing, 1), (Preprocessing, Postprocessing, 2)])
+    with multiprocessing.get_context('spawn').Pool(4) as executor:
+        executor.starmap(run_model, [(Preprocessing,Postprocessing, 'model_1'), (Preprocessing, Postprocessing, 'model_2')])
         # executor.starmap(parallelize, [(run_model1,Preprocessing,Postprocessing, 1), (run_model2,Preprocessing, Postprocessing, 2)])
         # executor.starmap(run_model2, [(Preprocessing,Postprocessing, 2)])
         # executor.starmap(run_model1, [(Preprocessing,Postprocessing, 3)])

@@ -8,6 +8,8 @@ app:
 model_1:
   cols: ['date', 'rainfall', 'gwl']
   axis: 1
+  num : 1
 model_2:
   cols: ['date', 'rainfall', 'gwl', 'api']
   axis: 1
+  num : 2
