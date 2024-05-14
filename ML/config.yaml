@@ -2,6 +2,7 @@ app:
   DATA_FILE: 'Input/rf_api_90days.csv'
   TRAIN_TEST_SPLIT_RATIO: 0.67
   LSTM_UNITS: 4
+  LSTM_BI_UNITS: 32
   NUM_EPOCHS: 50
   BATCH_SIZE: 1
 

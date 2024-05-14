@@ -41,4 +41,4 @@ class Postprocessing:
         fig.tight_layout()  # otherwise the right y-label is slightly clipped
         #save as 2 different files
         plt.savefig(f'Output/plot/{out_path}.png')
-        # plt.show()
+        plt.show()
