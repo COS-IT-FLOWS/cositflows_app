@@ -7,6 +7,7 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 import yaml
+import timeit
 
 
 with open('config.yaml','r') as f:
@@ -186,10 +187,11 @@ def run_model(Preprocessing, Postprocessing, model_index):
     else :
         Postprocessing.plot_data(df, 'Rainfall, API & Groundwater Level', 'months', 'rainfall(mm)', 'ground_water_level(m)',(14,0), str(config[model_index]['num']))
     
-if __name__ == '__main__':
-    #run_model1(Preprocessing, Postprocessing,5)
-    # run_model(Preprocessing, Postprocessing,'model_1')
+# if __name__ == '__main__':
+#     #run_model1(Preprocessing, Postprocessing,5)
+#     # run_model(Preprocessing, Postprocessing,'model_1')
     
+def main():
     with multiprocessing.get_context('spawn').Pool(4) as executor:
         executor.starmap(run_model, [(Preprocessing,Postprocessing, 'model_1'), (Preprocessing, Postprocessing, 'model_2')])
         # executor.starmap(parallelize, [(run_model1,Preprocessing,Postprocessing, 1), (run_model2,Preprocessing, Postprocessing, 2)])
@@ -198,7 +200,8 @@ if __name__ == '__main__':
         # executor.starmap(run_model2, [(Preprocessing,Postprocessing, 4)])
 
 
-
-
+if __name__ == '__main__':
+    execution_time = timeit.timeit(main, setup="pass", number=1)
+    print(execution_time)
 
 
