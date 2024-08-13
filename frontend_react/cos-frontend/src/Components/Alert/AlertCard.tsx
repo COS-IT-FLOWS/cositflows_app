@@ -1,27 +1,55 @@
-import React from 'react';
-import AlertItem from './AlertItem';
-import WeatherIcon from '../../WeatherIcon';
+import React from "react";
+import AlertHeader from "./AlertHeader";
+import AlertDetails from "./AlertDetails";
+import IntensityCard from "./IntensityCard/IntensityCard";
+import Draggable from "react-draggable"
 
 interface AlertCardProps {
+  alertType: string;
+  intensity: string;
+  date: string;
+  time: string;
   location: string;
-  alerts: Array<{
-    type: string;
-    icon: string;
-  }>;
+  validUntil: string;
+  issuedBy: string;
 }
 
-const AlertCard: React.FC<AlertCardProps> = ({ location, alerts }) => {
+const AlertCard: React.FC<AlertCardProps> = ({
+  alertType,
+  intensity,
+  date,
+  time,
+  location,
+  validUntil,
+  issuedBy,
+}) => {
   return (
-    <section className="flex flex-col px-4 pt-6 rounded-3xl bg-stone-900 bg-opacity-80 max-w-[231px] ml-2 mt-2">
-      <h2 className="text-base font-semibold leading-6 text-white">
-        Alerts in {location}
-      </h2>
-      {alerts.map((alert, index) => (
-        <AlertItem key={index} type={alert.type} icon={alert.icon} style={{ marginTop: 20, marginLeft:20 }}/>
-      ))}
-      <div className="shrink-0 mt-1.5 rounded-2xl bg-stone-300 h-[90px]" />
-      <WeatherIcon />
-    </section>
+    <Draggable>
+      <article className="flex flex-col font-semibold max-w-[174px] h-[90px] rounded-2xl bg-stone-300 p-2"
+       style={{position: "absolute"}}
+      >
+        <div className="flex items-start">
+          <div className="text-xs leading-loose text-neutral-700">
+            <AlertHeader alertType={alertType} />
+          </div>
+        </div>
+
+        <div className="flex space-x-1">
+          <div className="flex-none">
+              <IntensityCard intensity={intensity} />
+            </div>
+            <div className="flex flex-1 flex-col justify-center">
+              <AlertDetails
+                date={date}
+                time={time}
+                location={location}
+                validUntil={validUntil}
+                issuedBy={issuedBy}
+              />
+            </div>
+          </div> 
+      </article>
+      </Draggable>
   );
 };
 

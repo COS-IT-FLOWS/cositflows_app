@@ -3,9 +3,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import AlertComponent from './Components/Alert/AlertComponent';
+import MyComponent from './Components/Alert/MyComponent';
 import reportWebVitals from './reportWebVitals';
-import RainfallLegend from './Components/Legend/RainfallLegend/RainfallLegend';
+// import RainfallLegend from './Components/Legend/RainfallLegend/RainfallLegend';
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
@@ -15,8 +15,7 @@ import RainfallLegend from './Components/Legend/RainfallLegend/RainfallLegend';
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <React.StrictMode>
-    <AlertComponent />
-    <RainfallLegend />
+    <MyComponent/>
   </React.StrictMode>,
 );
 
