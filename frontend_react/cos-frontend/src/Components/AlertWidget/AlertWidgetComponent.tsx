@@ -81,13 +81,8 @@ const MyComponent: React.FC = () => {
                     location={selectedAlert.location}
                     intensity={selectedAlert.intensity}
                     validUntil={selectedAlert.validUntil}
+                    onClose={handleOverlayClose}
                 />
-                <button
-                    onClick={handleOverlayClose}
-                    className="absolute top-4 right-4 text-white"
-                >
-                 Close
-                 </button>
             </div>
         )}
     </div>
