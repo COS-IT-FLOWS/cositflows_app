@@ -9,14 +9,14 @@ interface AlertInfoProps {
 const AlertInfo: React.FC<AlertInfoProps> = ({ date, time, issuer }) => {
   return (
     <div className="flex gap-1 items-start self-start text-xs leading-none text-center min-h-[15px]">
-      <div className="flex flex-col rounded-xl w-[53px]">
-        <div className="px-2.5 py-1 rounded-xl bg-neutral-400">{date}</div>
+      <div className="flex flex-col mt-1.5 items-center justify-center rounded-xl  bg-neutral-400 w-[53px] h-[14px]">
+        <div className="text-[10px]">{date}</div>
       </div>
-      <div className="flex flex-col rounded-xl w-[60px]">
-        <div className="px-2.5 py-1 rounded-xl bg-neutral-400">{time}</div>
+      <div className="flex flex-col mt-1.5 items-center justify-center rounded-xl w-[60px] h-[14px] bg-neutral-400">
+        <div className="text-[10px]">{time}</div>
       </div>
-      <div className="flex flex-col text-xs leading-none rounded-xl w-[89px]">
-        <div className="px-2 py-1 rounded-xl bg-neutral-400">
+      <div className="flex flex-col mt-1.5 items-center justify-center rounded-xl  bg-neutral-400 w-[89px] h-[14px]">
+        <div className="text-[9px]">
           issued by {issuer}
         </div>
       </div>

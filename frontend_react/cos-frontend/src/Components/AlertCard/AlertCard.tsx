@@ -11,6 +11,7 @@ interface AlertCardProps {
   location: string;
   validUntil: string;
   issuedBy: string;
+  onClick: ()=> void;
 }
 
 const AlertCard: React.FC<AlertCardProps> = ({
@@ -21,9 +22,12 @@ const AlertCard: React.FC<AlertCardProps> = ({
   location,
   validUntil,
   issuedBy,
+  onClick,
 }) => {
   return (
-      <article className="flex flex-col font-semibold max-w-[174px] h-[90px] rounded-2xl bg-stone-300 p-2">
+      <article className="flex flex-col font-semibold max-w-[174px] h-[90px] rounded-2xl bg-stone-300 p-2"
+      onClick={onClick}
+      >
         <div className="flex items-start">
           <div className="text-xs leading-loose text-neutral-700">
             <AlertHeader alertType={alertType} />

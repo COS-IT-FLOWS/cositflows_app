@@ -1,7 +1,11 @@
-import React from "react";
-import AlertWidget from "./AlertWidget";
+import React, { useState } from "react";
+import AlertWidget, {Alert} from "./AlertWidget";
+import AlertOverlay from "../AlertCard/Overlay/OverlayCard"
 
 const MyComponent: React.FC = () => {
+  const [selectedAlert,setSelectedAlert]=useState<Alert | null>(null);
+  const [showOverlay, setShowOverlay]= useState(false);
+  
   const alerts = [
     {   
         alertType: "Lightning",
@@ -49,10 +53,44 @@ const MyComponent: React.FC = () => {
         issuedBy: "KSDMA",
       },
   ];
+
+  const handleCardClick = (alert: Alert) => {
+    setSelectedAlert(alert);
+    setShowOverlay(true);
+  };
+
+  const handleOverlayClose = () => {
+    setShowOverlay(false);
+  };
+
     return (
-    <AlertWidget
-        location="Chalakudy" alerts={alerts}
-    />
+    <div className="relative">
+        <AlertWidget
+            location="Chalakudy" 
+            alerts={alerts}
+            onAlertClick={handleCardClick}
+        />
+
+        {showOverlay && selectedAlert && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30">
+                <AlertOverlay
+                    alertType={selectedAlert.alertType}
+                    date={selectedAlert.date}
+                    time={selectedAlert.time}
+                    issuer={selectedAlert.issuedBy}
+                    location={selectedAlert.location}
+                    intensity={selectedAlert.intensity}
+                    validUntil={selectedAlert.validUntil}
+                />
+                <button
+                    onClick={handleOverlayClose}
+                    className="absolute top-4 right-4 text-white"
+                >
+                 Close
+                 </button>
+            </div>
+        )}
+    </div>
   );
 };
 
