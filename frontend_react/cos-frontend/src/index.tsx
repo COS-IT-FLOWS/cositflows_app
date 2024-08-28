@@ -3,8 +3,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import AlertWidgetComponent from './Components/AlertWidget/AlertWidgetComponent'
+//import AlertWidgetComponent from './Components/AlertWidget/AlertWidgetComponent';
 import reportWebVitals from './reportWebVitals';
+import MonitorScreen from './Components/AlertCard/MonitorScreen';
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
@@ -14,7 +15,7 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <React.StrictMode>
-    <AlertWidgetComponent/>
+    <MonitorScreen/>
   </React.StrictMode>,
 );
 
