@@ -1,6 +1,8 @@
 import React from "react";
 import AlertWidgetComponent from "../AlertWidget/AlertWidgetComponent";
 import MenuList from "../Menu1/MenuList";
+import Map from "../Maps/MonitoringMap.js";
+
 
 const MonitorScreen: React.FC = () => {
   {
@@ -13,11 +15,10 @@ const MonitorScreen: React.FC = () => {
   }
 
   return (
-    <div className="monitor-screen w-[1440px] h-[900px] bg-gray-100 mx-auto">
+    <div className="monitor-screen mx-auto">
+      <Map/>
       <MenuList/>
-      <div style={{ position: "absolute", top: "200px", left: "111px"}}>
-        <AlertWidgetComponent/>
-      </div> 
+      <AlertWidgetComponent/>
     </div>
   );
 };

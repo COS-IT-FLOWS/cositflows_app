@@ -4,6 +4,7 @@ import Map from "./MAP.png";
 import Dashboard from "./Dashboard.png";
 import About from "./About.png";
 import Settings from "./Settings.png";
+import '../styles.css';
 
 const icons = [
   { src: Map, alt: "Visualization" },
@@ -17,7 +18,7 @@ const MenuList: React.FC = () => {
 
   return(
   <div
-    className={`flex flex-col justify-start bg-gray-800 text-white ${
+    className={`flex flex-col justify-start bg-gray-800 text-white menu ${
       isExpanded ? 'w-[263px] z-50 absolute' : 'w-[88px]'
      } h-[900px] transition-width duration-300 ease-in-out` }
     onMouseEnter={() => setIsExpanded(true)}

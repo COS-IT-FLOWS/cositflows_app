@@ -64,7 +64,7 @@ const MyComponent: React.FC = () => {
   };
 
     return (
-    <div className="relative">
+    <div>
         <AlertWidget
             location="Chalakudy" 
             alerts={alerts}
