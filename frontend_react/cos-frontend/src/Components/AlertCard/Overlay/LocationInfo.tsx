@@ -7,7 +7,7 @@ interface LocationInfoProps {
 
 const LocationInfo: React.FC<LocationInfoProps> = ({ location }) => {
   return (
-      <div className="flex flex-col px-2 py-3.5 mt-1.5 w-full bg-white rounded-xl">
+      <div className="flex flex-col px-2 py-3.5 mt-1.5 w-[98px] bg-white rounded-3xs">
         <div className="flex gap-0.5 self-start leading-none whitespace-nowrap">
           <img
             loading="lazy"

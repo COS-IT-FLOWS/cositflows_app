@@ -3,7 +3,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-//import AlertWidgetComponent from './Components/AlertWidget/AlertWidgetComponent';
 import reportWebVitals from './reportWebVitals';
 import MonitorScreen from './Components/AlertCard/MonitorScreen';
 

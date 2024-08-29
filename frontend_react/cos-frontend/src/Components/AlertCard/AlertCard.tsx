@@ -34,11 +34,11 @@ const AlertCard: React.FC<AlertCardProps> = ({
           </div>
         </div>
 
-        <div className="flex space-x-1">
+        <div className="flex gap-1.5 pl-1 space-x-1">
           <div className="flex-none">
               <IntensityCard intensity={intensity} />
             </div>
-            <div className="flex flex-1 flex-col justify-center">
+            <div className="flex flex-col justify-center">
               <AlertDetails
                 date={date}
                 time={time}

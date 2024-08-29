@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import NavComponent from './MenuComponent';
 import Map from "./MAP.png";
 import Dashboard from "./Dashboard.png";
 import About from "./About.png";
@@ -37,7 +36,7 @@ const MenuList: React.FC = () => {
                 />
               </div>
               {isExpanded && (
-                <span className="text-[16px] font-semibold">{icon.alt}</span>
+                <span className="text-[16px] font-inter">{icon.alt}</span>
               )}
           </div>
         ))}

@@ -7,18 +7,18 @@ interface IntensityCardProps {
 }
 
 const IntensityCard: React.FC<IntensityCardProps> = ({ intensity, size= "small" }) => {
-  const width = size === "large" ? "w-[98px]" : "w-[65px]";
-  const height = size === "large" ? "h-[70px]" : "h-[51px]";
+  const widthClass = size === "large" ? "w-[106px]" : "w-[65px]";
+  const heightClass = size === "large" ? "h-[75px]" : "h-[44px]";
   
   return (
-    <article className="flex flex-grow flex-col items-center text-xs font-semibold leading-none text-center rounded-none ${width} ${height} text-neutral-600">
-      <div className="flex flex-col items-center px-1 py-2 bg-white rounded-xl w-full h-full">
+    <article className={`flex flex-col items-center font-inter leading-none text-center ${widthClass} ${heightClass} text-neutral-600`}>
+      <div className={`flex flex-col items-center px-1 py-2 bg-white rounded-4xs ${widthClass} ${heightClass}`}>
         <img
           src={meter}
-          alt={`${intensity} intensity`}
-          className="object-contain w-full h-full"
+          alt={`${intensity}`}
+          className="object-contain w-full h-auto"
         />
-        <p className="text-[5px] mt-1">{intensity}</p>
+        <p className="text-7xs mt-1">{intensity}</p>
       </div>
     </article>
   );

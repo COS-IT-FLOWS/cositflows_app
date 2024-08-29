@@ -8,7 +8,7 @@ interface WarningInfoProps {
 
 const WarningInfo: React.FC<WarningInfoProps> = ({ warning, validUntil }) => {
   return (
-    <div className="flex flex-col items-start p-3 text-xs leading-none bg-white rounded-xl">
+    <div className="flex flex-col items-start p-3 text-xs leading-none bg-white rounded-3xs">
       <div className="flex gap-1 whitespace-nowrap">
         <div className="grow mt-0.5 text-[10px]">Warning</div>
         <img
