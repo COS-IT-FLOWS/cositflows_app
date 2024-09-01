@@ -1,8 +1,9 @@
 import React from "react";
 import AlertWidgetComponent from "./AlertWidget/AlertWidgetComponent";
 import MenuList from "./Menu/MenuList";
-import LayerWidget from "./LayerWidget/Layerwidget";
+import LayerComponent from "./LayerWidget/LayersComponent";
 import NavComponent from "./NavBar/NavComponent";
+import RainfallLegend from "./LegendWidget/LegendComponent";
 
 const MonitorScreen: React.FC = () => {
   {
@@ -16,16 +17,19 @@ const MonitorScreen: React.FC = () => {
 
   return (
     <div className="monitor-screen w-[1440px] h-[900px] bg-gray-100 mx-auto">
-      <MenuList/>
+      <div style={{position:"absolute", left: "0px"}}>
+        <MenuList/>
+      </div>
       <div style={{position:"absolute", top: "0px", width: "100%"}}>
         <NavComponent/>
       </div>
       <div style={{ position: "absolute", top: "200px", right:"111px"}}>
-        <LayerWidget/>
+        <LayerComponent/>
       </div>
       <div style={{ position: "absolute", top: "200px", left: "111px"}}>
         <AlertWidgetComponent/>
-      </div> 
+      </div>
+        <RainfallLegend lastUpdated={"8.30AM today"}/>
     </div>
   );
 };
