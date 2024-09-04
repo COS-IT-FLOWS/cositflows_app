@@ -59,6 +59,7 @@ module.exports = {
       xs: "12px",
       "3xs": "10px",
       "4xs": "9px",
+      "2xs": "8px",
       sm: "14px",
       inherit: "inherit",
     },

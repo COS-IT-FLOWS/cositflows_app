@@ -3,7 +3,7 @@ import AlertWidgetComponent from "./AlertWidget/AlertWidgetComponent";
 import MenuList from "./Menu/MenuList";
 import LayerComponent from "./LayerWidget/LayersComponent";
 import NavComponent from "./NavBar/NavComponent";
-import RainfallLegend from "./LegendWidget/LegendComponent";
+import MyComponent from "./LegendWidget/Legend";
 
 const MonitorScreen: React.FC = () => {
   {
@@ -16,20 +16,21 @@ const MonitorScreen: React.FC = () => {
   }
 
   return (
-    <div className="monitor-screen w-[1440px] h-[900px] bg-gray-100 mx-auto">
+    <div className="monitor-screen w-full h-[900px] bg-gray-100 mx-auto relative flex flex-col">
       <div style={{position:"absolute", left: "0px"}}>
         <MenuList/>
       </div>
-      <div style={{position:"absolute", top: "0px", width: "100%"}}>
+      <div className="w-full">
         <NavComponent/>
       </div>
-      <div style={{ position: "absolute", top: "200px", right:"111px"}}>
+
+      <div className="absolute top-0 right-0 mt-[90px] mr-[20px] flex flex-col items-end">
         <LayerComponent/>
+        <div className="mt-[15px] right-0"> <MyComponent/> </div>
       </div>
       <div style={{ position: "absolute", top: "200px", left: "111px"}}>
         <AlertWidgetComponent/>
       </div>
-        <RainfallLegend lastUpdated={"8.30AM today"}/>
     </div>
   );
 };

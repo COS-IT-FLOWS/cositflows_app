@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import LayerItem from "./LayerItem";
-import Checkbox from "@mui/icons-material/CheckBox";
 
 const layersData = [
   { label: "Rainfall gauges"},

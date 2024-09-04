@@ -24,7 +24,6 @@ const AlertWidget: React.FC<AlertWidgetProps> = ({ location, alerts, onAlertClic
   }
 
   return (
-    <Draggable>
     <div className="bg-darkslategray text-white p-4 rounded-3xl max-w-[225px] h-[329px]">
       <h2 className="text-[16px] font-inter mb-4">Alerts in {location}</h2>
 
@@ -47,7 +46,6 @@ const AlertWidget: React.FC<AlertWidgetProps> = ({ location, alerts, onAlertClic
         </div>
       </div>
     </div>
-  </Draggable>
   );
 };
 
