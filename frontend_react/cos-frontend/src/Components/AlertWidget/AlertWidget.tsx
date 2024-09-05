@@ -1,6 +1,6 @@
 // AlertWidget.tsx
 import React from "react";
-import AlertCard from "../AlertCard/AlertCard";
+import AlertCard from "./AlertCard/AlertCard";
 import Draggable from "react-draggable";
 
 export interface Alert{
