@@ -1,0 +1,26 @@
+.map-wrap {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* calculate height of the screen minus the heading */
+  }
+  
+.map {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+.menu {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 500;
+}
+
+.alert-widget {
+  position: absolute;
+  left: 100px;
+  top: 100px;
+  z-index: 400;
+}

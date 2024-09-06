@@ -5,7 +5,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 //import AlertWidgetComponent from './Components/AlertWidget/AlertWidgetComponent';
 import reportWebVitals from './reportWebVitals';
-import MonitorScreen from './Components/AlertCard/MonitorScreen';
+import MonitorScreen from './components/Screens/MonitorScreen';
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
