@@ -39,8 +39,8 @@ export default function Map() {
       addStationLayer(map.current, 'RIVER');
 
       addBoundaryLayer(map.current, 'DISTRICT');
-      addBoundaryLayer(map.current, 'PANCHAYAT');
-      addBoundaryLayer(map.current, 'RIVER_BASIN');
+      // addBoundaryLayer(map.current, 'PANCHAYAT');
+      // addBoundaryLayer(map.current, 'RIVER_BASIN');
       
 
       map.current.addControl(new maplibregl.NavigationControl());
