@@ -1,10 +1,23 @@
 import React, { useState } from "react";
-import LayersList from "./LayersList";
 import Minimize from "@mui/icons-material/Minimize";
 import CloseIcon from "@mui/icons-material/Close";
-import AddIcon from "@mui/icons-material/Add"
+import AddIcon from "@mui/icons-material/Add";
 
-const LayersComponent: React.FC = () => {
+type GaugeType = "rainfall" | "reservoir" | "tidal" | "groundwater" | "riverWater" | "regulators";
+
+interface LayersProps {
+  visibleGauges: {
+    rainfall: boolean;
+    reservoir: boolean;
+    tidal: boolean;
+    groundwater: boolean;
+    riverWater: boolean;
+    regulators: boolean;
+  };
+  toggleGauge: (gauge: GaugeType) => void;
+}
+
+const LayersComponent: React.FC<LayersProps> = ({ visibleGauges, toggleGauge }) => {
   const [activeTab, setActiveTab] = useState<"Manual" | "Real Time">("Manual");
   const [isVisible, setIsVisible] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
@@ -64,7 +77,30 @@ const LayersComponent: React.FC = () => {
         {!isCollapsed && (
           <>
             <div className="flex flex-col px-5 items-start mt-2 text-xs">
-              <LayersList />
+              <div>
+                <input type="checkbox" checked={visibleGauges.rainfall} onChange={() => toggleGauge("rainfall")} />
+                <label>Rainfall gauges</label>
+              </div>
+              <div>
+                <input type="checkbox" checked={visibleGauges.reservoir} onChange={() => toggleGauge("reservoir")} />
+                <label>Reservoir/Dam level</label>
+              </div>
+              <div>
+                <input type="checkbox" checked={visibleGauges.tidal} onChange={() => toggleGauge("tidal")} />
+                <label>Tidal level</label>
+              </div>
+              <div>
+                <input type="checkbox" checked={visibleGauges.groundwater} onChange={() => toggleGauge("groundwater")} />
+                <label>Groundwater level</label>
+              </div>
+              <div>
+                <input type="checkbox" checked={visibleGauges.riverWater} onChange={() => toggleGauge("riverWater")} />
+                <label>River water level</label>
+              </div>
+              <div>
+                <input type="checkbox" checked={visibleGauges.regulators} onChange={() => toggleGauge("regulators")} />
+                <label>Regulators</label>
+              </div>
               {activeTab === "Manual" && (
                 <div className="flex flex-col items-start mt-1 w-full">
                   <div className="leading-5">IMD Grid Data</div>

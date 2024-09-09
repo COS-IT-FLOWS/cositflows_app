@@ -1,22 +1,30 @@
 import React, { useState } from "react";
 import LayerItem from "./LayerItem";
 
-const layersData = [
-  { label: "Rainfall gauges"},
-  { label: "Reservoir/Dam level"},
-  { label: "Groundwater level" },
-  { label: "River water level"},
-  { label: "Tidal level"},
-  { label: "Regulators"  },
+type GaugeType = "rainfall" | "reservoir" | "tidal" | "groundwater" | "riverWater" | "regulators";
+
+const layersData: { label: GaugeType} []= [
+  { label: "rainfall"},
+  { label: "reservoir"},
+  { label: "groundwater" },
+  { label: "riverWater"},
+  { label: "tidal"},
+  { label: "regulators"  },
 ];
 
-const LayersList: React.FC = () => {
+interface LayersListProps {
+  toggleGauge: (gauge: GaugeType) => void;
+}
+
+
+const LayersList: React.FC<LayersListProps> = ({ toggleGauge }) => {
   const [checkedItems, setCheckedItems] = useState<boolean[]>(Array(layersData.length).fill(false));
 
   const handleToggle = (index: number) => {
     setCheckedItems(prevState => {
       const newCheckedItems = [...prevState];
       newCheckedItems[index] = !newCheckedItems[index];
+      toggleGauge(layersData[index].label);
       return newCheckedItems;
     });
   };
