@@ -23,6 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 
-# Ignore config.json so that sensitive info does not get published to repo on github
-/**/*/config.json
-
+# Ignore all config files
+**/*/config.json

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AlertWidget, {Alert} from "./AlertWidget";
-import AlertOverlay from "../AlertCard/Overlay/OverlayCard"
+import AlertOverlay from "./AlertCard/Overlay/OverlayCard"
 
 const MyComponent: React.FC = () => {
   const [selectedAlert,setSelectedAlert]=useState<Alert | null>(null);
