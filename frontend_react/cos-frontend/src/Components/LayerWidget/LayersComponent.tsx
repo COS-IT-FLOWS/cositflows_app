@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Minimize from "@mui/icons-material/Minimize";
 import CloseIcon from "@mui/icons-material/Close";
 import AddIcon from "@mui/icons-material/Add";
+import Checkbox from "@mui/material/Checkbox";
+import Checkicon from "@mui/icons-material/CheckBox";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 
 type GaugeType = "rainfall" | "reservoir" | "tidal" | "groundwater" | "riverWater" | "regulators";
 
@@ -15,15 +18,13 @@ interface LayersProps {
     regulators: boolean;
   };
   toggleGauge: (gauge: GaugeType) => void;
+  onClose: () => void;
 }
 
-const LayersComponent: React.FC<LayersProps> = ({ visibleGauges, toggleGauge }) => {
+const LayersComponent: React.FC<LayersProps> = ({ visibleGauges, toggleGauge, onClose }) => {
   const [activeTab, setActiveTab] = useState<"Manual" | "Real Time">("Manual");
-  const [isVisible, setIsVisible] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
-
-  if (!isVisible) return null;
-
+  
   return (
     <section className={`flex flex-col text-white font-inter rounded-3xl w-[200px] max-w-[200px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]`}>
       <div className={`flex flex-col w-full pb-4 ${isCollapsed ? "rounded-[18px] bg-opacity-90" : "rounded-3xl bg-opacity-80"} bg-zinc-900`}>
@@ -49,7 +50,7 @@ const LayersComponent: React.FC<LayersProps> = ({ visibleGauges, toggleGauge }) 
                   <CloseIcon
                     className="text-white cursor-pointer"
                     style={{ width: '20px', height: '20px' }}
-                    onClick={() => setIsVisible(false)}
+                    onClick = {onClose}
                   />
                 </>
               )}
@@ -76,29 +77,107 @@ const LayersComponent: React.FC<LayersProps> = ({ visibleGauges, toggleGauge }) 
         </header>
         {!isCollapsed && (
           <>
-            <div className="flex flex-col px-5 items-start mt-2 text-xs">
-              <div>
-                <input type="checkbox" checked={visibleGauges.rainfall} onChange={() => toggleGauge("rainfall")} />
+            <div className="flex flex-col px-5 gap-1 items-start mt-2 text-xs">
+              <div className="flex items-center">
+                <Checkbox
+                 checked={visibleGauges.rainfall}
+                 onChange={() => toggleGauge("rainfall")}
+                 icon={<CheckBoxOutlineBlankIcon  sx={{ color: "#9f9c9c", width: 14, height: 14}}/>}
+                 checkedIcon={<Checkicon sx={{color: "#9f9c9c", width: 14, height: 14}}/>}
+                 sx={{
+                  color: "#9f9c9c",
+                  width: 14,
+                  height: 14,
+                  '&.Mui-checked': {
+                    color: "#9f9c9c",
+                  },
+                 }}
+                />
                 <label>Rainfall gauges</label>
               </div>
-              <div>
-                <input type="checkbox" checked={visibleGauges.reservoir} onChange={() => toggleGauge("reservoir")} />
+              <div className="flex items-center">
+                <Checkbox
+                  checked={visibleGauges.reservoir}
+                  onChange={() => toggleGauge("reservoir")}
+                  icon={<CheckBoxOutlineBlankIcon sx={{ color: "#9f9c9c",width: 14, height: 14 }} />}
+                  checkedIcon={<Checkicon sx={{ color: "#9f9c9c", width: 14, height: 14 }} />}
+                  sx={{
+                    color: "#9f9c9c",
+                    width: 14,
+                    height: 14,
+                    '&.Mui-checked': {
+                      color: "#9f9c9c",
+                    },
+                  }}
+                />
                 <label>Reservoir/Dam level</label>
               </div>
-              <div>
-                <input type="checkbox" checked={visibleGauges.tidal} onChange={() => toggleGauge("tidal")} />
+              <div className="flex items-center">
+                <Checkbox
+                  checked={visibleGauges.tidal}
+                  onChange={() => toggleGauge("tidal")}
+                  icon={<CheckBoxOutlineBlankIcon sx={{ color: "#9f9c9c", width: 14, height:14 }} />}
+                  checkedIcon={<Checkicon sx={{ color: "#9f9c9c", width: 14, height: 14 }} />}
+                  sx={{
+                    color: "#9f9c9c",
+                    width: 14,
+                    height: 14,
+                    '&.Mui-checked': {
+                      color: "#9f9c9c",
+                    },
+                  }}
+                />
                 <label>Tidal level</label>
               </div>
-              <div>
-                <input type="checkbox" checked={visibleGauges.groundwater} onChange={() => toggleGauge("groundwater")} />
+              <div className="flex items-center">
+                <Checkbox
+                  checked={visibleGauges.groundwater}
+                  onChange={() => toggleGauge("groundwater")}
+                  icon={<CheckBoxOutlineBlankIcon sx={{ color: "#9f9c9c", width: 14, height:14 }} />}
+                  checkedIcon={<Checkicon sx={{ color: "#9f9c9c", width: 14, height:14  }} />}
+                  sx={{
+                    color: "#9f9c9c",
+                    width: 14,
+                    height: 14,
+                    '&.Mui-checked': {
+                      color: "#9f9c9c",
+                    },
+                  }}
+                />
                 <label>Groundwater level</label>
               </div>
-              <div>
-                <input type="checkbox" checked={visibleGauges.riverWater} onChange={() => toggleGauge("riverWater")} />
+              <div className="flex items-center">
+                <Checkbox
+                  checked={visibleGauges.riverWater}
+                  onChange={() => toggleGauge("riverWater")}
+                  icon={<CheckBoxOutlineBlankIcon sx={{ color: "#9f9c9c", width: 14, height:14 }} />}
+                  checkedIcon={<Checkicon sx={{ color: "#9f9c9c", width: 14, height:14  }} />}
+                  sx={{
+                    color: "#9f9c9c",
+                    width: 14,
+                    height: 14,
+                    '&.Mui-checked': {
+                      color: "#9f9c9c",
+                    },
+                  }}
+                />
                 <label>River water level</label>
               </div>
-              <div>
-                <input type="checkbox" checked={visibleGauges.regulators} onChange={() => toggleGauge("regulators")} />
+              <div className="flex items-center">
+                <Checkbox
+                  checked={visibleGauges.regulators}
+                  onChange={() => toggleGauge("regulators")}
+                  icon={<CheckBoxOutlineBlankIcon sx={{ color: "#9f9c9c" , width: 14, height:14 }} />}
+                  checkedIcon={<Checkicon sx={{ color: "#9f9c9c", width: 14, height:14  }} />}
+                  sx={{
+                    color: "#9f9c9c",
+                    width: 14,
+                    height: 14,
+                    '&.Mui-checked': {
+                      color: "#9f9c9c",
+                    },
+                  }}
+                />
                 <label>Regulators</label>
               </div>
               {activeTab === "Manual" && (

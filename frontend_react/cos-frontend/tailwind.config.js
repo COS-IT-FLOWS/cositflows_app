@@ -34,6 +34,11 @@ module.exports = {
           "100": "#d5d5d5",
           "200": "#c9cccf",
         },
+        teal: {
+          "100": "#00738C",
+          "200": "#81B0B2",
+          "300": "#B3DDD1",
+        }
       },
       spacing: {},
       fontFamily: {
