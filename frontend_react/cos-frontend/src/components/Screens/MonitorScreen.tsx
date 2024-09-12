@@ -27,7 +27,15 @@ const MonitorScreen: React.FC = () => {
     throw new Error("Function not implemented.");
   }
 
+  const toggleLegendVisibility = () => {
+    setVisibleLegend((prev) => !prev);
+  };
+
   const [visibleGauges, setVisibleGauges] = useState(initialVisibleGauges);
+
+  const [visibleAlerts, setVisibleAlerts] = useState(true);
+  const [visibleLayers, setVisibleLayers] = useState(true);
+  const [visibleLegend, setVisibleLegend] = useState(true);
 
   const toggleGauge = (gauge: Gaugetype) => {
     setVisibleGauges((prevState) => ({
@@ -35,6 +43,8 @@ const MonitorScreen: React.FC = () => {
       [gauge]: !prevState[gauge],
     }));
   };
+
+  const isGaugesVisible = Object.values(visibleGauges).some((isVisible) => isVisible);
 
   return (
     <div className="monitor-screen w-full bg-gray-100 mx-auto relative flex flex-col">
@@ -44,17 +54,39 @@ const MonitorScreen: React.FC = () => {
       <div className='absolute left-0'>
         <MenuList/>
       </div>
-      <div className="absolute top-0 w-full">
-        <NavComponent/>
-      </div>  
-
+      <div className="w-full">
+        <NavComponent
+        setVisibleAlerts={setVisibleAlerts}
+        setVisibleLayers={setVisibleLayers}
+        setVisibleLegend={setVisibleLegend}
+        />
+      </div>
 
       <div className="absolute top-0 right-0 mt-[90px] mr-[20px] flex flex-col items-end">
-        <LayerComponent visibleGauges={visibleGauges} toggleGauge={toggleGauge}/>
-        <div className="mt-[15px] right-0"> <Legend visibleGauges={visibleGauges}/> </div>
+        {visibleLayers && (
+          <LayerComponent
+           visibleGauges={visibleGauges} 
+           toggleGauge={toggleGauge}
+           onClose={() => setVisibleLayers(false)}/>
+        )}
+        {isGaugesVisible && visibleLegend && (
+          <div className="mt-[15px] right-0"> 
+          <Legend 
+          visibleGauges={visibleGauges}
+          isVisible={visibleLegend}
+          toggleVisibility={() => setVisibleLegend(!visibleLegend)}
+          /> 
+          </div>
+        )}
       </div>
+      
       <div style={{ position: "absolute", top: "200px", left: "111px"}}>
-        <AlertWidgetComponent/>
+        {visibleAlerts && (
+        <AlertWidgetComponent
+         visibleAlerts={visibleAlerts}
+         OnClose= {() => setVisibleAlerts(false)}
+         />
+       )}
       </div>
     </div>
   );

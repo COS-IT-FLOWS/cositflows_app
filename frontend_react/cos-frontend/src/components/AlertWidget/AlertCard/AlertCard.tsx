@@ -25,7 +25,7 @@ const AlertCard: React.FC<AlertCardProps> = ({
   onClick,
 }) => {
   return (
-      <article className="flex flex-col font-semibold max-w-[174px] h-[90px] rounded-2xl bg-stone-300 p-2"
+      <article className="flex flex-col font-semibold max-w-[174px] h-[90px] rounded-2xl bg-neutral-300 p-2"
       onClick={onClick}
       >
         <div className="flex items-start">

@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import AlertWidget, {Alert} from "./AlertWidget";
-import AlertOverlay from "./AlertCard/Overlay/OverlayCard"
+import AlertOverlay from "./AlertCard/Overlay/OverlayCard";
 
-const MyComponent: React.FC = () => {
+interface AlertWidget{
+  visibleAlerts: boolean;
+  OnClose: () => void;
+}
+
+const MyComponent: React.FC<AlertWidget> = ({visibleAlerts, OnClose}) => {
   const [selectedAlert,setSelectedAlert]=useState<Alert | null>(null);
   const [showOverlay, setShowOverlay]= useState(false);
-  
+
   const alerts = [
     {   
         alertType: "Lightning",
@@ -64,12 +69,15 @@ const MyComponent: React.FC = () => {
   };
 
     return (
-    <div>
+    <div className="relative">
+      {visibleAlerts && (
         <AlertWidget
             location="Chalakudy" 
             alerts={alerts}
             onAlertClick={handleCardClick}
+            onClose={OnClose}
         />
+      )}
 
         {showOverlay && selectedAlert && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30">

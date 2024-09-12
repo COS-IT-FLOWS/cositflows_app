@@ -1,17 +1,12 @@
 
 import React from "react";
-import location_icon from "./location_icon_2.png";
+import Location from "@mui/icons-material/LocationOn";
 
 const LocationSelector: React.FC = () => {
   return (
-    <button className="flex gap-3 px-4 py-2.5 items-center text-white bg-neutral-400 rounded-[1000px]">
+    <button className="flex gap-1 px-3 py-2 items-center text-white bg-teal-100 bg-opacity-80 rounded-[1000px]">
       <span className="font-inter basis-auto">Chalakudy, Thrissur</span>
-      <img
-        loading="lazy"
-        src={location_icon}
-        className="object-contain shrink-0 w-3 aspect-[0.67]"
-        alt=""
-      />
+      <Location sx={{width: 20, height: 20}}/>
     </button>
   );
 };

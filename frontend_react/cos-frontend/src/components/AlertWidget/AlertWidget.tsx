@@ -1,7 +1,11 @@
 // AlertWidget.tsx
-import React from "react";
+import React , {useState} from "react";
 import AlertCard from "./AlertCard/AlertCard";
 import Draggable from "react-draggable";
+import AddIcon from "@mui/icons-material/Add";
+import Minimize from "@mui/icons-material/Minimize";
+import CloseIcon from "@mui/icons-material/Close";
+
 
 export interface Alert{
   alertType: string;
@@ -16,18 +20,48 @@ interface AlertWidgetProps {
   location: string;
   alerts: Alert[];
   onAlertClick: (alert: Alert)=> void;
+  onClose: () => void;
 }
 
-const AlertWidget: React.FC<AlertWidgetProps> = ({ location, alerts, onAlertClick }) => {
+const AlertWidget: React.FC<AlertWidgetProps> = ({ location, alerts, onAlertClick, onClose}) => {
   function handleClick(): void {
     throw new Error("Function not implemented.");
   }
+  const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
+
 
   return (
-    <div className="bg-darkslategray text-white p-4 rounded-3xl max-w-[225px] h-[329px]">
-      <h2 className="text-[16px] font-inter mb-4">Alerts in {location}</h2>
+    <Draggable>
+    <div className="bg-zinc-900 bg-opacity-80 text-white pr-4 pl-4 pb-4 pt-3.5 rounded-3xl w-[200px] max-w-[200px] h-auto shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
+      <header className={`flex items-center text-base ${isCollapsed ? "gap-[9px]" : "gap-[0px]"} justify-between w-full`}>
+        <h2 className={`flex text-[15px] font-inter mb-3 whitespace-nowrap`}>Alerts in {location}</h2>
+        <div className="flex items-center"> 
+            {isCollapsed ? (
+                <AddIcon
+                    className="text-white cursor-pointer"
+                    style={{ width: '20px', height: '20px' }}
+                    onClick={() => setIsCollapsed(false)}
+                  />
+                ) : (
+                <>
+                <Minimize
+                  className = " text-white cursor-pointer"
+                  style = {{ transform: 'translateY(-6px)', width: '20px', height: '20px' }}
+                  onClick = {() => setIsCollapsed(true)}
+                />
+                <CloseIcon
+                  className = "text-white cursor-pointer"
+                  style = {{ width: '20px', height: '20px' }}
+                  onClick = {onClose}
+              />
+            </>
+            )}
+            </div>
+      </header>
+
 
       {/* MAIN SECTION */}
+      {!isCollapsed && (
       <div className="max-h-[270px] overflow-hidden overflow-y-auto">
         <div className="flex flex-col gap-[9px] font-inter overflow-y-auto">
           {alerts.map((alert:Alert, index:number) => (
@@ -45,7 +79,9 @@ const AlertWidget: React.FC<AlertWidgetProps> = ({ location, alerts, onAlertClic
           ))}
         </div>
       </div>
+      )}
     </div>
+    </Draggable>
   );
 };
 
