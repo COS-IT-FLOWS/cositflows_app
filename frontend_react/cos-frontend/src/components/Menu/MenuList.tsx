@@ -16,14 +16,14 @@ const MenuList: React.FC = () => {
 
   return(
   <div
-    className={`flex flex-col justify-start bg-darkslategray text-white ${
+    className={`flex flex-col justify-center bg-darkslategray text-white ${
       isExpanded ? 'w-[263px] z-50 absolute' : 'w-[88px]'
-     } h-[900px] transition-width duration-300 ease-in-out` }
+     } h-screen transition-width duration-300 ease-in-out` }
     onMouseEnter={() => setIsExpanded(true)}
     onMouseLeave={() => setIsExpanded(false)}
   >
     <div className="flex flex-col items-center justify-center w-full">
-      <div className="flex flex-col items-start gap-5 mt-[160px]">
+      <div className="flex flex-col items-start gap-10">
         {icons.map((icon, index) => (
           <div key={index} 
           className="flex items-center gap-2">

@@ -1,9 +1,10 @@
 import React, {useState} from "react";
-import AlertWidgetComponent from "./AlertWidget/AlertWidgetComponent";
-import MenuList from "./Menu/MenuList";
-import LayerComponent from "./LayerWidget/LayersComponent";
-import NavComponent from "./NavBar/NavComponent";
-import Legend from "./LegendWidget/Legend";
+import AlertWidgetComponent from "../AlertWidget/AlertWidgetComponent";
+import MenuList from "../Menu/MenuList";
+import LayerComponent from "../LayerWidget/LayersComponent";
+import NavComponent from "../NavBar/NavComponent";
+import Legend from "../LegendWidget/Legend";
+import Map from '../Maps/MonitoringMap';
 
 type Gaugetype = "rainfall" | "reservoir" | "tidal" | "groundwater" | "riverWater" | "regulators";
 
@@ -36,13 +37,17 @@ const MonitorScreen: React.FC = () => {
   };
 
   return (
-    <div className="monitor-screen w-full h-[900px] bg-gray-100 mx-auto relative flex flex-col">
-      <div style={{position:"absolute", left: "0px"}}>
+    <div className="monitor-screen w-full bg-gray-100 mx-auto relative flex flex-col">
+      <div className="absolute w-full h-full">
+        <Map/>
+      </div>
+      <div className='absolute left-0'>
         <MenuList/>
       </div>
-      <div className="w-full">
+      <div className="absolute top-0 w-full">
         <NavComponent/>
-      </div>
+      </div>  
+
 
       <div className="absolute top-0 right-0 mt-[90px] mr-[20px] flex flex-col items-end">
         <LayerComponent visibleGauges={visibleGauges} toggleGauge={toggleGauge}/>
