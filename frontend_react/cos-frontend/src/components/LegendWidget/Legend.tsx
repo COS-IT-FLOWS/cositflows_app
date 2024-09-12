@@ -2,7 +2,8 @@ import React, {useState} from "react";
 import GaugeSection from "./GaugeSection";
 import CloseIcon from "@mui/icons-material/Close";
 import Minimize from "@mui/icons-material/Minimize";
-import AddIcon from "@mui/icons-material/Add"
+import AddIcon from "@mui/icons-material/Add";
+import Draggable from "react-draggable";
 
 interface LegendProps {
   visibleGauges: {
@@ -13,18 +14,19 @@ interface LegendProps {
     riverWater: boolean;
     regulators: boolean;
  };
+ isVisible: boolean;
+ toggleVisibility: () => void;
 }
 
 
-const Legend: React.FC<LegendProps> = ({visibleGauges}) => {
-  const [isVisible, setIsVisible] = useState(true);
+const Legend: React.FC<LegendProps> = ({visibleGauges, isVisible, toggleVisibility}) => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
 
   if (!isVisible) return null;
 
   return (
     <section className={`flex flex-col text-white font-inter w-[200px] max-w-[200px] rounded-3xl shadow-[0px_4px_4px_rgba(0,0,0,0.25)]`}>
-      <div className={`flex flex-col items-start px-4 ${isCollapsed ? "py-4 rounded-[18px]" : "py-6 rounded-3xl"} bg-zinc-900 bg-opacity-80`}>
+      <div className={`flex flex-col items-start px-4 ${isCollapsed ? "py-4 rounded-[18px] bg-opacity-90" : "py-6 rounded-3xl bg-opacity-80"} bg-zinc-900`}>
         <header className={`flex items-center text-base ${isCollapsed ? "gap-[90px]" : "gap-[0px]"} justify-between w-full leading-none`}>
           <h2 className={`self-stretch text-base my-auto font-semibold`}>Legend</h2>
           <div className="flex items-center gap-1"> 
@@ -44,7 +46,7 @@ const Legend: React.FC<LegendProps> = ({visibleGauges}) => {
               <CloseIcon
                 className="text-white cursor-pointer"
                 style={{ width: '20px', height: '20px' }}
-                onClick={() => setIsVisible(false)}
+                onClick={toggleVisibility}
             />
           </>
           )}

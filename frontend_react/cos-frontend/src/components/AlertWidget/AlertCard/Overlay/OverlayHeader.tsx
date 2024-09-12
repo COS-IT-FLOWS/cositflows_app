@@ -1,6 +1,6 @@
 import React from "react";
 import lightning_icon from "../lightning_icon.svg";
-import min_close from "./min_close.png";
+import Close from "@mui/icons-material/Close";
 
 interface AlertHeaderProps {
   alertType: string;
@@ -19,11 +19,8 @@ const AlertHeader: React.FC<AlertHeaderProps> = ({alertType, onClose}) => {
           alt=""
         />
       </div>
-      <img
-        loading="lazy"
-        src={min_close}
-        className="object-contain shrink-0 self-start mt-1 aspect-[3.1] w-[31px]"
-        alt="Close"
+      <Close
+        style={{ width: '20px', height: '20px' }}
         onClick={onClose}
       />
     </header>
