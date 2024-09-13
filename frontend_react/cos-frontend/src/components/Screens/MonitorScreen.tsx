@@ -54,7 +54,7 @@ const MonitorScreen: React.FC = () => {
       <div className='absolute left-0'>
         <MenuList/>
       </div>
-      <div className="w-full">
+      <div className="w-full z-10" >
         <NavComponent
         setVisibleAlerts={setVisibleAlerts}
         setVisibleLayers={setVisibleLayers}
