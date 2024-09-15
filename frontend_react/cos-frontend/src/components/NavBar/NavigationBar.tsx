@@ -28,7 +28,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-teal-100 h-[35px] rounded-[1000px] shadow-[1px_2px_4px_rgba(0,0,0,0.1)] w-[100px]">
                 </div>
               )}
-              <a href={`#${item.toLowerCase()}`} className=" text-white font-inter w-full block text-center no-underline relative z-10">
+              <a href={`${item.toLowerCase()}`} className=" text-white font-inter w-full block text-center no-underline relative z-10">
                 {item}
               </a>
             </li>

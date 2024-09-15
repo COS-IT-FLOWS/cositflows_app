@@ -43,14 +43,14 @@ export default function Map() {
       // addBoundaryLayer(map.current, 'RIVER_BASIN');
       
 
-      map.current.addControl(new maplibregl.NavigationControl(), 'top-left');
-      map.current.addControl(new maplibregl.FullscreenControl(), 'top-left');
-      map.current.addControl(new maplibregl.GeolocateControl({
-        positionOptions: {
-          enableHighAccuracy: true
-        },
-        trackUserLocation: true
-      }), 'top-left');
+      // map.current.addControl(new maplibregl.NavigationControl(), 'top-left');
+      // map.current.addControl(new maplibregl.FullscreenControl(), 'top-left');
+      // map.current.addControl(new maplibregl.GeolocateControl({
+      //   positionOptions: {
+      //     enableHighAccuracy: true
+      //   },
+      //   trackUserLocation: true
+      // }), 'top-left');
 
       var mapStyle = map.current.getStyle().layers;
       var mapStyleSources = Object.keys(mapStyle);
