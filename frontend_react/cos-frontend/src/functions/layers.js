@@ -1,6 +1,7 @@
 // import React from 'react';
 import maplibregl from 'maplibre-gl';
 import configData from '../config.json';
+import * as turf from '@turf/turf';
 
 
 function addStationLayer(map, source) {
@@ -64,15 +65,22 @@ function addBoundaryLayer(map, source) {
             }
         });
     
-    return layerId
+    return layerId;
 }
 
 function handleClickOnLayer(map, layerId) {
     map.on('click', layerId, (e) => {
-            new maplibregl.Popup()
-                .setLngLat(e.lngLat)
-                .setHTML(e.features[0].properties.name)
-                .addTo(map);
+        const feature = e.features[0];
+        const center = turf.center(feature);
+        //     // new maplibregl.Popup()
+        //     //     .setLngLat(e.lngLat)
+        //     //     .setHTML(e.features[0].properties.name)
+        //     //     .addTo(map);
+        map.flyTo({
+            center: center.geometry.coordinates,
+            zoom: 9
+        })
+        map.setPaintProperty('white');
     });
 
     // Change the cursor to a pointer when the mouse is over the states layer.

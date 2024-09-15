@@ -35,14 +35,17 @@ export default function Map() {
       // Insert the layer beneath any symbol layer.
       // const layers = map.current.getStyle().layers;
 
-      addStationLayer(map.current, 'RESERVOIR');
-      addStationLayer(map.current, 'PRECIPITATION');
-      addStationLayer(map.current, 'RIVER');
-
+      // addStationLayer(map.current, 'RESERVOIR');
+      // addStationLayer(map.current, 'PRECIPITATION');
+      // addStationLayer(map.current, 'RIVER');
+  
       layerId = addBoundaryLayer(map.current, 'DISTRICT');
+      
       // addBoundaryLayer(map.current, 'PANCHAYAT');
       // addBoundaryLayer(map.current, 'RIVER_BASIN');
-      handleClickOnLayer(map.current, layerId);      
+      handleClickOnLayer(map.current, layerId);
+      
+      layerId = addBoundaryLayer(map.current, 'RIVER_BASIN');
 
       // map.current.addControl(new maplibregl.NavigationControl(), 'top-left');
       // map.current.addControl(new maplibregl.FullscreenControl(), 'top-left');
