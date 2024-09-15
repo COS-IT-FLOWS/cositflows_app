@@ -1,5 +1,5 @@
 // import React from 'react';
-// import maplibre from 'maplibre-gl';
+import maplibregl from 'maplibre-gl';
 import configData from '../config.json';
 
 
@@ -63,6 +63,27 @@ function addBoundaryLayer(map, source) {
             'line-opacity': layerOpacity
             }
         });
+    
+    return layerId
+}
+
+function handleClickOnLayer(map, layerId) {
+    map.on('click', layerId, (e) => {
+            new maplibregl.Popup()
+                .setLngLat(e.lngLat)
+                .setHTML(e.features[0].properties.name)
+                .addTo(map);
+    });
+
+    // Change the cursor to a pointer when the mouse is over the states layer.
+    map.on('mouseenter', layerId, () => {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change it back to a pointer when it leaves.
+    map.on('mouseleave', layerId, () => {
+        map.getCanvas().style.cursor = '';
+    });
 }
 
 // function addDataLayer(id, map, url) {
@@ -125,4 +146,4 @@ function addBoundaryLayer(map, source) {
 //     );
 // }
 
-export { addStationLayer, addBoundaryLayer };
+export { addStationLayer, addBoundaryLayer, handleClickOnLayer };

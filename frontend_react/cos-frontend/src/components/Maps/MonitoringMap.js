@@ -5,7 +5,7 @@ import '../styles.css';
 import configData from "../../config.json";
 import * as maptilersdk from '@maptiler/sdk';
 import "@maptiler/sdk/dist/maptiler-sdk.css";
-import { addStationLayer, addBoundaryLayer }  from '../../functions/layers';
+import { addStationLayer, addBoundaryLayer, handleClickOnLayer }  from '../../functions/layers';
 
 
 maptilersdk.config.apiKey = configData.MAP_TILER_API_KEY;
@@ -31,6 +31,7 @@ export default function Map() {
     });
 
     map.current.on('load', async function () {
+      let layerId;
       // Insert the layer beneath any symbol layer.
       // const layers = map.current.getStyle().layers;
 
@@ -38,10 +39,10 @@ export default function Map() {
       addStationLayer(map.current, 'PRECIPITATION');
       addStationLayer(map.current, 'RIVER');
 
-      addBoundaryLayer(map.current, 'DISTRICT');
+      layerId = addBoundaryLayer(map.current, 'DISTRICT');
       // addBoundaryLayer(map.current, 'PANCHAYAT');
       // addBoundaryLayer(map.current, 'RIVER_BASIN');
-      
+      handleClickOnLayer(map.current, layerId);      
 
       // map.current.addControl(new maplibregl.NavigationControl(), 'top-left');
       // map.current.addControl(new maplibregl.FullscreenControl(), 'top-left');
