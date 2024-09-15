@@ -5,8 +5,12 @@ import ForecastScreen from './components/Screens/ForecastScreen';
 import ImpactScreen from './components/Screens/ImpactScreen';
 import AboutScreen from './components/Screens/AboutScreen';
 import SettingScreen from './components/Screens/SettingScreen';
+import { useEffect } from 'react';
 
 const App: React.FC = () => {
+   useEffect(() => {
+      document.title = 'insight'
+   })
    return (
       <>
          <Routes>
