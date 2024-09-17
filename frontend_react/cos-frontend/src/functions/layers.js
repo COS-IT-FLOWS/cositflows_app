@@ -2,10 +2,10 @@
 import maplibregl from 'maplibre-gl';
 import configData from '../config.json';
 import * as turf from '@turf/turf';
+import { Sort } from '@mui/icons-material';
 
 
 function addStationLayer(map, source) {
-
     const sourceConfigData = configData.LAYERS.STATION[source];
     const sourceId = sourceConfigData.SOURCE_ID;
     const layerId = sourceConfigData.LAYER_ID;
@@ -29,70 +29,174 @@ function addStationLayer(map, source) {
     // return map
 }
 
-function addBoundaryLayer(map, source) {
-    const sourceConfigData = configData.LAYERS.BOUNDARY[source];
-    const sourceId = sourceConfigData.SOURCE_ID;
-    const layerId = sourceConfigData.LAYER_ID;
+function addBoundarySource(map, sourceType) {
+    let sourceConfigData = configData.LAYERS.BOUNDARY[sourceType];
+    let sourceId = sourceConfigData.SOURCE_ID;
     const url = sourceConfigData.URL;
-    const layerColor = sourceConfigData.COLOR;
-    const lineColor = sourceConfigData.LINECOLOR;
-    const layerOpacity = sourceConfigData.OPACITY;
-
+      
     map.addSource(sourceId, {
         type: 'geojson',
         data: url
     })
 
+    return sourceId;
+}
+
+function addBoundaryLayer(map, sourceType, data) {
+    const sourceConfigData = configData.LAYERS.BOUNDARY[sourceType];
+    const sourceId = sourceConfigData.SOURCE_ID;
+    let layerId = sourceConfigData.LAYER_ID;
+    const layerColor = sourceConfigData.COLOR;
+    const layerOpacity = sourceConfigData.OPACITY;
+    
+    if (data !== null) {
+        layerId = layerId + (Math.random()).toString(36);
+    } 
+
     map.addLayer({
         id: layerId,
         type: 'fill',
-        source: sourceId,
+        // If source is a full layer, it will have Source ID, 
+        // else if generated, data passed directly.
+        source: data !== null ? {
+            type: 'geojson',
+            data: data
+        } : sourceId,
         paint: {
             'fill-color': layerColor,
             'fill-opacity': layerOpacity
-        }
+        },
+        // layout: {
+        //     'visibility': 'visible'
+        // }
     })
     
-    map.addLayer({
-        id: 'outline',
-        type: 'line',
-        source: sourceId,
-        layout: {},
-        paint: {
-            'line-color': lineColor,
-            'line-width': 2,
-            'line-opacity': layerOpacity
-            }
-        });
+
     
     return layerId;
 }
 
-function handleClickOnLayer(map, layerId) {
-    map.on('click', layerId, (e) => {
-        const feature = e.features[0];
-        const center = turf.center(feature);
-        //     // new maplibregl.Popup()
-        //     //     .setLngLat(e.lngLat)
-        //     //     .setHTML(e.features[0].properties.name)
-        //     //     .addTo(map);
-        map.flyTo({
-            center: center.geometry.coordinates,
-            zoom: 9
-        })
-        map.setPaintProperty('white');
+async function removeBoundaryLayer(map, previousLayerId) {
+
+    map.removeLayer(previousLayerId);   
+}
+
+function addOutlineLayer(map, sourceType, data) {
+    const sourceConfigData = configData.LAYERS.BOUNDARY[sourceType];
+    const sourceId = sourceConfigData.SOURCE_ID;
+    let outlineLayerId = sourceConfigData.OUTLINE_LAYER_ID;
+    const lineColor = sourceConfigData.LINECOLOR;
+    const layerOpacity = sourceConfigData.OPACITY;
+    
+    if (data !== null) {
+        outlineLayerId = outlineLayerId + (Math.random()).toString(36);
+    }
+
+    map.addLayer({
+        id: outlineLayerId,
+        type: 'line',
+        source: data !== null ? {
+            type: 'geojson',
+            data: data
+        } : sourceId,
+        paint: {
+            'line-color': lineColor,
+            'line-width': 2,
+            'line-opacity': layerOpacity
+            },
+        // layout: {
+        //     'visibility': 'visible'
+        // }
     });
 
+    return outlineLayerId;
+}
+
+function removeOutlineLayer(map, outlineLayerId) {
+    map.removeLayer(outlineLayerId);
+}
+
+
+
+function handleClickOnLayer(map, sourceType, layerId, outlineLayerId, childLayerId) {
+    console.log('handle On click running')
+    const sourceConfigData = configData.LAYERS.BOUNDARY[sourceType];
+    const sourceId = sourceConfigData.SOURCE_ID;
+    // const layerConfigData = configData.LAYERS.BOUNDARY[layerType];
+    // const layerId = layerConfigData.LAYER_ID;
+    let intersectingFeatures;
+
+    map.on('click', async (e) => {
+        map.setLayoutProperty(layerId, 'visibility', 'none');
+        map.setLayoutProperty(outlineLayerId, 'visibility', 'none');
+        // const feature = e.features[0];
+        const features = map.queryRenderedFeatures(e.point);
+
+        features.forEach(async (feature) => {
+                const layerId = feature.layer.id;
+                if (layerId.includes('district-layer')) {
+                    removeBoundaryLayer(map, layerId);
+                    removeOutlineLayer(map, layerId);
+                    addOutlineLayer(map, 'DISTRICT', feature);
+                    intersectingFeatures = await getIntersectingPolygons(map, 'DISTRICT', feature);
+                    const childLayerId = addBoundaryLayer(map, 'RIVER_BASIN', intersectingFeatures);
+                    const bbox = turf.bbox(intersectingFeatures);
+                    map.fitBounds(bbox, {
+                        padding: 80
+                    })
+                    addOutlineLayer(map, 'RIVER_BASIN', intersectingFeatures);
+                    cursorToPointerOnHoverOverLayer(map, childLayerId);
+                } else if (layerId.includes('river-basin-layer')) {
+                    console.log(layerId);
+                    removeBoundaryLayer(map, layerId);
+                    removeOutlineLayer(map, layerId);
+                    addOutlineLayer(map, 'RIVER_BASIN', feature);
+                    intersectingFeatures = await getIntersectingPolygons(map, 'RIVER_BASIN', feature);
+                    const childLayerId = addBoundaryLayer(map, 'PANCHAYAT', intersectingFeatures);
+                    const bbox = turf.bbox(intersectingFeatures);
+                    map.fitBounds(bbox, {
+                        padding: 80
+                    })
+                    addOutlineLayer(map, 'PANCHAYAT', intersectingFeatures);
+                    cursorToPointerOnHoverOverLayer(map, childLayerId);
+                }
+        })
+        console.log(features);
+    });
+  
+    return childLayerId;
+}
+
+function cursorToPointerOnHoverOverLayer(map, layerId) {
     // Change the cursor to a pointer when the mouse is over the states layer.
     map.on('mouseenter', layerId, () => {
         map.getCanvas().style.cursor = 'pointer';
+
     });
 
     // Change it back to a pointer when it leaves.
     map.on('mouseleave', layerId, () => {
         map.getCanvas().style.cursor = '';
     });
+
 }
+
+async function getIntersectingPolygons(map, sourceType, polygon) {
+    const sourceId = configData.LAYERS.BOUNDARY[sourceType].SOURCE_ID;
+    let source;
+    let intersectingLayer;
+    source = map.getSource(sourceId);
+    const data = await source.getData();
+    const intersectingFeatures = data.features.filter((feature) => {
+        // console.log(feature.geometry, polygon.geometry);
+        return turf.intersect(turf.featureCollection([feature, polygon]));
+    });
+    
+    // // Do something with the intersecting features
+    intersectingLayer = turf.featureCollection(intersectingFeatures);
+    return intersectingLayer;
+}
+
 
 // function addDataLayer(id, map, url) {
 
@@ -154,4 +258,4 @@ function handleClickOnLayer(map, layerId) {
 //     );
 // }
 
-export { addStationLayer, addBoundaryLayer, handleClickOnLayer };
+export { addStationLayer, addBoundarySource, addBoundaryLayer, addOutlineLayer, handleClickOnLayer, getIntersectingPolygons, cursorToPointerOnHoverOverLayer};
