@@ -8,6 +8,7 @@ import "@maptiler/sdk/dist/maptiler-sdk.css";
 import {addStationLayer, addBoundarySource, addBoundaryLayer, addOutlineLayer,  handleClickOnLayer, getIntersectingPolygons, cursorToPointerOnHoverOverLayer}  from '../../functions/layers';
 
 
+
 maptilersdk.config.apiKey = configData.MAP_TILER_API_KEY;
 export default function Map() {
   const mapContainer = useRef(null);
@@ -28,6 +29,7 @@ export default function Map() {
     });
 
     map.current.on('load', async function () {
+      var delayInMilliseconds = 10000; 
       let sourceId;
       let layerId;
       let polygon;
@@ -37,19 +39,29 @@ export default function Map() {
       // Insert the layer beneath any symbol layer.
       // const layers = map.current.getStyle().layers;
 
-      addStationLayer(map.current, 'RESERVOIR');
-      addStationLayer(map.current, 'PRECIPITATION');
-      addStationLayer(map.current, 'RIVER');
+      // addStationLayer(map.current, 'RESERVOIR');
+      // addStationLayer(map.current, 'PRECIPITATION');
+      // addStationLayer(map.current, 'RIVER');
       sourceId = addBoundarySource(map.current, 'DISTRICT');
       addBoundarySource(map.current, 'RIVER_BASIN');
-      addBoundarySource(map.current, 'PANCHAYAT');
-      addBoundaryLayer(map.current, 'DISTRICT', null);
-      outlineLayerId = addOutlineLayer(map.current, 'DISTRICT', null);
-      cursorToPointerOnHoverOverLayer(map.current, 'district-layer');
-      riverBasinLayerId = handleClickOnLayer(map.current, 'RIVER_BASIN', 'district-layer', 'district-outline', riverBasinLayerId);
-      console.log('Done');
+
+      // addBoundarySource(map.current, 'PANCHAYAT');
+      // addBoundaryLayer(map.current, 'DISTRICT', null);
+      addBoundaryLayer(map.current, 'RIVER_BASIN', null);
+      addOutlineLayer(map.current, 'RIVER_BASIN', null);
+//1 second
+      setTimeout(function() {
+        //your code to be executed after 1 second
+      }, delayInMilliseconds);
+      addStationLayer(map.current,'PRECIPITATION_COM', null);
+      addStationLayer(map.current, 'PRECIPITATION_OTH', null);
+      // handleClickOnLayer(map.current, 'RIVER_BASIN', 'river-basin-layer', 'river-basin-outline', null)
+      // outlineLayerId = addOutlineLayer(map.current, 'DISTRICT', null);
+      // cursorToPointerOnHoverOverLayer(map.current, 'district-layer');
+      // riverBasinLayerId = handleClickOnLayer(map.current, 'RIVER_BASIN', 'district-layer', 'district-outline', riverBasinLayerId);
+      // console.log('Done');
       // panchayatLayerId = handleClickOnLayer(map.current, 'PANCHAYAT', riverBasinLayerId, outlineLayerId, panchayatLayerId);
-      console.log('Done #2');
+      // console.log('Done #2');
       // layerId = addBoundaryLayer(map.current, 'RIVER_BASIN');
 
       // map.current.addControl(new maplibregl.NavigationControl(), 'top-left');

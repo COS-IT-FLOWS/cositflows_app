@@ -19,6 +19,7 @@
     "@turf/turf": "^7.1.0",
     "@types/react": "^18.3.4",
     "@types/react-dom": "^18.3.0",
+    "fs": "^0.0.1-security",
     "maplibre-gl": "^4.6.0",
     "mongodb": "^6.8.0",
     "mongoose": "^8.6.1",

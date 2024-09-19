@@ -3,31 +3,50 @@ import maplibregl from 'maplibre-gl';
 import configData from '../config.json';
 import * as turf from '@turf/turf';
 import { Sort } from '@mui/icons-material';
+import Dam from './Dam.png';
 
-
-function addStationLayer(map, source) {
+async function addStationLayer(map, source, data) {
     const sourceConfigData = configData.LAYERS.STATION[source];
     const sourceId = sourceConfigData.SOURCE_ID;
     const layerId = sourceConfigData.LAYER_ID;
     const url = sourceConfigData.URL;
     const layerColor = sourceConfigData.COLOR;
-
-    map.addSource(sourceId, {
-        type: 'geojson',
-        data: url
-    })
-
-    map.addLayer({
-        id: layerId,
-        type: "circle",
-        source: sourceId,
-        paint: {
-            'circle-color': layerColor
-        }
-    })
-
-    // return map
+    const markerId = sourceConfigData.MARKER_ID;
+    const markerPath = sourceConfigData.MARKER_PATH;
+    const image = await map.loadImage(
+        // 'https://res.cloudinary.com/dmjyqylzz/image/upload/v1726639729/marker_base_nprbdu.svg',
+        markerPath,
+        (error, image) => {
+            if (error) {
+                console.log('erroring');
+                throw error;
+            }
+        });
+        map.addImage(markerId, image.data);
+        // map.addSource(sourceId, {
+        //         type: 'geojson',
+        //         data: url
+        //     })
+        map.addLayer({
+                    id: layerId,
+                    type: "symbol",
+                    source: {
+                        type: 'geojson',
+                        data: data !== null ? data : url
+                    },
+                    layout: {
+                        'icon-image': markerId,
+                        // TODO: Make icon-size dynamic
+                        'icon-size': 0.35,
+                        'icon-allow-overlap': true,
+                        'icon-anchor': 'bottom',
+                    },
+                    paint: {
+                        'icon-color': 'blue'
+                    }
+                });
 }
+
 
 function addBoundarySource(map, sourceType) {
     let sourceConfigData = configData.LAYERS.BOUNDARY[sourceType];
@@ -82,6 +101,7 @@ async function removeBoundaryLayer(map, previousLayerId) {
 }
 
 function addOutlineLayer(map, sourceType, data) {
+    var delayInMilliseconds = 10000; 
     const sourceConfigData = configData.LAYERS.BOUNDARY[sourceType];
     const sourceId = sourceConfigData.SOURCE_ID;
     let outlineLayerId = sourceConfigData.OUTLINE_LAYER_ID;
@@ -108,6 +128,9 @@ function addOutlineLayer(map, sourceType, data) {
         //     'visibility': 'visible'
         // }
     });
+    setTimeout(function() {
+    //your code to be executed after 1 second
+    }, delayInMilliseconds);
 
     return outlineLayerId;
 }
@@ -148,17 +171,17 @@ function handleClickOnLayer(map, sourceType, layerId, outlineLayerId, childLayer
                     cursorToPointerOnHoverOverLayer(map, childLayerId);
                 } else if (layerId.includes('river-basin-layer')) {
                     console.log(layerId);
-                    removeBoundaryLayer(map, layerId);
-                    removeOutlineLayer(map, layerId);
-                    addOutlineLayer(map, 'RIVER_BASIN', feature);
-                    intersectingFeatures = await getIntersectingPolygons(map, 'RIVER_BASIN', feature);
-                    const childLayerId = addBoundaryLayer(map, 'PANCHAYAT', intersectingFeatures);
-                    const bbox = turf.bbox(intersectingFeatures);
+                    // removeBoundaryLayer(map, layerId);
+                    // removeOutlineLayer(map, layerId);
+                    // addOutlineLayer(map, 'RIVER_BASIN', feature);
+                    intersectingFeatures = await getIntersectingPolygons(map, 'PRECIPITATION', 'STATION', feature);
+                    const childLayerId = addStationLayer(map, 'PRECIPITATION', intersectingFeatures);
+                    const bbox = turf.bbox(feature);
                     map.fitBounds(bbox, {
                         padding: 80
                     })
-                    addOutlineLayer(map, 'PANCHAYAT', intersectingFeatures);
-                    cursorToPointerOnHoverOverLayer(map, childLayerId);
+                    // addOutlineLayer(map, 'PANCHAYAT', intersectingFeatures);
+                    // cursorToPointerOnHoverOverLayer(map, childLayerId);
                 }
         })
         console.log(features);
@@ -181,8 +204,8 @@ function cursorToPointerOnHoverOverLayer(map, layerId) {
 
 }
 
-async function getIntersectingPolygons(map, sourceType, polygon) {
-    const sourceId = configData.LAYERS.BOUNDARY[sourceType].SOURCE_ID;
+async function getIntersectingPolygons(map, sourceType, layerType, polygon) {
+    const sourceId = configData.LAYERS[layerType][sourceType].SOURCE_ID;
     let source;
     let intersectingLayer;
     source = map.getSource(sourceId);
