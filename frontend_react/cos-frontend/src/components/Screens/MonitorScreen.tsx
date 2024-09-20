@@ -5,6 +5,7 @@ import LayerComponent from "../LayerWidget/LayersComponent";
 import NavComponent from "../NavBar/NavComponent";
 import Legend from "../LegendWidget/Legend";
 import Map from '../Maps/MonitoringMap';
+import { MonitoringMapComponent } from "../Maps/MonitoringMapComponent";
 
 type Gaugetype = "rainfall" | "reservoir" | "tidal" | "groundwater" | "riverWater" | "regulators";
 
@@ -49,7 +50,7 @@ const MonitorScreen: React.FC = () => {
   return (
     <div className="monitor-screen w-full bg-gray-100 mx-auto relative flex flex-col">
       <div className="absolute w-full h-full">
-        <Map/>
+        <MonitoringMapComponent/>
       </div>
       <div className='absolute left-0'>
         <MenuList/>

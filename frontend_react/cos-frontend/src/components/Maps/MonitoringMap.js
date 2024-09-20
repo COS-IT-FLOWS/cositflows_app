@@ -8,7 +8,7 @@ import "@maptiler/sdk/dist/maptiler-sdk.css";
 import {addStationLayer, addBoundarySource, addBoundaryLayer, addOutlineLayer,  handleClickOnLayer, getIntersectingPolygons, cursorToPointerOnHoverOverLayer}  from '../../functions/layers';
 
 
-maptilersdk.config.apiKey = configData.MAP_TILER_API_KEY;
+// maptilersdk.config.apiKey = configData.MAP_TILER_API_KEY;
 export default function Map() {
   const mapContainer = useRef(null);
   const map = useRef(null);
@@ -16,7 +16,6 @@ export default function Map() {
   const lat = configData.MAP_CONFIG.LAT;
   const zoom = configData.MAP_CONFIG.ZOOM;
   const API_KEY = configData.MAP_TILER_API_KEY;
-
   useEffect(() => {
     if (map.current) return; // stops map from intializing more than once
 
@@ -28,38 +27,15 @@ export default function Map() {
     });
 
     map.current.on('load', async function () {
-      let sourceId;
-      let layerId;
-      let polygon;
-      let riverBasinLayerId = null;
-      let panchayatLayerId = null;
-      let outlineLayerId = null;
-      // Insert the layer beneath any symbol layer.
-      // const layers = map.current.getStyle().layers;
 
-      addStationLayer(map.current, 'RESERVOIR');
-      addStationLayer(map.current, 'PRECIPITATION');
-      addStationLayer(map.current, 'RIVER');
+      let sourceId;
       sourceId = addBoundarySource(map.current, 'DISTRICT');
       addBoundarySource(map.current, 'RIVER_BASIN');
-      addBoundarySource(map.current, 'PANCHAYAT');
-      addBoundaryLayer(map.current, 'DISTRICT', null);
-      outlineLayerId = addOutlineLayer(map.current, 'DISTRICT', null);
-      cursorToPointerOnHoverOverLayer(map.current, 'district-layer');
-      riverBasinLayerId = handleClickOnLayer(map.current, 'RIVER_BASIN', 'district-layer', 'district-outline', riverBasinLayerId);
-      console.log('Done');
-      // panchayatLayerId = handleClickOnLayer(map.current, 'PANCHAYAT', riverBasinLayerId, outlineLayerId, panchayatLayerId);
-      console.log('Done #2');
-      // layerId = addBoundaryLayer(map.current, 'RIVER_BASIN');
+      addBoundaryLayer(map.current, 'RIVER_BASIN', null);
+      addOutlineLayer(map.current, 'RIVER_BASIN', null);
 
-      // map.current.addControl(new maplibregl.NavigationControl(), 'top-left');
-      // map.current.addControl(new maplibregl.FullscreenControl(), 'top-left');
-      // map.current.addControl(new maplibregl.GeolocateControl({
-      //   positionOptions: {
-      //     enableHighAccuracy: true
-      //   },
-      //   trackUserLocation: true
-      // }), 'top-left');
+      addStationLayer(map.current,'PRECIPITATION_COM', null);
+      addStationLayer(map.current, 'PRECIPITATION_OTH', null);
 
       var mapStyle = map.current.getStyle().layers;
       var mapStyleSources = Object.keys(mapStyle);
