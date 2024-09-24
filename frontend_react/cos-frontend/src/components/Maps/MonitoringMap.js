@@ -5,7 +5,7 @@ import '../styles.css';
 import configData from "../../config.json";
 import * as maptilersdk from '@maptiler/sdk';
 import "@maptiler/sdk/dist/maptiler-sdk.css";
-import { addStationLayer, addBoundaryLayer }  from '../../functions/layers';
+//import { addStationLayer, addBoundaryLayer }  from '../../functions/layers';
 
 
 maptilersdk.config.apiKey = configData.MAP_TILER_API_KEY;
@@ -18,10 +18,8 @@ export default function Map() {
   const API_KEY = configData.MAP_TILER_API_KEY;
 
 
-
-
   useEffect(() => {
-    if (map.current) return; // stops map from intializing more than once
+    if (map.current) return; // stops map from initializing more than once
 
     map.current = new maplibregl.Map({
       container: mapContainer.current,
@@ -34,11 +32,11 @@ export default function Map() {
       // Insert the layer beneath any symbol layer.
       // const layers = map.current.getStyle().layers;
 
-      addStationLayer(map.current, 'RESERVOIR');
-      addStationLayer(map.current, 'PRECIPITATION');
-      addStationLayer(map.current, 'RIVER');
+      // addStationLayer(map.current, 'RESERVOIR');
+      // addStationLayer(map.current, 'PRECIPITATION');
+      // addStationLayer(map.current, 'RIVER');
 
-      addBoundaryLayer(map.current, 'DISTRICT');
+      // addBoundaryLayer(map.current, 'DISTRICT');
       // addBoundaryLayer(map.current, 'PANCHAYAT');
       // addBoundaryLayer(map.current, 'RIVER_BASIN');
       

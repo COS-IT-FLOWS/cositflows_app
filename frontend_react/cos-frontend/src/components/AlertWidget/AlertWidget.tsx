@@ -32,7 +32,7 @@ const AlertWidget: React.FC<AlertWidgetProps> = ({ location, alerts, onAlertClic
 
   return (
     <Draggable>
-    <div className="bg-zinc-900 bg-opacity-80 text-white pr-4 pl-4 pb-4 pt-3.5 rounded-3xl w-[200px] max-w-[200px] h-auto shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
+    <div className={`text-white ${isCollapsed ? "bg-opacity-90" : "bg-opacity-80"} bg-zinc-900 pr-4 pl-4 pb-4 pt-3.5 rounded-3xl w-[200px] max-w-[200px] h-auto shadow-[0px_4px_4px_rgba(0,0,0,0.25)]`}>
       <header className={`flex items-center text-base ${isCollapsed ? "gap-[9px]" : "gap-[0px]"} justify-between w-full`}>
         <h2 className={`flex text-[15px] font-inter mb-3 whitespace-nowrap`}>Alerts in {location}</h2>
         <div className="flex items-center"> 

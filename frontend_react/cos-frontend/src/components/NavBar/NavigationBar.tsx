@@ -2,7 +2,6 @@ import React from "react";
 import WidgetSelector from "./WidgetSelector";
 import LocationSelector from "./LocationSelector";
 import Avatar from "@mui/material/Avatar";
-import { teal } from "@mui/material/colors";
 
 interface NavigationBarProps {
   menuItems: string[];
@@ -18,7 +17,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
   setVisibleLegend,
  }) => {
   return (
-    <header className="flex items-center py-4 w-full bg-darkslategray">
+    <header className="flex items-center py-4 w-full ">
 
       <nav className="flex flex-grow ml-[473px] relative">
         <ul className="flex gap-7 items-center mt-2.5 list-none p-0 mb-2">
@@ -45,7 +44,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
         <LocationSelector />
         <Avatar 
           sx={{bgcolor: "#00738C",width: 35, height:35}} 
-          alt="Devika Sivakumar" 
+          alt="John Doe" 
           src="/broken-image.jpg"
         />
       </div>

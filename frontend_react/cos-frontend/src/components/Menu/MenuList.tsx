@@ -20,7 +20,7 @@ const MenuList: React.FC = () => {
 
   return(
   <div
-    className={`flex flex-col justify-center bg-darkslategray text-white ${
+    className={`flex flex-col justify-center text-white ${
       isExpanded ? 'w-[263px] z-50 absolute' : 'w-[88px]'
      } h-screen transition-width duration-300 ease-in-out z-50` }
     onMouseEnter={() => setIsExpanded(true)}

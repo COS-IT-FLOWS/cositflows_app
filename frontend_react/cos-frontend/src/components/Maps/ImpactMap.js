@@ -5,7 +5,7 @@ import '../styles.css';
 import configData from "../../config.json";
 import * as maptilersdk from '@maptiler/sdk';
 import "@maptiler/sdk/dist/maptiler-sdk.css";
-import { addStationLayer, addBoundaryLayer }  from '../../functions/layers';
+//import { addStationLayer, addBoundaryLayer }  from '../../functions/layers';
 
 
 maptilersdk.config.apiKey = configData.MAP_TILER_API_KEY;
@@ -21,7 +21,7 @@ export default function Map() {
 
 
   useEffect(() => {
-    if (map.current) return; // stops map from intializing more than once
+    if (map.current) return; // stops map from initializing more than once
 
     map.current = new maplibregl.Map({
       container: mapContainer.current,
