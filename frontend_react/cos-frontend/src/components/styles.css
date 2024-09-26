@@ -1,3 +1,7 @@
+.app-container {
+  display: flex;
+}
+
 .map-wrap {
     position: relative;
     width: 100%;
@@ -23,4 +27,21 @@
   left: 100px;
   top: 100px;
   z-index: 400;
+}
+
+.main-display {
+  flex-grow: 1;
+  border-radius: 15px;
+  position: absolute;
+  left: 88px;
+  top:62px;
+  bottom:1px;
+  right:1px;
+  background-color: white;
+  width: calc(100%-89px);
+  height: calc(100%-63px);
+}
+
+.nav-bar {
+  flex-grow: 1;
 }

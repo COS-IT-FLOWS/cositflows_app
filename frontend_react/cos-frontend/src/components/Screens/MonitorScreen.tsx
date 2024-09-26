@@ -1,10 +1,9 @@
 import React, {useState} from "react";
 import AlertWidgetComponent from "../AlertWidget/AlertWidgetComponent";
-import MenuList from "../Menu/MenuList";
 import LayerComponent from "../LayerWidget/LayersComponent";
-import NavComponent from "../NavBar/NavComponent";
 import Legend from "../LegendWidget/Legend";
-import Map from '../Maps/MonitoringMap';
+import Map from "../Maps/MonitoringMap";
+import WidgetSelector from "../NavBar/WidgetSelector";
 
 type Gaugetype = "rainfall" | "reservoir" | "tidal" | "groundwater" | "riverWater" | "regulators";
 
@@ -17,25 +16,22 @@ const initialVisibleGauges: Record<Gaugetype, boolean> = {
   regulators: false,
 };
 
-const MonitorScreen: React.FC = () => {
-  {
-    const handleClick =()=>
-    console.log("Overlay!")
-  }
-  
-  function handleClick(): void {
-    throw new Error("Function not implemented.");
-  }
 
-  const toggleLegendVisibility = () => {
-    setVisibleLegend((prev) => !prev);
+const MonitorScreen: React.FC = () => {
+  const [visibleWidgets, setVisibleWidgets] = useState({
+    alerts: true,
+    layers: true,
+    legend: true,
+  });
+
+  const handleWidgetToggle = (widget: "alerts" | "layers" | "legend", isVisible: boolean) => {
+    setVisibleWidgets(prev => ({
+      ...prev,
+      [widget]: isVisible,
+    }));
   };
 
   const [visibleGauges, setVisibleGauges] = useState(initialVisibleGauges);
-
-  const [visibleAlerts, setVisibleAlerts] = useState(true);
-  const [visibleLayers, setVisibleLayers] = useState(true);
-  const [visibleLegend, setVisibleLegend] = useState(true);
 
   const toggleGauge = (gauge: Gaugetype) => {
     setVisibleGauges((prevState) => ({
@@ -49,45 +45,41 @@ const MonitorScreen: React.FC = () => {
   return (
     <div className="monitor-screen w-full bg-gray-100 mx-auto relative flex flex-col">
       <div className="absolute w-full h-full">
-        <Map/>
-      </div>
-      <div className='absolute left-0'>
-        <MenuList/>
-      </div>
-      <div className="w-full z-10" >
-        <NavComponent
-        setVisibleAlerts={setVisibleAlerts}
-        setVisibleLayers={setVisibleLayers}
-        setVisibleLegend={setVisibleLegend}
-        />
+        <Map />
       </div>
 
+      {/* Widgets */}
       <div className="absolute top-0 right-0 mt-[90px] mr-[20px] flex flex-col items-end">
-        {visibleLayers && (
+        {visibleWidgets.layers && (
           <LayerComponent
-           visibleGauges={visibleGauges} 
-           toggleGauge={toggleGauge}
-           onClose={() => setVisibleLayers(false)}/>
+            visibleGauges={visibleGauges}
+            toggleGauge={toggleGauge}
+            onClose={() => handleWidgetToggle('layers', false)}
+          />
         )}
-        {isGaugesVisible && visibleLegend && (
-          <div className="mt-[15px] right-0"> 
-          <Legend 
-          visibleGauges={visibleGauges}
-          isVisible={visibleLegend}
-          toggleVisibility={() => setVisibleLegend(!visibleLegend)}
-          /> 
+        {isGaugesVisible && visibleWidgets.legend && (
+          <div className="mt-[15px] right-0">
+            <Legend
+              visibleGauges={visibleGauges}
+              isVisible={visibleWidgets.legend}
+              toggleVisibility={() => handleWidgetToggle('legend', !visibleWidgets.legend)}
+            />
           </div>
         )}
       </div>
-      
-      <div style={{ position: "absolute", top: "200px", left: "111px"}}>
-        {visibleAlerts && (
-        <AlertWidgetComponent
-         visibleAlerts={visibleAlerts}
-         OnClose= {() => setVisibleAlerts(false)}
-         />
-       )}
+
+      {/* Alerts */}
+      <div style={{ position: "absolute", top: "200px", left: "111px" }}>
+        {visibleWidgets.alerts && (
+          <AlertWidgetComponent
+            visibleAlerts={visibleWidgets.alerts}
+            OnClose={() => handleWidgetToggle('alerts', false)}
+          />
+        )}
       </div>
+
+       {/* Widget Selector for toggling widgets */}
+       <WidgetSelector onWidgetToggle={handleWidgetToggle} />
     </div>
   );
 };

@@ -1,19 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 
 interface WidgetSelectorProps {
-  setVisibleAlerts: (visible: boolean) => void;
-  setVisibleLayers: (visible: boolean) => void;
-  setVisibleLegend: (visible: boolean) => void;
+  onWidgetToggle: (widget: "alerts" | "layers" | "legend", isVisible: boolean) => void;
 }
 
-const WidgetSelector: React.FC<WidgetSelectorProps> = ({
-  setVisibleAlerts,
-  setVisibleLayers,
-  setVisibleLegend,
-}) => {
+const WidgetSelector: React.FC<WidgetSelectorProps> = ({ onWidgetToggle }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -24,25 +18,23 @@ const WidgetSelector: React.FC<WidgetSelectorProps> = ({
     setAnchorEl(null);
   };
 
-  const handleSelectWidget = (widget: "alerts" | "layers" | "legend") => {
-    switch (widget) {
-      case "alerts":
-        setVisibleAlerts(true);
-        break;
-      case "layers":
-        setVisibleLayers(true);
-        break;
-      case "legend":
-        setVisibleLegend(true);
-        break;
-    }
+  const [widgetVisibility, setWidgetVisibility]= useState ({
+    alerts: false,
+    layers: false,
+    legend: false,
+  });
+
+  const handleToggleWidget = (widget: "alerts" | "layers" | "legend") => {
+    const newVisibility = !widgetVisibility[widget];
+    setWidgetVisibility (prev => ({...prev, [widget]: newVisibility}));
+    onWidgetToggle(widget, newVisibility);
     handleClose();
   };
 
 
   return (
     <div>
-      <div className="flex justify-center w-[100px] bg-teal-100 bg-opacity-80 rounded-full">
+      <div className="flex justify-center w-[100px] bg-teal-300 bg-opacity-80 rounded-full">
         <Button
           id="basic-button"
           aria-controls={open ? 'basic-menu' : undefined}
@@ -66,9 +58,15 @@ const WidgetSelector: React.FC<WidgetSelectorProps> = ({
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={() => handleSelectWidget('alerts')} >Alerts</MenuItem>
-        <MenuItem onClick={() => handleSelectWidget('layers')} >Map Layers</MenuItem>
-        <MenuItem onClick={() => handleSelectWidget('legend')} >Legend</MenuItem>
+        <MenuItem onClick={() => handleToggleWidget('alerts')}>
+          {widgetVisibility.alerts ? "Hide Alerts" : "Show Alerts"}
+        </MenuItem>
+        <MenuItem onClick={() => handleToggleWidget('layers')}>
+          {widgetVisibility.layers ? "Hide Map Layers" : "Show Map Layers"}
+        </MenuItem>
+        <MenuItem onClick={() => handleToggleWidget('legend')}>
+          {widgetVisibility.legend ? "Hide Legend" : "Show Legend"}
+        </MenuItem>
       </Menu>
     </div>
   );

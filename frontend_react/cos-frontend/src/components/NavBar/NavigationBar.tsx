@@ -5,16 +5,18 @@ import Avatar from "@mui/material/Avatar";
 
 interface NavigationBarProps {
   menuItems: string[];
-  setVisibleAlerts: (visible: boolean) => void;
-  setVisibleLayers: (visible: boolean) => void;
-  setVisibleLegend: (visible: boolean) => void;
+  activeControl: string;
+  activeView: string;
+  setActiveControl: (control: string) => void;
+  setActiveView: (view: string) => void;
 }
 
 const NavigationBar: React.FC<NavigationBarProps> = ({ 
   menuItems,
-  setVisibleAlerts,
-  setVisibleLayers,
-  setVisibleLegend,
+  activeControl,
+  activeView,
+  setActiveControl,
+  setActiveView,
  }) => {
   return (
     <header className="flex items-center py-4 w-full ">
@@ -23,24 +25,23 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
         <ul className="flex gap-7 items-center mt-2.5 list-none p-0 mb-2">
           {menuItems.map((item, index) => (  
             <li key={index} className="relative">
-              {index === 0 && (
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-teal-100 h-[35px] rounded-[1000px] shadow-[1px_2px_4px_rgba(0,0,0,0.1)] w-[100px]">
-                </div>
-              )}
-              <a href={`${item.toLowerCase()}`} className=" text-white font-inter w-full block text-center no-underline relative z-10">
+              <button
+               className={`text-white text-base font-medium bg-transparent w-full block text-center relative z-10 ${ activeControl === item ? "font-bold" : ""}`}
+               onClick={()=> setActiveControl(item)}
+              >
                 {item}
-              </a>
+              </button>
             </li>
           ))}
         </ul>
       </nav>
 
       <div className="flex gap-2 items-center justify-end">
-        <WidgetSelector 
-          setVisibleAlerts={setVisibleAlerts}
-          setVisibleLayers={setVisibleLayers}
-          setVisibleLegend={setVisibleLegend}
-         />
+        {activeControl === "Monitor" && activeView === "Visualization" && (
+            <WidgetSelector 
+              onWidgetToggle={()=>{}}
+            />
+        )}
         <LocationSelector />
         <Avatar 
           sx={{bgcolor: "#00738C",width: 35, height:35}} 
