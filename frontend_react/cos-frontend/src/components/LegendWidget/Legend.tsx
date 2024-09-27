@@ -7,12 +7,12 @@ import Draggable from "react-draggable";
 
 interface LegendProps {
   visibleGauges: {
-    rainfall: boolean;
-    reservoir: boolean;
-    tidal: boolean;
-    groundwater: boolean;
-    riverWater: boolean;
-    regulators: boolean;
+    PRECIPITATION: boolean;
+    RESERVOIR: boolean;
+    TIDAL: boolean;
+    GROUNDWATER: boolean;
+    RIVER: boolean;
+    REGULATOR: boolean;
  };
  isVisible: boolean;
  toggleVisibility: () => void;
@@ -55,7 +55,7 @@ const Legend: React.FC<LegendProps> = ({visibleGauges, isVisible, toggleVisibili
         
         {!isCollapsed && (
           <>
-          {visibleGauges.rainfall && (
+          {visibleGauges.PRECIPITATION && (
             <GaugeSection
               title="Rainfall Gauges"
               colors={["#1A6668", "#3EA8A6", "#FFFFE0", "#DD8629", "#79260B"]}
@@ -66,7 +66,7 @@ const Legend: React.FC<LegendProps> = ({visibleGauges, isVisible, toggleVisibili
           )}
 
           {/* Render Reservoir section */}
-          {visibleGauges.reservoir && (
+          {visibleGauges.RESERVOIR && (
             <GaugeSection
               title="Reservoir/Dam Level"
               colors={["#2D718F", "#FEEAAE", "#FFC103", "#FF8200", "#FF0000"]}
@@ -77,7 +77,7 @@ const Legend: React.FC<LegendProps> = ({visibleGauges, isVisible, toggleVisibili
           )}
 
           {/* Render Tidal section */}
-          {visibleGauges.tidal && (
+          {visibleGauges.TIDAL && (
             <GaugeSection
               title="Tidal Level"
               colors={["#004E98", "#3A6EA5", "#744F44", "#EBEBEB", "#FF6701"]}
@@ -88,7 +88,7 @@ const Legend: React.FC<LegendProps> = ({visibleGauges, isVisible, toggleVisibili
           )}
 
           {/* Render Groundwater section */}
-          {visibleGauges.groundwater && (
+          {visibleGauges.GROUNDWATER && (
             <GaugeSection
               title="Groundwater Level"
               colors={["#004E98", "#3A6EA5", "#744F44", "#EBEBEB", "#FF6701"]}
@@ -99,7 +99,7 @@ const Legend: React.FC<LegendProps> = ({visibleGauges, isVisible, toggleVisibili
           )}
 
           {/* Render River water level section */}
-          {visibleGauges.riverWater && (
+          {visibleGauges.RIVER && (
             <GaugeSection
               title="River Water Level"
               colors={["#004E98", "#3A6EA5", "#744F44", "#EBEBEB", "#FF6701"]}
@@ -110,7 +110,7 @@ const Legend: React.FC<LegendProps> = ({visibleGauges, isVisible, toggleVisibili
           )}
 
           {/* Render Regulators section */}
-          {visibleGauges.regulators && (
+          {visibleGauges.REGULATOR && (
             <GaugeSection
               title="Regulators"
               colors={["#004E98", "#3A6EA5", "#744F44", "#EBEBEB", "#FF6701"]}

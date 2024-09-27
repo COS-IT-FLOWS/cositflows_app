@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import LayerItem from "./LayerItem";
 
-type GaugeType = "rainfall" | "reservoir" | "tidal" | "groundwater" | "riverWater" | "regulators";
+type GaugeLabel = "rainfall" | "reservoir" | "tidal" | "groundwater" | "riverWater" | "regulators";
+type GaugeType = "PRECIPITATION" | "RESERVOIR" | "TIDAL" | "GROUNDWATER" | "RIVER" | "REGULATOR";
 
-const layersData: { label: GaugeType} []= [
-  { label: "rainfall"},
-  { label: "reservoir"},
-  { label: "groundwater" },
-  { label: "riverWater"},
-  { label: "tidal"},
-  { label: "regulators"  },
+const layersData: { label: GaugeLabel, param: GaugeType }[] = [
+  { label: "rainfall", param: 'PRECIPITATION' },
+  { label: "reservoir", param: "RESERVOIR" },
+  { label: "groundwater", param: "GROUNDWATER" },
+  { label: "riverWater", param: "RIVER" },
+  { label: "tidal", param: "TIDAL" },
+  { label: "regulators", param: "REGULATOR" },
 ];
 
 interface LayersListProps {
@@ -24,22 +25,23 @@ const LayersList: React.FC<LayersListProps> = ({ toggleGauge }) => {
     setCheckedItems(prevState => {
       const newCheckedItems = [...prevState];
       newCheckedItems[index] = !newCheckedItems[index];
-      toggleGauge(layersData[index].label);
+      toggleGauge(layersData[index].param);
       return newCheckedItems;
     });
   };
 
-   return (
-  <div className="flex flex-col items-start w-full leading-6">
-    {layersData.map((layer, index) => (
-      <LayerItem 
-        key={index}
-        label={layer.label}
-        isChecked={checkedItems[index]}
-        onToggle={() => handleToggle(index)}
+  return (
+    <div className="flex flex-col items-start w-full leading-6">
+      {layersData.map((layer, index) => (
+        <LayerItem
+          key={index}
+          label={layer.label}
+          param={layer.param}
+          isChecked={checkedItems[index]}
+          onToggle={() => handleToggle(index)}
         />
-    ))}
-  </div>
+      ))}
+    </div>
   );
 };
 

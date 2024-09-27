@@ -7,15 +7,24 @@ import Legend from "../LegendWidget/Legend";
 import Map from '../Maps/MonitoringMap';
 import { MonitoringMapComponent } from "../Maps/MonitoringMapComponent";
 
-type Gaugetype = "rainfall" | "reservoir" | "tidal" | "groundwater" | "riverWater" | "regulators";
+// type GaugeType = "PRECIPITATION" | "RESERVOIR" | "TIDAL" | "GROUNDWATER" | "RIVER" | "REGULATOR";
 
-const initialVisibleGauges: Record<Gaugetype, boolean> = {
-  rainfall: false,
-  reservoir: false,
-  tidal: false,
-  groundwater: false,
-  riverWater: false,
-  regulators: false,
+interface GaugeType {
+  PRECIPITATION: boolean;
+  RESERVOIR: boolean;
+  TIDAL: boolean;
+  GROUNDWATER: boolean;
+  RIVER: boolean;
+  REGULATOR: boolean;
+}
+
+const initialVisibleGauges = {
+  PRECIPITATION: false,
+  RESERVOIR: false,
+  TIDAL: false,
+  GROUNDWATER: false,
+  RIVER: false,
+  REGULATOR : false,
 };
 
 const MonitorScreen: React.FC = () => {
@@ -38,11 +47,8 @@ const MonitorScreen: React.FC = () => {
   const [visibleLayers, setVisibleLayers] = useState(true);
   const [visibleLegend, setVisibleLegend] = useState(true);
 
-  const toggleGauge = (gauge: Gaugetype) => {
-    setVisibleGauges((prevState) => ({
-      ...prevState,
-      [gauge]: !prevState[gauge],
-    }));
+  function toggleGauge(gaugeType: keyof GaugeType) {
+    setVisibleGauges({ ...visibleGauges, [gaugeType]: !visibleGauges[gaugeType] });
   };
 
   const isGaugesVisible = Object.values(visibleGauges).some((isVisible) => isVisible);
@@ -50,11 +56,13 @@ const MonitorScreen: React.FC = () => {
   return (
     <div className="monitor-screen w-full bg-gray-100 mx-auto relative flex flex-col">
       <div className="absolute w-full h-full">
-        <MonitoringMapComponent/>
+        <MonitoringMapComponent
+        visibleGauges={visibleGauges}
+        />
       </div>
       <div className='absolute left-0'>
         <MenuList/>
-      </div>
+        </div>
       <div className="w-full z-10">
         <NavComponent
         setVisibleAlerts={setVisibleAlerts}

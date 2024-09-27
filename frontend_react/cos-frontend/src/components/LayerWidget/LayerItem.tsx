@@ -2,10 +2,13 @@ import React from "react";
 import CheckBoxBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import CheckBox from "@mui/icons-material/CheckBox";
 
-type GaugeType = "rainfall" | "reservoir" | "groundwater" | "riverWater" | "tidal" | "regulators";
+
+type GaugeLabel = "rainfall" | "reservoir" | "tidal" | "groundwater" | "riverWater" | "regulators";
+type GaugeType = "PRECIPITATION" | "RESERVOIR" | "TIDAL" | "GROUNDWATER" | "RIVER" | "REGULATOR";
 
 interface LayerItemProps {
-  label: GaugeType;
+  label: GaugeLabel;
+  param: GaugeType;
   isChecked: boolean;
   onToggle: () => void; 
 }
