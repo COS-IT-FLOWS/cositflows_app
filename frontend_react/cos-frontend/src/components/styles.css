@@ -35,8 +35,8 @@
   position: absolute;
   left: 88px;
   top:62px;
-  bottom:1px;
-  right:1px;
+  bottom:20px;
+  right:20px;
   background-color: white;
   width: calc(100%-89px);
   height: calc(100%-63px);
@@ -44,4 +44,10 @@
 
 .nav-bar {
   flex-grow: 1;
+}
+
+nav {
+  flex-grow: 1;
+  justify-content: space-between;
+  width: 80%; /* adjust the width to your liking */
 }

@@ -1,31 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Map from "@mui/icons-material/Map";
 import Dashboard from "@mui/icons-material/Dashboard";
 import About from "@mui/icons-material/Info";
 import Settings from "@mui/icons-material/Settings";
+import { Link } from 'react-router-dom';
 
 const icons = [
-  { object: Map, string: "Visualization", view: "Visualization"},
-  { object: Dashboard, string: "Analytics", view: "Analytics" },
-  { object: About, string: "About", view: "About" },
-  { object: Settings, string: "Settings", view: "Settings" },
+  { object: Map, string: "Visualization", view: "visualization"},
+  { object: Dashboard, string: "Analytics", view: "analytics" },
+  { object: About, string: "About", view: "about" },
+  { object: Settings, string: "Settings", view: "settings" },
 ];
 
 interface MenuListProps {
+  activeControl: string;
+  activeView: string;
   setActiveView: (view: string) => void;
 }
 
-const MenuList: React.FC<MenuListProps> = ({setActiveView}) => {
+const MenuList: React.FC<MenuListProps> = ({activeControl, activeView, setActiveView}) => {
   return(
   <div className={`flex flex-col justify-center w-[88px] h-screen` }>
     <div className="flex flex-grow flex-col mb-[100px] items-center justify-center w-full">
-      <div className="flex flex-col items-center gap-6">
+      <ul className="flex flex-col items-center pr-[35px] gap-6">
         {icons.map((icon, index) => (
-          <button 
-          type='button' 
-          key={index} 
-          onClick={() => setActiveView(icon.view) }
+          <li key={index} className="relative">
+          <Link
+          to={icon.view === "about" || icon.view === "settings" 
+          ? `/${icon.view}` 
+          : `/${activeControl.toLowerCase()}-${icon.view}`}
           className="flex flex-col items-center gap-2 text-white bg-transparent"
+          style={{ textDecoration: 'none' }}
+          onClick={() => {
+            setActiveView(icon.view);
+          }}
           >
             <div className="flex items-center justify-center bg-transparent gap-3 no-underline" > 
               <icon.object 
@@ -33,12 +41,13 @@ const MenuList: React.FC<MenuListProps> = ({setActiveView}) => {
                sx={{width: 25,height: 25, color: 'white'}}
               />
             </div>
-            <span className="text-[12px] text-white font-inter">
+            <span className={` text-white font-inter bg-transparent ${ activeView.toLowerCase() === icon.string.toLowerCase() ? "font-semibold text-[11px]" : "text-3xs"}`}>
                 {icon.string}
-              </span> 
-          </button>
+            </span> 
+          </Link>
+        </li>
         ))}
-      </div>
+      </ul>
     </div>
   </div>
   );

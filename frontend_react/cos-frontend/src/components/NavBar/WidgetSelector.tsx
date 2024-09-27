@@ -5,9 +5,10 @@ import MenuItem from "@mui/material/MenuItem";
 
 interface WidgetSelectorProps {
   onWidgetToggle: (widget: "alerts" | "layers" | "legend", isVisible: boolean) => void;
+  visibleWidgets: {alerts:boolean, layers:boolean, legend:boolean};
 }
 
-const WidgetSelector: React.FC<WidgetSelectorProps> = ({ onWidgetToggle }) => {
+const WidgetSelector: React.FC<WidgetSelectorProps> = ({ onWidgetToggle, visibleWidgets }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -18,18 +19,18 @@ const WidgetSelector: React.FC<WidgetSelectorProps> = ({ onWidgetToggle }) => {
     setAnchorEl(null);
   };
 
-  const [widgetVisibility, setWidgetVisibility]= useState ({
-    alerts: false,
-    layers: false,
-    legend: false,
-  });
+  // const [widgetVisibility, setWidgetVisibility]= useState ({
+  //   alerts: false,
+  //   layers: false,
+  //   legend: false,
+  // });
 
-  const handleToggleWidget = (widget: "alerts" | "layers" | "legend") => {
-    const newVisibility = !widgetVisibility[widget];
-    setWidgetVisibility (prev => ({...prev, [widget]: newVisibility}));
-    onWidgetToggle(widget, newVisibility);
-    handleClose();
-  };
+  // const handleToggleWidget = (widget: "alerts" | "layers" | "legend") => {
+  //   const newVisibility = !widgetVisibility[widget];
+  //   setWidgetVisibility (prev => ({...prev, [widget]: newVisibility}));
+  //   onWidgetToggle(widget, newVisibility);
+  //   handleClose();
+  // };
 
 
   return (
@@ -58,14 +59,14 @@ const WidgetSelector: React.FC<WidgetSelectorProps> = ({ onWidgetToggle }) => {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={() => handleToggleWidget('alerts')}>
-          {widgetVisibility.alerts ? "Hide Alerts" : "Show Alerts"}
+        <MenuItem onClick={() => onWidgetToggle("alerts", !visibleWidgets.alerts)}>
+          {visibleWidgets.alerts ? "Hide Alerts" : "Show Alerts"}
         </MenuItem>
-        <MenuItem onClick={() => handleToggleWidget('layers')}>
-          {widgetVisibility.layers ? "Hide Map Layers" : "Show Map Layers"}
+        <MenuItem onClick={() => onWidgetToggle("layers", !visibleWidgets.layers)}>
+          {visibleWidgets.layers ? "Hide Map Layers" : "Show Map Layers"}
         </MenuItem>
-        <MenuItem onClick={() => handleToggleWidget('legend')}>
-          {widgetVisibility.legend ? "Hide Legend" : "Show Legend"}
+        <MenuItem onClick={() => onWidgetToggle("legend", !visibleWidgets.legend)}>
+          {visibleWidgets.legend ? "Hide Legend" : "Show Legend"}
         </MenuItem>
       </Menu>
     </div>
