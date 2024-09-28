@@ -1,20 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import Map from '../Maps/ImpactMap';
+import HighlightComponent from "../BasinHighlights/HighlightComponent";
+import ButtonComponent from "../LevelNav/ImpactButtons";
+import population from "../Maps/population.png";
+import households from "../Maps/dash_buldings_map.jpg";
+import agriculture from "../Maps/LULC.png";
+import floodInundation from "../Maps/flood_inundated area.png";
 
 const ImpactScreen: React.FC = () => {
+  const [selectedMap, setSelectedMap] = useState('flood-inundation');
+  
   return (
-    <div className="monitor-screen w-full h-full relative flex flex-col rounded-[15px] overflow-hidden">
-      <div className="flex justify-start items-start gap-1 relative left-[10px] w-full">
-        <div className="w-[450px] mt-[10px] h-[400px] rounded-[10px] overflow-hidden">
-          <Map/>
-        </div>
-        <div className="bg-zinc-800 w-[250px] max-w-[250px] mt-[10px] rounded-[10px] text-base text-white font-inter p-4 h-[200px]">
-          Population
-        </div>
-        <div className="bg-zinc-800 w-[250px] max-w-[250px] mt-[10px] rounded-[10px] text-base text-white font-inter p-4 h-[200px]">
-          Terrain
-        </div>
-        {/* <div className="bg-gray-100 p-4 ">Transportation</div> */}
+    <div className="monitor-screen w-full h-full relative bg-white flex flex-col rounded-[15px] overflow-hidden">
+      <div className="absolute w-full h-full rounded-[15px] overflow-hidden">
+        {selectedMap === 'flood-inundation' && <img src={floodInundation} alt="Flood Inundation" className="w-full h-full object-cover"/>}
+        {selectedMap === 'population' && <img src={population} alt=" " className="w-full h-full object-cover"/>}
+        {selectedMap === 'households' && <img src={households} alt=" " className="w-full h-full object-cover"/>}
+        {selectedMap === 'agriculture' && <img src={agriculture} alt=" " className="w-full h-full object-cover"/>}
+        {/* <Map /> */}
+      </div>
+
+      <div style={{ position: "absolute", top: "0px", left: "0px" }}>
+        <ButtonComponent setSelectedMap={setSelectedMap}/>
+      </div>
+
+      <div className="absolute font-inter top-0 right-0 mt-[10px] mr-[20px] flex flex-col items-end">
+        <HighlightComponent/>
       </div>
     </div>
   );

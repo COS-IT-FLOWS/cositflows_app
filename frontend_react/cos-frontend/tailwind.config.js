@@ -43,6 +43,7 @@ module.exports = {
       spacing: {},
       fontFamily: {
         inter: "Inter",
+        sans: ["Inter", "sans-serif"], // Set Inter as the default font 
       },
       borderRadius: {
         "8xs": "5px",

@@ -35,7 +35,7 @@ const WidgetSelector: React.FC<WidgetSelectorProps> = ({ onWidgetToggle, visible
 
   return (
     <div>
-      <div className="flex justify-center w-[100px] bg-teal-300 bg-opacity-80 rounded-full">
+      <div className="flex justify-center w-[100px] bg-teal-500 bg-opacity-80 rounded-full">
         <Button
           id="basic-button"
           aria-controls={open ? 'basic-menu' : undefined}

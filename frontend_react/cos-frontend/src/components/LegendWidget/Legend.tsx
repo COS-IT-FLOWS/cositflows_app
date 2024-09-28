@@ -25,6 +25,7 @@ const Legend: React.FC<LegendProps> = ({visibleGauges, isVisible, toggleVisibili
   if (!isVisible) return null;
 
   return (
+    <Draggable>
     <section className={`flex flex-col text-white font-inter w-[200px] max-w-[200px] rounded-3xl shadow-[0px_4px_4px_rgba(0,0,0,0.25)]`}>
       <div className={`flex flex-col items-start px-4 ${isCollapsed ? "py-4 rounded-[18px] bg-opacity-90" : "py-6 rounded-3xl bg-opacity-80"} bg-zinc-900`}>
         <header className={`flex items-center text-base ${isCollapsed ? "gap-[90px]" : "gap-[0px]"} justify-between w-full leading-none`}>
@@ -123,6 +124,7 @@ const Legend: React.FC<LegendProps> = ({visibleGauges, isVisible, toggleVisibili
         )}
       </div>
     </section>
+  </Draggable>
   );
 };
 

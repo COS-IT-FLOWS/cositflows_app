@@ -37,7 +37,7 @@ const MenuList: React.FC<MenuListProps> = ({activeControl, activeView, setActive
           >
             <div className="flex items-center justify-center bg-transparent gap-3 no-underline" > 
               <icon.object 
-               className="bg-teal-300 px-2 py-2 rounded-full"
+               className={`${icon.view == activeView? "bg-teal-500" : "bg-zinc-800"} border border-teal-100 px-2 py-2 rounded-full`}
                sx={{width: 25,height: 25, color: 'white'}}
               />
             </div>

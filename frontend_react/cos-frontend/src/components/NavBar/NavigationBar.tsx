@@ -35,7 +35,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
             <li key={index} className="relative">
               <Link
                to={`/${item.toLowerCase()}-${'visualization'}`}
-               className={` text-white no-underline font-inter bg-transparent w-full block text-center relative z-10 ${ activeControl.toLowerCase() === item.toLowerCase() ? "font-semibold text-[17px]" : "text-base"}`}
+               className={` text-white no-underline font-inter bg-transparent w-full block text-center relative z-10 ${ activeControl.toLowerCase() === item.toLowerCase() ? "font-semibold text-[17px] text-teal-500" : "text-base"}`}
                onClick={()=> {
                 // console.log(item);
                 setActiveControl(item);
@@ -60,7 +60,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
         </div>
         <LocationSelector />
         <Avatar 
-          sx={{bgcolor: "#9BB5AD", width: 35, height:35}} 
+          sx={{bgcolor: "#49968A", width: 35, height:35}} 
           alt="Apple Doe" 
           src="/broken-image.jpg"
         />

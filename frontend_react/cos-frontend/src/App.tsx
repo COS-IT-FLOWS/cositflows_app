@@ -10,6 +10,7 @@ import MainLayout from './MainLayout';
 import MonitorAnalyticsScreen from './components/Screens/MonitorAnalyticsScreen';
 import ForecastAnalyticsScreen from './components/Screens/ForecastAnalyticsScreen';
 import ImpactAnalyticsScreen from './components/Screens/ImpactAnalyticsScreen';
+import SplashScreen from './components/Screens/SplashScreen';
 
 const App: React.FC = () => {
    const [visibleWidgets, setVisibleWidgets] = useState({
@@ -24,6 +25,15 @@ const App: React.FC = () => {
         [widget]: isVisible,
       }));
     };
+   
+   const [isSplashVisible, setIsSplashVisible] = useState(true);
+   const handleLaunch = () => {
+      setIsSplashVisible(false);
+   };
+
+   if (isSplashVisible) {
+      return <SplashScreen onLaunch={handleLaunch} />;
+   }
 
    return (
          <Routes>
