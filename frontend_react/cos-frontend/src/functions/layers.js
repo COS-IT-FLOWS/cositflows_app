@@ -38,7 +38,8 @@ function addPointLayer(map, layerType, data) {
                         [12, 7],
                         [50, 180]
                     ]
-            }
+            },
+            'circle-opacity': 0.5
         },
         layout: {
             'visibility': 'visible'
@@ -58,13 +59,32 @@ function removePointLayer(map, layerType) {
 
 async function addCustomMarkerForPointLayer(map, layerType, pointsCollection, setMarkerState) {
     // const layerConfigData = configData.LAYERS.STATION[layerType];
-    const markers = []; 
+    const markers = [];
+    const popup = new maplibregl.Popup({
+        closeButton: false,
+        closeOnClick: false
+    });
     if (pointsCollection) {
+        let i = 10000;
         for (const point of pointsCollection.features) {
+            i += 10000;
             const marker = await generateCustomMarker(layerType);
             // Add marker to map
             marker.setLngLat(point.geometry.coordinates).addTo(map);
             markers.push(marker);
+            // await new Promise(resolve => setTimeout(resolve, 300));
+
+            // map.on('mousemove', (e) => {
+            //     if (e.features && e.features.length > 0) {
+            //         console.log(e.features, marker._id);
+            //         const feature = e.features[0];
+            //         if (feature.properties.id === marker._id) {
+            //             // console.log('testing');
+            //         // Update the marker's appearance on hover
+            //             popup.setLngLat(point.geometry.coordinates).addTo(map);
+            //         }
+            //     } 
+            //     });
         }
         setMarkerState({[layerType] : markers});
     }
@@ -146,11 +166,11 @@ function togglePointLayers(map, gaugeVisibility, mapState, currentFeatureLayerId
 function addBoundaryLayer(map, layerType, data) {
     const layerConfigData = configData.LAYERS.BOUNDARY[layerType];
     const sourceId = layerConfigData.SOURCE_ID;
+    const mapObject = layerConfigData.MAP_OBJECT;
     const layerColor = layerConfigData.COLOR;
     const layerOpacity = layerConfigData.OPACITY;
     const lineColor = layerConfigData.LINECOLOR;
-    const randomString = (Math.random()).toString(36);
-    const layerId = layerConfigData.LAYER_ID + randomString;
+    const layerId = layerConfigData.LAYER_ID;
     const outlineLayerId = 'outline-' + layerId;
     // setBoundaryLevel()
     map.addLayer({
@@ -158,34 +178,36 @@ function addBoundaryLayer(map, layerType, data) {
         type: 'fill',
         // If source is a full layer, it will have Source ID, 
         // else if generated, data passed directly.
-        source: data !== null ? {
-            type: 'geojson',
-            data: data
-        } : sourceId,
+        // source: data !== null ? {
+        //     type: mapObject,
+        //     data: data
+        // }
+        source : sourceId,
         paint: {
             'fill-color': layerColor,
-            'fill-opacity': layerOpacity
+            'fill-opacity': 0
         },
-        // layout: {
-        //     'visibility': 'visible'
-        // }
+        layout: {
+            'visibility': 'visible'
+        }
     }); 
     
     map.addLayer({
         id: outlineLayerId,
         type: 'line',
-        source: data !== null ? {
-            type: 'geojson',
-            data: data
-        } : sourceId,
+        // source: data !== null ? {
+        //     type: mapObject,
+        //     data: data
+        // }   
+        source : sourceId,
         paint: {
             'line-color': lineColor,
             'line-width': 2,
-            'line-opacity': layerOpacity
+            'line-opacity': 0   
             },
-        // layout: {
-        //     'visibility': 'visible'
-        // }
+        layout: {
+            'visibility': 'visible'
+        }
     });
 
     return layerId;
@@ -244,7 +266,7 @@ async function handleClickOnLayer(map, setMapState, setCurrentFeatureLayerId) {
 }
 
 function cursorToPointerOnHover(map, layerType, layerId) {
-    const layerConfigData = configData.LAYERS.BOUNDARY[layerType];
+    const layerConfigData = configData.LAYERS.STATION[layerType];
     const objectName = layerConfigData.OBJECT_NAME;
 
     const popup = new maplibregl.Popup({
@@ -290,6 +312,60 @@ function cursorToPointerOnHover(map, layerType, layerId) {
     });
 }
 
+function cursorToPointerOnHoverType2(map, layerType, layerId) {
+    const layerConfigData = configData.LAYERS.STATION[layerType];
+    // const objectName = layerConfigData.OBJECT_NAME;
+    console.log(layerId);
+    const popup = new maplibregl.Popup({
+        closeButton: false,
+        closeOnClick: false
+    });
+    // Change the cursor to a pointer when the mouse is over the states layer.
+    // Add a mousemove event to the circle layer to show the popup on hover
+
+    map.on('mouseenter', (e) => {
+        map.getCanvas().style.cursor = 'pointer';
+        // const feature = e.features[0];
+        // const coordinates = feature.geometry.coordinates.slice();
+        if (e.features && e.features.length > 0) {
+            const feature = e.features[0];
+            console.log(feature);
+        }
+        // Get the polygon centroid
+        // const name = feature.properties['Station_Name'];
+        // // Populate the popup and set its coordinates
+        // // based on the feature found.
+        // popup.setLngLat(coordinates).setHTML(name);
+        
+        if (!popup._map) {
+            popup.addTo(map);
+        }
+    });
+
+    // map.on('mousemove', layerId, (e) => {
+    //     const feature = e.features[0];
+    //     const coordinates = feature.geometry.coordinates.slice();
+    //     const description = feature.properties['Station_Name'];
+    //     console.log(e, description);
+
+    //     // Ensure that the popup is added to the map
+
+    //     while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+    //         coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    //     }
+
+    //     popup.setLngLat(coordinates)
+    //         .setHTML(description)
+    //         .addTo(map);
+    //     });
+
+
+        // Add a mouseout event to the circle layer to remove the popup
+        map.on('mouseleave', layerId, () => {
+        popup.remove();
+        });
+}
+
 async function getPointsWithinIntersectingFeatures(map, pointType, polygonLayerId) {
     const pointSourceId = configData.LAYERS.STATION[pointType].SOURCE_ID;
     const pointSource = map.getSource(pointSourceId);
@@ -319,4 +395,6 @@ async function getIntersectingPolygons(map, sourceType, polygon) {
     return intersectingLayer;
 }
 
-export { addPointSource, addPointLayer, addCustomMarkerForPointLayer, togglePointLayers, addBoundarySource, addBoundaryLayer, cursorToPointerOnHover, getIntersectingPolygons, handleClickOnLayer };
+
+
+export { addPointSource, addPointLayer, addCustomMarkerForPointLayer, togglePointLayers, addBoundarySource, addBoundaryLayer, removeBoundaryLayer,  cursorToPointerOnHover, cursorToPointerOnHoverType2, getIntersectingPolygons, handleClickOnLayer };
