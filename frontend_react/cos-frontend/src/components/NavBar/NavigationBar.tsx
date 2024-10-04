@@ -1,51 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
 import WidgetSelector from "./WidgetSelector";
 import LocationSelector from "./LocationSelector";
 import Avatar from "@mui/material/Avatar";
-import { teal } from "@mui/material/colors";
+import { Link } from "react-router-dom";
 
 interface NavigationBarProps {
+  activeControl: string;
+  setActiveControl: (view:string) => void;
+  setActiveView: (view:string) => void;
   menuItems: string[];
-  setVisibleAlerts: (visible: boolean) => void;
-  setVisibleLayers: (visible: boolean) => void;
-  setVisibleLegend: (visible: boolean) => void;
+  activeView: string;
+  onWidgetToggle: (widget: "alerts" | "layers" | "legend", isVisible: boolean) => void;
+  visibleWidgets: { alerts: boolean; layers: boolean; legend: boolean };
 }
 
 const NavigationBar: React.FC<NavigationBarProps> = ({ 
+  activeControl,
+  setActiveControl,
+  setActiveView,
   menuItems,
-  setVisibleAlerts,
-  setVisibleLayers,
-  setVisibleLegend,
+  activeView,
+  onWidgetToggle,
+  visibleWidgets,
  }) => {
-  return (
-    <header className="flex items-center py-4 w-full bg-darkslategray">
+  //console.log(activeControl, activeView);
+  //const [activeControl, setActiveControl] = useState('monitor');
 
-      <nav className="flex flex-grow ml-[473px] relative">
-        <ul className="flex gap-7 items-center mt-2.5 list-none p-0 mb-2">
+  return (
+    <header className="flex items-center py-4 w-full ">
+
+      <nav className="flex justify-center">
+        <ul className="flex gap-7 pl-[250px] items-center mt-2.5 list-none p-0 mb-2">
           {menuItems.map((item, index) => (  
             <li key={index} className="relative">
-              {index === 0 && (
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-teal-100 h-[35px] rounded-[1000px] shadow-[1px_2px_4px_rgba(0,0,0,0.1)] w-[100px]">
-                </div>
-              )}
-              <a href={`${item.toLowerCase()}`} className=" text-white font-inter w-full block text-center no-underline relative z-10">
+              <Link
+               to={`/${item.toLowerCase()}-${'visualization'}`}
+               className={` text-white no-underline font-inter bg-transparent w-full block text-center relative z-10 ${ activeControl.toLowerCase() === item.toLowerCase() ? "font-semibold text-[17px] text-teal-500" : "text-base"}`}
+               onClick={()=> {
+                // console.log(item);
+                setActiveControl(item);
+                setActiveView('visualization');
+              }}
+              >
                 {item}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
       </nav>
-
-      <div className="flex gap-2 items-center justify-end">
-        <WidgetSelector 
-          setVisibleAlerts={setVisibleAlerts}
-          setVisibleLayers={setVisibleLayers}
-          setVisibleLegend={setVisibleLegend}
-         />
+          
+      <div className="flex pr-[20px] gap-2 items-center justify-end">
+        <div className="widget-selector-container" style={{ width: 100 }}>
+          {activeControl.toLowerCase() === "monitor" && activeView.toLowerCase() === "visualization" && (
+              <WidgetSelector 
+                onWidgetToggle={onWidgetToggle}
+                visibleWidgets={visibleWidgets}
+              />
+          )}
+        </div>
         <LocationSelector />
         <Avatar 
-          sx={{bgcolor: "#00738C",width: 35, height:35}} 
-          alt="Devika Sivakumar" 
+          sx={{bgcolor: "#49968A", width: 35, height:35}} 
+          alt="Apple Doe" 
           src="/broken-image.jpg"
         />
       </div>

@@ -1,6 +1,6 @@
 import * as turf from '@turf/turf';
 import maplibregl from 'maplibre-gl';
-import configData from '../config.json';
+import configData from '../../config.json';
 
 function centerLatLngFromFeature(feature) {
     const centroid = turf.centroid(feature.geometry);

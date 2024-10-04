@@ -5,6 +5,7 @@ import AddIcon from "@mui/icons-material/Add";
 import Checkbox from "@mui/material/Checkbox";
 import Checkicon from "@mui/icons-material/CheckBox";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
+import Draggable from "react-draggable";
 
 type GaugeType = "PRECIPITATION" | "RESERVOIR" | "TIDAL" | "GROUNDWATER" | "RIVER" | "REGULATOR";
 
@@ -26,6 +27,7 @@ const LayersComponent: React.FC<LayersProps> = ({ visibleGauges, toggleGauge, on
   const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
   
   return (
+    <Draggable>
     <section className={`flex flex-col text-white font-inter rounded-3xl w-[200px] max-w-[200px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]`}>
       <div className={`flex flex-col w-full pb-4 ${isCollapsed ? "rounded-[18px] bg-opacity-90" : "rounded-3xl bg-opacity-80"} bg-zinc-900`}>
         <header className={`flex flex-col pt-3.5 w-full ${isCollapsed ? "bg-transparent" : "rounded-[22px_22px_1px_1px] bg-zinc-800 bg-opacity-80 shadow-[0px_2px_5px_rgba(0,0,0,0.1)]"}`}>
@@ -196,6 +198,7 @@ const LayersComponent: React.FC<LayersProps> = ({ visibleGauges, toggleGauge, on
         )}
       </div>
     </section>
+  </Draggable>
   );
 };
 

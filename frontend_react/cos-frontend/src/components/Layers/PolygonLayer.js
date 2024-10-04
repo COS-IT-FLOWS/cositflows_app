@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import maplibregl from 'maplibre-gl';
-import configData from '../config.json';
+import configData from '../../config.json';
 import * as turf from '@turf/turf';
 import { Sort, Visibility } from '@mui/icons-material';
 import { centerLatLngFromFeature, generateCustomMarker, incrementState } from './misc';

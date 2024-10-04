@@ -1,10 +1,7 @@
 import React, {useState} from "react";
 import AlertWidgetComponent from "../AlertWidget/AlertWidgetComponent";
-import MenuList from "../Menu/MenuList";
 import LayerComponent from "../LayerWidget/LayersComponent";
-import NavComponent from "../NavBar/NavComponent";
 import Legend from "../LegendWidget/Legend";
-import Map from '../Maps/MonitoringMap';
 import { MonitoringMapComponent } from "../Maps/MonitoringMapComponent";
 
 // type GaugeType = "PRECIPITATION" | "RESERVOIR" | "TIDAL" | "GROUNDWATER" | "RIVER" | "REGULATOR";
@@ -27,25 +24,30 @@ const initialVisibleGauges = {
   REGULATOR : false,
 };
 
-const MonitorScreen: React.FC = () => {
-  {
-    const handleClick =()=>
-    console.log("Overlay!")
-  }
-  
-  function handleClick(): void {
-    throw new Error("Function not implemented.");
-  }
+interface MonitorScreenProps {
+  visibleWidgets: {alerts: boolean, layers: boolean, legend: boolean};
+  onWidgetToggle: (widget: "alerts" | "layers" | "legend", isVisible: boolean) => void;
+}
 
-  const toggleLegendVisibility = () => {
-    setVisibleLegend((prev) => !prev);
-  };
+const MonitorScreen: React.FC<MonitorScreenProps> = ({onWidgetToggle, visibleWidgets}) => {
+  // const [visibleWidgets, setVisibleWidgets] = useState({
+  //   alerts: true,
+  //   layers: true,
+  //   legend: true,
+  // });
+
+  // const onWidgetToggle = (widget: "alerts" | "layers" | "legend", isVisible: boolean) => {
+  //   setVisibleWidgets(prev => ({
+  //     ...prev,
+  //     [widget]: isVisible,
+  //   }));
+  // };
 
   const [visibleGauges, setVisibleGauges] = useState(initialVisibleGauges);
 
-  const [visibleAlerts, setVisibleAlerts] = useState(true);
-  const [visibleLayers, setVisibleLayers] = useState(true);
-  const [visibleLegend, setVisibleLegend] = useState(true);
+  // const [visibleAlerts, setVisibleAlerts] = useState(true);
+  // const [visibleLayers, setVisibleLayers] = useState(true);
+  // const [visibleLegend, setVisibleLegend] = useState(true);
 
   function toggleGauge(gaugeType: keyof GaugeType) {
     setVisibleGauges({ ...visibleGauges, [gaugeType]: !visibleGauges[gaugeType] });
@@ -54,49 +56,46 @@ const MonitorScreen: React.FC = () => {
   const isGaugesVisible = Object.values(visibleGauges).some((isVisible) => isVisible);
 
   return (
-    <div className="monitor-screen w-full bg-gray-100 mx-auto relative flex flex-col">
-      <div className="absolute w-full h-full">
+    <div className="monitor-screen w-full h-full relative flex flex-col rounded-[15px] overflow-hidden">
+      <div className="absolute w-full h-full rounded-[15px] overflow-hidden">
         <MonitoringMapComponent
-        visibleGauges={visibleGauges}
-        />
-      </div>
-      <div className='absolute left-0'>
-        <MenuList/>
-        </div>
-      <div className="w-full z-10">
-        <NavComponent
-        setVisibleAlerts={setVisibleAlerts}
-        setVisibleLayers={setVisibleLayers}
-        setVisibleLegend={setVisibleLegend}
-        />
+        visibleGauges={visibleGauges} />
       </div>
 
-      <div className="absolute top-0 right-0 mt-[90px] mr-[20px] flex flex-col items-end">
-        {visibleLayers && (
+      {/* Widgets */}
+      <div className="absolute top-0 right-0 mt-[10px] mr-[20px] flex flex-col items-end">
+        {visibleWidgets.layers && (
           <LayerComponent
-           visibleGauges={visibleGauges} 
-           toggleGauge={toggleGauge}
-           onClose={() => setVisibleLayers(false)}/>
+            visibleGauges={visibleGauges}
+            toggleGauge={toggleGauge}
+            onClose={() => onWidgetToggle('layers', false)}
+          />
         )}
-        {isGaugesVisible && visibleLegend && (
-          <div className="mt-[15px] right-0"> 
-          <Legend 
-          visibleGauges={visibleGauges}
-          isVisible={visibleLegend}
-          toggleVisibility={() => setVisibleLegend(!visibleLegend)}
-          /> 
+        {isGaugesVisible && visibleWidgets.legend && (
+          <div className="mt-[15px] right-0">
+            <Legend
+              visibleGauges={visibleGauges}
+              isVisible={visibleWidgets.legend}
+              toggleVisibility={() => onWidgetToggle('legend', !visibleWidgets.legend)}
+            />
           </div>
         )}
       </div>
-      
-      <div style={{ position: "absolute", top: "200px", left: "111px"}}>
-        {visibleAlerts && (
-        <AlertWidgetComponent
-         visibleAlerts={visibleAlerts}
-         OnClose= {() => setVisibleAlerts(false)}
-         />
-       )}
+
+      {/* Alerts */}
+      <div style={{ position: "absolute", top: "30px", left: "20px" }}>
+        {visibleWidgets.alerts && (
+          <AlertWidgetComponent
+            visibleAlerts={visibleWidgets.alerts}
+            OnClose={() => onWidgetToggle('alerts', false)}
+          />
+        )}
       </div>
+
+       {/* Widget Selector for toggling widgets */}
+       {/* <div style={{position: "absolute", top: "0px", right:"10px"}} >
+        <WidgetSelector onWidgetToggle={handleWidgetToggle} />
+       </div> */}
     </div>
   );
 };

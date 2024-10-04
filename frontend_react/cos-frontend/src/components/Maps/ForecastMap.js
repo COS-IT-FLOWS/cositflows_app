@@ -5,10 +5,10 @@ import '../styles.css';
 import configData from "../../config.json";
 import * as maptilersdk from '@maptiler/sdk';
 import "@maptiler/sdk/dist/maptiler-sdk.css";
-import {addStationLayer, addBoundarySource, addBoundaryLayer, addOutlineLayer,  handleClickOnLayer, getIntersectingPolygons, cursorToPointerOnHoverOverLayer}  from '../../functions/layers';
+//import { addStationLayer, addBoundaryLayer }  from '../../functions/layers';
 
 
-// maptilersdk.config.apiKey = configData.MAP_TILER_API_KEY;
+maptilersdk.config.apiKey = configData.MAP_TILER_API_KEY;
 export default function Map() {
   const mapContainer = useRef(null);
   const map = useRef(null);
@@ -16,8 +16,9 @@ export default function Map() {
   const lat = configData.MAP_CONFIG.LAT;
   const zoom = configData.MAP_CONFIG.ZOOM;
   const API_KEY = configData.MAP_TILER_API_KEY;
+
   useEffect(() => {
-    if (map.current) return; // stops map from intializing more than once
+    if (map.current) return; // stops map from initializing more than once
 
     map.current = new maplibregl.Map({
       container: mapContainer.current,
@@ -27,18 +28,27 @@ export default function Map() {
     });
 
     map.current.on('load', async function () {
+      // Insert the layer beneath any symbol layer.
+      // const layers = map.current.getStyle().layers;
 
-      let sourceId;
-      sourceId = addBoundarySource(map.current, 'DISTRICT');
-      addBoundarySource(map.current, 'RIVER_BASIN');
-      addBoundaryLayer(map.current, 'RIVER_BASIN', null);
-      addOutlineLayer(map.current, 'RIVER_BASIN', null);
 
-      addStationLayer(map.current,'PRECIPITATION_COM', null);
-      addStationLayer(map.current, 'PRECIPITATION_OTH', null);
+
+      // addBoundaryLayer(map.current, 'PANCHAYAT');
+      // addBoundaryLayer(map.current, 'RIVER_BASIN');
+      
+
+      // map.current.addControl(new maplibregl.NavigationControl(), 'top-left');
+      // map.current.addControl(new maplibregl.FullscreenControl(), 'top-left');
+      // map.current.addControl(new maplibregl.GeolocateControl({
+      //   positionOptions: {
+      //     enableHighAccuracy: true
+      //   },
+      //   trackUserLocation: true
+      // }), 'top-left');
 
       var mapStyle = map.current.getStyle().layers;
       var mapStyleSources = Object.keys(mapStyle);
+      console.log(mapStyleSources);
       // console.log(geojson);
     });
 

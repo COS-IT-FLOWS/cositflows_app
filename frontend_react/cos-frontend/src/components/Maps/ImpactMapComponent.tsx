@@ -10,19 +10,12 @@ import { LogoControl, NavigationControl } from '@maptiler/sdk';
 import { AddCircleOutlineSharp } from '@mui/icons-material';
 import { generateCustomMarker, incrementState } from '../Layers/misc';
 
-interface MonitoringMapComponentProps {
-    visibleGauges: {
-      PRECIPITATION: boolean;
-      RESERVOIR: boolean;
-      TIDAL: boolean;
-      GROUNDWATER: boolean;
-      RIVER: boolean;
-      REGULATOR: boolean;
-  };
+interface ImpactMapComponentProps {
+
 }
 
 // maptilersdk.config.apiKey = configData.MAP_TILER_API_KEY;
-const MonitoringMapComponent: React.FC<MonitoringMapComponentProps> = React.memo(({visibleGauges}: MonitoringMapComponentProps) => {
+const ImpactMapComponent: React.FC<ImpactMapComponentProps> = () => {
   const [map, setMap] = useState<maplibregl.Map | null>(null);
   // const [layerVisible, setLayerVisible] = useState<boolean>(true);
   const mapContainer = useRef<HTMLDivElement | null>(null);
@@ -43,7 +36,7 @@ const MonitoringMapComponent: React.FC<MonitoringMapComponentProps> = React.memo
   const lat = configData.MAP_CONFIG.LAT;
   const zoom = configData.MAP_CONFIG.ZOOM;
   const API_KEY = configData.MAP_TILER_API_KEY;
-  const mapStyleUrl = configData.MAPS.MONITORING;
+  const mapStyleUrl = configData.MAPS.IMPACT;
   // if (map.current) return; // stops map from intializing more than once
   useEffect(() => { 
     if(mapContainer.current) {
@@ -56,30 +49,6 @@ const MonitoringMapComponent: React.FC<MonitoringMapComponentProps> = React.memo
       
       map.on('load', async function () {
         let layerId, targetLayerId;
-
-        // Add Boundary layer sources to map
-        addBoundarySource(map, 'DISTRICT');
-        addBoundarySource(map, 'RIVER_BASIN');
-        addBoundarySource(map, 'PANCHAYAT');
-
-        // Add Point layer sources to map
-        addPointSource(map, 'PRECIPITATION');
-        addPointSource(map, 'RESERVOIR');
-        addPointSource(map, 'RIVER');
-
-        
-
-        // addPointLayer(map, 'PRECIPITATION', 'circle');
-        // addPointLayer(map, 'RESERVOIR', 'circle');
-        // addPointLayer(map, 'RIVER', 'circle');
-
-        // Add District Boundary layer to map
-        layerId = addBoundaryLayer(map, 'DISTRICT', null);
-        setMapState({boundaryLevel: 0});
-        console.log(mapState);
-        cursorToPointerOnHover(map, 'DISTRICT', layerId);
-        await handleClickOnLayer(map, setMapState, setCurrentFeatureLayerId);
-        
         
         setMap(map);
      
@@ -91,31 +60,11 @@ const MonitoringMapComponent: React.FC<MonitoringMapComponentProps> = React.memo
     }
   }, []); 
 
-  useEffect(() => {
-    if (map) {
-    type GaugeType = keyof typeof visibleGauges;
-    // Add event listeners to toggle gauge layers
-    togglePointLayers(map, visibleGauges, mapState, currentFeatureLayerId, markerState, setMarkerState);
-    }
-  }, [visibleGauges, mapState, currentFeatureLayerId]);
-
-
   return (
     <div className='map-wrap'>
       <div ref={mapContainer} className='map' />
     </div>
   )
-}, 
-(prevProps: MonitoringMapComponentProps, nextProps: MonitoringMapComponentProps) => {
-  // Custom comparison function
-  return (
-    prevProps.visibleGauges.PRECIPITATION === nextProps.visibleGauges.PRECIPITATION &&
-    prevProps.visibleGauges.RESERVOIR === nextProps.visibleGauges.RESERVOIR &&
-    prevProps.visibleGauges.TIDAL === nextProps.visibleGauges.TIDAL &&
-    prevProps.visibleGauges.GROUNDWATER === nextProps.visibleGauges.GROUNDWATER &&
-    prevProps.visibleGauges.RIVER === nextProps.visibleGauges.RIVER &&
-    prevProps.visibleGauges.REGULATOR === nextProps.visibleGauges.REGULATOR
-  );
-});
+};
 
-export { MonitoringMapComponent };
+export default ImpactMapComponent;
