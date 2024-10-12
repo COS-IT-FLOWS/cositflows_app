@@ -22,7 +22,7 @@ const MenuList: React.FC<MenuListProps> = ({activeControl, activeView, setActive
   return(
   <div className={`flex flex-col justify-center w-[88px] h-screen` }>
     <div className="flex flex-grow flex-col mb-[100px] items-center justify-center w-full">
-      <ul className="flex flex-col items-center pr-[35px] gap-6">
+      <ul className="flex flex-col items-center pr-[35px] gap-6" style={{ listStyle: 'none' }}>
         {icons.map((icon, index) => (
           <li key={index} className="relative">
           <Link
@@ -37,7 +37,7 @@ const MenuList: React.FC<MenuListProps> = ({activeControl, activeView, setActive
           >
             <div className="flex items-center justify-center bg-transparent gap-3 no-underline" > 
               <icon.object 
-               className={`${icon.view == activeView? "bg-teal-500" : "bg-zinc-800"} border border-teal-100 px-2 py-2 rounded-full`}
+               className={`${icon.view === activeView? "bg-teal-100" : "bg-zinc-800"} border border-teal-100 px-2 py-2 rounded-full`}
                sx={{width: 25,height: 25, color: 'white'}}
               />
             </div>

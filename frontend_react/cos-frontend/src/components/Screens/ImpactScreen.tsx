@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Map from '../Maps/ImpactMap';
 import HighlightComponent from "../BasinHighlights/HighlightComponent";
 import ButtonComponent from "../LevelNav/ImpactButtons";
 import population from "../Maps/population.png";

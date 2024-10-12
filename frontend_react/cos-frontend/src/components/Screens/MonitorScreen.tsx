@@ -22,19 +22,7 @@ const initialVisibleGauges: Record<Gaugetype, boolean> = {
 };
 
 const MonitorScreen: React.FC<MonitorScreenProps> = ({onWidgetToggle,visibleWidgets}) => {
-  // const [visibleWidgets, setVisibleWidgets] = useState({
-  //   alerts: true,
-  //   layers: true,
-  //   legend: true,
-  // });
-
-  // const onWidgetToggle = (widget: "alerts" | "layers" | "legend", isVisible: boolean) => {
-  //   setVisibleWidgets(prev => ({
-  //     ...prev,
-  //     [widget]: isVisible,
-  //   }));
-  // };
-
+  
   const [visibleGauges, setVisibleGauges] = useState(initialVisibleGauges);
 
   const toggleGauge = (gauge: Gaugetype) => {

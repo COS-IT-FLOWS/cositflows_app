@@ -12,6 +12,7 @@ import ForecastAnalyticsScreen from './components/Screens/ForecastAnalyticsScree
 import ImpactAnalyticsScreen from './components/Screens/ImpactAnalyticsScreen';
 import SplashScreen from './components/Screens/SplashScreen';
 
+
 const App: React.FC = () => {
    const [visibleWidgets, setVisibleWidgets] = useState({
       alerts: true,
