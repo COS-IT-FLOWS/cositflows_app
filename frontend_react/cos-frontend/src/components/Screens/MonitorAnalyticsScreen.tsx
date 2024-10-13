@@ -6,10 +6,16 @@ import theme from '../theme';
 import { ThemeProvider } from '@mui/material';
 import { BarChart, LineChart, Bar, Line, XAxis, YAxis, Tooltip, Legend, CartesianGrid, ResponsiveContainer, ReferenceLine, Cell } from 'recharts';
 import Papa from 'papaparse';
+import dayjs from 'dayjs';
 
-interface GaugeData {
-  Name: string;
-  [key: string]: string | number;
+// interface GaugeData {
+//   Name: string;
+//   [key: string]: string | number;
+// }
+
+interface TransformedData {
+  date: string;  // The date key
+  [gaugeName: string]: number | string;  // The rainfall data for each gaugeName
 }
 
 interface BarChartData {
@@ -24,15 +30,16 @@ interface CumulativeChartData {
 
 const AnalyticsScreen = () => {
   const [data, setData] = useState<BarChartData[]>([]);
-  const [cumulativeData, setCumulativeData] = useState<CumulativeChartData[]>([]);
+  const [cumulativeData, setCumulativeData] = useState<TransformedData[]>([]);
 
   useEffect(() => {
     const fetchCsv = async () => {
       try {
         console.log('trying?');
+
         const response = await fetch('/DailyRainfallData.csv');
-        // console.log(response.text());
         const csvText = await response.text();
+
         Papa.parse(csvText, {
           // download: true,
           header: true,
@@ -41,34 +48,58 @@ const AnalyticsScreen = () => {
             console.log(results);
 
             const parsedData = results.data as Array<{ [key: string]: string }>;
-        
+
             if (parsedData.length > 0 && 'Name' in parsedData[0]) {
-            const dateColumns = Object.keys(parsedData[0]).filter(key => key !== 'Name');
-            const latestDateColumn = dateColumns[dateColumns.length - 3];  
+              const dateRegex = /^\d{2}\/\d{2}\/\d{2}$/;
+              const dateColumns = Object.keys(parsedData[0]).filter(key => dateRegex.test(key));
+              
+              const latestDateColumn = dateColumns[dateColumns.length - 3];  
+              const latestRainfallData:BarChartData[] = parsedData.map(row=> {
+                const gaugeName = row['Name'];
+                const latestRainfall = parseFloat(row[latestDateColumn]);
+                return {
+                  name: gaugeName,
+                  rainfall: isNaN(latestRainfall) ? 0: latestRainfall //handle NaN
+                };
+              });
+              
+              // Create a flat structure where each date has rainfall values for each gauge
+              const transformedData: TransformedData[] = dateColumns.map(date => {
+                const [day, month, year] = date.split('/');
+                const formattedDate = `20${year}-${month}-${day}`;
 
-            const latestRainfallData:BarChartData[] = parsedData.map(row=> {
-              const gaugeName = row['Name'];
-              const latestRainfall = parseFloat(row[latestDateColumn]);
-              return {
-                name: gaugeName,
-                rainfall: isNaN(latestRainfall) ? 0: latestRainfall //handle NaN
-              };
-            });
+                // Initialize object for each date
+                const row: TransformedData = { date: formattedDate };
+                
+                parsedData.forEach((gaugeRow) => {
+                  const gaugeName = gaugeRow['Name'];
+                  // Assign gauge name values to this row
+                  row[gaugeName] = isNaN(parseFloat(gaugeRow[date]))
+                    ? 0
+                    : parseFloat(gaugeRow[date]);
+                });
 
-            const cumulativeData: CumulativeChartData[] = parsedData.map(row => {
-              const gaugeName = row['Name'];
-              const data: {date: string; rainfall:number} [] = dateColumns.map(date => ({
-                date,
-                rainfall: parseFloat(row[date]) || 0
-              }));
+                return row;
+                }).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+              // const cumulativeData: CumulativeChartData[] = parsedData.map(row => {
+              //   const gaugeName = row['Name'];
+              //   const data: {date: string; rainfall: number}[] = dateColumns.map(date => {
+              //     const [day, month, year] = date.split('/'); // Split DD/MM/YY format
+              //     const formattedDate = new Date(`20${year}-${month}-${day}`).toISOString().split('T')[0]; // Format to YYYY-MM-DD
+              //     return {
+              //       date: formattedDate,
+              //       rainfall: isNaN(parseFloat(row[date])) ? 0 : parseFloat(row[date])
+              //     };
+              //   }).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-              return { name: gaugeName, data};
-            });
+              //   return { name: gaugeName, data};
+              // });
 
-            setData(latestRainfallData);
-            setCumulativeData(cumulativeData);
-            console.log('Latest Rainfall Data:', latestRainfallData);
-          }
+              setData(latestRainfallData);
+              // setCumulativeData(cumulativeData);
+              setCumulativeData(transformedData);
+              console.log('Cumulative Data:', cumulativeData);
+            }
         }
       })
 
@@ -107,6 +138,9 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
 
     return null;
   };
+
+  const latestMonth = dayjs(cumulativeData[cumulativeData.length - 1].date).month(); // Get the latest month number
+  const latestMonthData = cumulativeData.filter((item) => dayjs(item.date).month() === latestMonth);
 
   return (
     <ThemeProvider theme={theme}>
@@ -189,13 +223,15 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
               <Grid size={{ xs:12 }} sx={{ height: '60%' }}>
                 <Card sx={{ height: '100%' }}>
                   <CardContent>Cumulative Rainfall in Basin</CardContent>
-                  <ResponsiveContainer width="99%" height={150} style={{ marginLeft: -25 }}>
-                        <LineChart data={data}>
-                          {/* <XAxis 
-                          dataKey="name" 
-                          tick={{ fill: 'white', fontSize: 12 }}
-                          axisLine={false}
-                          /> */}
+                  <ResponsiveContainer width="100%" height={200} style={{ marginLeft: -25, marginTop: -20 }}>
+                        <LineChart data={cumulativeData}>
+                          <XAxis 
+                          dataKey="date" 
+                          // scale="time"
+                          // type="category"
+                          // tickFormatter={(tick)=> new Date(tick).toLocaleDateString()}
+                          fontSize="10"
+                          />
                           <YAxis
                            domain={[0, upperLimit]}
                            ticks={ticks}
@@ -208,9 +244,19 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                            {ticks.map(tick => (
                             <ReferenceLine key={tick} y={tick} stroke="#E4F7F2" strokeOpacity="50%" strokeDasharray="3 3" />
                           ))}
-                          <Tooltip content={<CustomTooltip active={false} payload={undefined}/>} />
+                          <Tooltip />
                           {/* <Legend /> */}
-                          <Line type="monotone" dataKey="rainfall" fill="#00738c"  />
+                          {Object.keys(cumulativeData[0] || {})
+                            .filter((key) => key !== 'date') // Filter out the 'date' key to only get gauge names
+                            .map((gaugeName, index) => (
+                              <Line
+                                key={index}
+                                type="monotone"
+                                dataKey={gaugeName} // Use gaugeName as the data key
+                                dot={false}
+                                stroke={`#${Math.floor(Math.random() * 16777215).toString(16)}`} // Random color for each line
+                              />
+                            ))}
                         </LineChart>
                       </ResponsiveContainer>
                 </Card>
