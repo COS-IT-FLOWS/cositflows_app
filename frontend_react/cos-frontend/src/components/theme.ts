@@ -36,7 +36,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: '#18181b', // default background
-          opacity: '95%',
+          opacity: '92%',
           color: '#ffffff', // default text color
           fontFamily: 'Inter',
           borderRadius: '15px',
