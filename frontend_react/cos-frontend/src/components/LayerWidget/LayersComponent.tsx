@@ -59,7 +59,7 @@ const LayersComponent: React.FC<LayersProps> = ({ visibleGauges, toggleGauge, on
             </div>
           </div>
           {!isCollapsed && (
-            <nav className="relative flex pl-4 mt-2 mb-1 text-xs leading-loose text-center">
+            <nav className="relative flex pl-4 mt-2 mb-1 text-xs leading-loose text-center justify-start">
               <button className={`font-inter bg-transparent ${activeTab === "Manual" ? "text-white" : "text-silver-100"}`}
                 onClick={() => setActiveTab("Manual")}
               >

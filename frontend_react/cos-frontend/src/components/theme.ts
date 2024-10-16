@@ -43,6 +43,42 @@ const theme = createTheme({
         },
       },
     },
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          textAlign: 'center',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          // padding: '4px',
+          maxWidth: 100,
+          width: '100%',
+          backgroundColor: '#18181b', // default background
+          opacity: '92%',
+          color: '#ffffff', // default text color
+          fontFamily: 'Inter',
+          fontWeight: 300,
+          fontSize: '14px',
+          borderRadius: '12px',
+        },
+      },
+    },
+    MuiBreadcrumbs: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#18181b', // default background
+          opacity: '92%',
+          padding: '4px 8px',
+          color: '#ffffff', // default text color
+          fontFamily: 'Inter',
+          borderRadius: '10px',
+          '& .MuiBreadCrumb-ol':{
+            flexWrap: 'nowrap',
+            justifyContent: 'space-between',
+          },
+        },
+      },
+    },
   },
   spacing: 8, // Default spacing unit if needed
 });

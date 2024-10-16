@@ -69,11 +69,6 @@ const MonitorScreen: React.FC<MonitorScreenProps> = ({onWidgetToggle,visibleWidg
           />
         )}
       </div>
-
-       {/* Widget Selector for toggling widgets */}
-       {/* <div style={{position: "absolute", top: "0px", right:"10px"}} >
-        <WidgetSelector onWidgetToggle={handleWidgetToggle} />
-       </div> */}
     </div>
   );
 };
