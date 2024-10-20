@@ -319,7 +319,7 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                                 dataKey={gaugeName} // Use gaugeName as the data key
                                 dot={false}
                                 stroke="#596161"
-                                strokeWidth={0.25}  // Random color for each line
+                                strokeWidth={0.25}  
                               />
                             ))}
                             <Line
@@ -327,7 +327,7 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                               dataKey={Object.keys(cumulativeData[0] || {}).filter(key => key !== 'date')[0]}
                               strokeWidth={2}
                               dot={false}
-                              stroke="#cccccc"
+                              stroke="#8EDCE6"
                               />
                         </LineChart>
                       </ResponsiveContainer>
