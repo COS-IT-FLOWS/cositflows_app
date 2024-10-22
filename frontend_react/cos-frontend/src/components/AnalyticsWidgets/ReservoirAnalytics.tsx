@@ -24,6 +24,11 @@ interface Reservoir {
   timeSeriesData?: any[];
 }
 
+interface TimeSeriesDataLine {
+  timestamp: string;
+  Level: number;
+}
+
   class BasinClass {
     basinName: string;
     reservoirs: Reservoir[];
@@ -119,9 +124,7 @@ const ReservoirAnalytics: React.FC = () => {
   const [selectedReservoir, setSelectedReservoir] = useState<Reservoir | null> (null);
 
   const [data, setData] = useState<BarChartData[]>([]);
-  // const [levelData, setLevel] = useState<LineChartData[]>([]);
-  // const [storageData, setStorage] = useState({});
-
+  const [selectedReservoirData, setSelectedReservoirData] = useState<TimeSeriesDataLine[]>([]);
   const [rsvrNumber, setNumber] = useState(0);
 
   useEffect(() => {
@@ -169,7 +172,6 @@ const ReservoirAnalytics: React.FC = () => {
   };
 
   const getReservoirData = (stationId: string): Reservoir | null => {
-
     for (const basin of Object.values(basins)) {
       const reservoir = basin.getReservoirs().find(r => r.Station_ID === stationId);
       if (reservoir) {
@@ -179,7 +181,57 @@ const ReservoirAnalytics: React.FC = () => {
     return null; 
   };
   
+  const fetchTimeSeriesForSelectedReservoir = async (reservoirID: string): Promise<void> => {
+    try {
+      const timeSeriesData:TimeSeriesDataLine[] = await loadTimeSeriesData(reservoirID);
+      console.log(`Time series data for reservoir ${reservoirID}:`, timeSeriesData);
+      
+      //Filtering the null values
+      const filteredData = timeSeriesData.filter(dataPoint => dataPoint.Level !== null);
+
+      if (filteredData.length > 0) {
+        setSelectedReservoirData(filteredData);
+      } else {
+        console.warn(`No valid time series available`);
+        setSelectedReservoirData([]);
+      }
+    } catch (error) {
+      console.error(`Error fetching time series data for reservoir ID ${reservoirID}:`, error);
+    }
+  };
+
+  useEffect(() => {
+    if (selectedReservoir) {
+      fetchTimeSeriesForSelectedReservoir(selectedReservoir.Station_ID);
+    }
+  }, [selectedReservoir]);
+
+  
+  const getYDomain = (data: TimeSeriesDataLine[]): [number, number] => {
+    // console.log("Data received:", JSON.stringify(data, null, 2));
+    if (!Array.isArray(data) || data.length === 0) {
+      return[0, 0];
+    }
+    const validLevels = data.map(d => d.Level);
+    const minLevel = Math.min(...validLevels);
+    const maxLevel = Math.max(...validLevels);
+    return [minLevel , maxLevel]; // Return the min and max for the Y-axis
+  };
+ 
+  const generateTicks = (min: number, max: number, step: number): number[] => {
+    const ticks = [];
+    for (let i = Math.floor(min); i <= Math.ceil(max); i += step) {
+      ticks.push(i);
+    }
+    return ticks;
+  };
+
+  const yDomain = getYDomain(selectedReservoirData as TimeSeriesDataLine[]);
+  console.log('Ydomain: ', yDomain);
+  const ticks = generateTicks(yDomain[0], yDomain[1], 1);
+
   console.log('Data for BarChart:', data);
+  //console.log('Data for LineChart:', selectedReservoir.timeSeriesData);
 
   return (
     <ThemeProvider theme={theme}>
@@ -213,6 +265,7 @@ const ReservoirAnalytics: React.FC = () => {
                                   {data.map((entry, index) => (
                                     <Cell 
                                     key={`cell-${index}`} 
+                                    radius={2}
                                     onClick={() => {
                                      const rsvrData = getReservoirData(entry.Station_ID)
                                      setSelectedReservoir(rsvrData)
@@ -292,17 +345,54 @@ const ReservoirAnalytics: React.FC = () => {
               <Grid size={{ xs:12 }} sx={{ height: '50%' }}>
                 <Card sx={{ height: '100%' }}>
                   <CardContent>Reservoir Level in Basin</CardContent>
-                  <LineChart>
-                    
-                  </LineChart>
+                  <ResponsiveContainer width="99%" height={130} style={{ marginLeft: -10 }}>
+                    {selectedReservoirData && selectedReservoirData.length > 0 ? (
+                      <LineChart data={selectedReservoirData}>
+                        <XAxis dataKey="TimeStamp" fontSize={7}/>
+                        <YAxis
+                        domain={yDomain}
+                        // ticks={ticks}
+                        // tick={{ fill: '#E4F7F2', fontSize: 8 }}
+                        // axisLine={false}
+                        fontSize={10}
+                        />
+                        <Line 
+                          type="monotone"
+                          dataKey="Level(m)"
+                          stroke="#8EDCE6"
+                          strokeWidth={1}
+                          dot={false}
+                        />
+                      </LineChart>
+                    ):(
+                      <Typography>No data available for the selected reservoir.</Typography>
+                    )}
+                  </ResponsiveContainer>
                 </Card>
               </Grid>
+
               <Grid size={{xs: 12}} sx={{height: 'calc(50% - 15px)'}}>
                 <Card sx={{ height: '100%'}}>
                   <CardContent>Reservoir Storage in Basin</CardContent>
-                  <LineChart>
-
-                  </LineChart>
+                  <ResponsiveContainer width="99%" height={120} style={{ marginLeft: -25 }}>
+                    {selectedReservoirData && selectedReservoirData.length > 0 ? (
+                      <LineChart data={selectedReservoirData}>
+                        <XAxis dataKey="TimeStamp" fontSize={7}/>
+                        <YAxis
+                        fontSize={10}
+                        />
+                        <Line 
+                          type="monotone"
+                          dataKey="Storage_Percent(%)"
+                          stroke="#8EDCE6"
+                          strokeWidth={1}
+                          dot={false}
+                        />
+                      </LineChart>
+                    ):(
+                      <Typography>No data available for the selected reservoir.</Typography>
+                    )}
+                  </ResponsiveContainer>
                 </Card>
               </Grid>
             </Grid>  

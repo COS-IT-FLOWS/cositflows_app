@@ -6,7 +6,9 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import theme from '../theme';
 import RainfallAnalytics from '../AnalyticsWidgets/RainfallWidgets';
 import ReservoirAnalytics from '../AnalyticsWidgets/ReservoirAnalytics';
-
+import RiverAnalytics from '../AnalyticsWidgets/RiverWidgets';
+import GroundWaterAnalytics from '../AnalyticsWidgets/GroundWaterWidgets';
+import TidalAnalytics from '../AnalyticsWidgets/TidalWidgets';
 
 type Station= 'rainfall' | 'reservoir' | 'groundwater' | 'river' | 'tidal';
 
@@ -19,12 +21,15 @@ const AnalyticsScreen: React.FC = () => {
   const renderStationAnalytics = () => {
     switch (selectedStation) {
       case 'rainfall':
-        return <RainfallAnalytics />;
+        return <RainfallAnalytics/>;
       case 'reservoir':
-       return <ReservoirAnalytics />;
-      // case 'groundwater':
-      //   return <GroundwaterAnalytics />;
-      // Add other cases for river, tidal, etc.
+       return <ReservoirAnalytics/>;
+      case 'river':
+        return <RiverAnalytics/>;
+      case 'groundwater':
+        return <GroundWaterAnalytics/>;
+      case 'tidal':
+          return <TidalAnalytics/>;
       default:
         return null;
     }
