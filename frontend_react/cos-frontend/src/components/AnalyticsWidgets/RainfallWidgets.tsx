@@ -219,8 +219,8 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                               <Grid size={{xs:12}} sx={{ marginBottom: -1.5}} >
                                 <Card sx={{
                                   height: '100%',
-                                  background: '#333',
-                                  opacity: '99%',
+                                  background: '#000',
+                                  opacity: '95%',
                                   color: '#fff',
                                   boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)',
                                   marginBottom: -1,
@@ -234,8 +234,8 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                             <Grid size={{xs: 12}} sx={{ marginBottom: -1.5}}>
                               <Card sx={{
                                 height: '100%',
-                                background: '#333',
-                                opacity: '99%',
+                                background: '#000',
+                                opacity: '95%',
                                 color: '#fff',
                                 boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)',
                                 marginBottom: -1,
@@ -249,8 +249,8 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                             <Grid size={{xs: 12}}>
                               <Card sx={{
                                 height: '100%',
-                                background: '#333',
-                                opacity: '99%',
+                                background: '#000',
+                                opacity: '95%',
                                 color: '#fff',
                                 boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)',
                                 marginBottom: -1,
@@ -266,7 +266,6 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                         <Grid size={{ xs:12, md:8}}>
                           <Card sx={{
                             height: 'calc(40% - 21px)',
-                            backgroundColor: '#333',
                             opacity: '95%',
                             boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)',
                           }}>
@@ -381,8 +380,8 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                           <Grid size={{xs:12, md:4}}>
                             <Card sx={{
                               height: '90%',
-                              background: '#333',
-                              opacity: '99%',
+                              background: '#000',
+                              opacity: '95%',
                               color: '#fff',
                               boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)'
                             }}>
@@ -395,8 +394,8 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                         <Grid size={{xs: 12, md:4}}>
                           <Card sx={{
                             height: '90%',
-                            background: '#333',
-                            opacity: '99%',
+                            background: '#000',
+                            opacity: '95%',
                             color: '#fff',
                             boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)'
                           }}>
@@ -409,8 +408,8 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                         <Grid size={{xs: 12, md:4}}>
                           <Card sx={{
                             height: '90%',
-                            background: '#333',
-                            opacity: '99%',
+                            background: '#000',
+                            opacity: '95%',
                             color: '#fff',
                             boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)'
                           }}>

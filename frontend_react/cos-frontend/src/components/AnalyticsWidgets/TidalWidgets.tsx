@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Card, CardContent, Typography, ThemeProvider } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import theme from '../theme';
-import Map from '../Maps/MonitoringMap';
+// import Map from '../Maps/MonitoringMap';
 
 const GWLWidgets: React.FC = () => {
   return (

@@ -290,8 +290,8 @@ const ReservoirAnalytics: React.FC = () => {
                               <Grid size={{xs:12}} height='30%'>
                                 <Card sx={{
                                   height: '100%',
-                                  background: '#333',
-                                  opacity: '99%',
+                                  background: '#000',
+                                  opacity: '95%',
                                   color: '#fff',
                                   boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)',
                                   marginBottom: -1,
@@ -308,8 +308,8 @@ const ReservoirAnalytics: React.FC = () => {
                             <Grid size={{xs: 12}} height='10%'>
                               <Card sx={{
                                 height: '100%',
-                                background: '#333',
-                                opacity: '99%',
+                                background: '#000',
+                                opacity: '95%',
                                 color: '#fff',
                                 boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)',
                                 marginBottom: -1,
@@ -325,7 +325,6 @@ const ReservoirAnalytics: React.FC = () => {
                         <Grid size={{ xs:12, md:6}}>
                           <Card sx={{
                             height: '40%',
-                            backgroundColor: '#333',
                             opacity: '95%',
                             boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)',
                             marginBottom: -8,
@@ -442,8 +441,8 @@ const ReservoirAnalytics: React.FC = () => {
                           <Grid size={{xs:12, md:4}}>
                             <Card sx={{
                               height: '75%',
-                              background: '#333',
-                              opacity: '99%',
+                              background: '#000',
+                              opacity: '95%',
                               color: '#fff',
                               boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)',
                             }}>
@@ -456,8 +455,8 @@ const ReservoirAnalytics: React.FC = () => {
                         <Grid size={{xs: 12, md:4}}>
                           <Card sx={{
                             height: '75%',
-                            background: '#333',
-                            opacity: '99%',
+                            background: '#000',
+                            opacity: '95%',
                             color: '#fff',
                             boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)'
                           }}>
@@ -470,8 +469,8 @@ const ReservoirAnalytics: React.FC = () => {
                         <Grid size={{xs: 12, md:4}}>
                           <Card sx={{
                             height: '75%',
-                            background: '#333',
-                            opacity: '99%',
+                            background: '#000',
+                            opacity: '95%',
                             color: '#fff',
                             boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)'
                           }}>

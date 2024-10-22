@@ -36,7 +36,8 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: '#18181b', // default background
-          opacity: '92%',
+          opacity: '95%',
+          border: '0.1px solid rgba(255, 255, 255, 0.3)',
           color: '#ffffff', // default text color
           fontFamily: 'Inter',
           borderRadius: '15px',
@@ -54,7 +55,7 @@ const theme = createTheme({
           maxWidth: 100,
           width: '100%',
           backgroundColor: '#18181b', // default background
-          opacity: '92%',
+          opacity: '95%',
           color: '#ffffff', // default text color
           fontFamily: 'Inter',
           fontWeight: 300,
@@ -67,7 +68,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: '#18181b', // default background
-          opacity: '92%',
+          opacity: '95%',
           padding: '4px 8px',
           color: '#ffffff', // default text color
           fontFamily: 'Inter',
