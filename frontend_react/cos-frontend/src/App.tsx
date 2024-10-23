@@ -10,7 +10,7 @@ import MainLayout from './MainLayout';
 import MonitorAnalyticsScreen from './components/Screens/MonitorAnalyticsScreen';
 import ForecastAnalyticsScreen from './components/Screens/ForecastAnalyticsScreen';
 import ImpactAnalyticsScreen from './components/Screens/ImpactAnalyticsScreen';
-import SplashScreen from './components/Screens/SplashScreen';
+// import SplashScreen from './components/Screens/SplashScreen';
 
 
 const App: React.FC = () => {
@@ -33,9 +33,9 @@ const App: React.FC = () => {
       setIsSplashVisible(false);
    };
 
-   if (isSplashVisible) {
-      return <SplashScreen onLaunch={handleLaunch} />;
-   }
+   // if (isSplashVisible) {
+   //    return <SplashScreen onLaunch={handleLaunch} />;
+   // }
 
    return (
          <Routes>
