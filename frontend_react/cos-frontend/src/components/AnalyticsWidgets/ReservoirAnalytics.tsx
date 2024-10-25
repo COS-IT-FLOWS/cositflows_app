@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, Typography, ThemeProvider } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import theme from '../theme';
-import { BarChart, LineChart, Bar, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell } from 'recharts';
+import { BarChart, LineChart, Bar, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell, Area } from 'recharts';
 import Map from '../Maps/MonitoringMap';
 
 
@@ -355,6 +355,7 @@ const ReservoirAnalytics: React.FC = () => {
                         // axisLine={false}
                         fontSize={10}
                         />
+                        {/* <Area type="monotone" dataKey="Level(m)" stroke="#8EDCE6" fillOpacity={0.7} fill="#8EDCE6"/> */}
                         <Line 
                           type="monotone"
                           dataKey="Level(m)"

@@ -4,7 +4,7 @@ import { Card, CardContent, Typography, ThemeProvider, Breadcrumbs, Link } from 
 import Grid from '@mui/material/Grid2';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import theme from '../theme';
-import { BarChart, LineChart, Bar, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell } from 'recharts';
+import { BarChart, LineChart, Bar, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell, Area } from 'recharts';
 import Papa from 'papaparse';
 import Map from '../Maps/MonitoringMap';
 
@@ -173,7 +173,7 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                         {/* Bar Chart - Rechart */}
                         <Grid size={{xs: 12, md: 8}} > 
                           <Typography>Rainfall in Basin Gauges Today</Typography>
-                          <ResponsiveContainer width="102%" height={235} style={{ marginLeft: -35 }}>
+                          <ResponsiveContainer width="102%" height={250} style={{ marginLeft: -35, marginTop: 10 }}>
                             <BarChart data={data}>
                               {/* <XAxis dataKey="name" /> */}
                               <YAxis
