@@ -1,0 +1,24 @@
+# version: '3.8'
+
+services:
+  # backend:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #     target: backend
+  #   volumes:
+  #     - ./backend:/app/backend
+  #   ports:
+  #     - "8000:8000"
+  #   environment:
+  #     - PYTHONUNBUFFERED=1
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: frontend
+    volumes:
+      - ./frontend:/app/frontend
+    ports:
+      - "3000:3000"

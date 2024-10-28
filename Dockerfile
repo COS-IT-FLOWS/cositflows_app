@@ -1,11 +1,11 @@
 # Use the official Node.js image from the Docker Hub
-FROM node:16
+FROM node:16 AS frontend
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /app/frontend
 
 # Copy package.json and package-lock.json
-COPY package*.json ./
+COPY frontend_react/cos-frontend/package*.json ./
 
 # Install dependencies
 RUN npm install
