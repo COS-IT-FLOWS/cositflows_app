@@ -32,7 +32,7 @@ name: 'Build and Deploy to Cloud Run'
 on:
   push:
     branches:
-      - '"main"'
+      - '"production"'
 
 env:
   PROJECT_ID: 'insight-gather-440002' # TODO: update to your Google Cloud project ID
