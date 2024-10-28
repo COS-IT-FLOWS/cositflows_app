@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer, Area} from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer, Area, ReferenceLine} from 'recharts';
 import { Card, CardContent, Typography, ThemeProvider, Toolbar } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import theme from '../theme';
@@ -13,11 +13,6 @@ interface RiverStation {
     Warning_Level : number | undefined;
     Danger_Level : number | undefined;
     timeSeriesData?: any[];
-  }
-
-interface TimeSeriesDataLine {
-    timestamp: string;
-    Level: number;
   }
 
   class BasinClass {
@@ -121,6 +116,7 @@ const RiverWidgets: React.FC = () => {
     const [selectedBasinName, setSelectedBasinName] = useState<string>('Chalakudy');
     const [riverStations, setRiverStations] = useState<RiverStation[]>([]);
 
+
     useEffect(() => {
         const fetchData = async () => {
           const basinData = await initializeBasins();
@@ -152,72 +148,82 @@ const RiverWidgets: React.FC = () => {
       };
     
       const renderLineChart = (station: RiverStation) => {
-      const data = station.timeSeriesData;
-      const latestLevel = data && data.length > 0 ? data[data.length - 1]['CurrentLevel(m)'] : null;
-      console.log('1 Time Series Data:', data);
-      console.log('Latest Level:', latestLevel);
+        const data = station.timeSeriesData;
+        const latestLevel = data && data.length > 0 ? data[data.length - 1]['CurrentLevel(m)'] : null;
+        console.log('1 Time Series Data:', data);
+        console.log('Latest Level:', latestLevel);
 
-      return ( 
-            <Card sx={{ flexGrow: 1, bgcolor: '#000'}}>
-              <CardContent>
-                <Typography sx={{mb:2}}>{station.Station_Name} Levels in {selectedBasinName}</Typography>
-                  <Grid size={{xs:12}} container direction="row" spacing={1}>
-                    <Grid size={{xs:12, md:8}}>
-                      <ResponsiveContainer width="102%" height={180} style={{ marginLeft: -25, marginBottom: -20 }}>
-                      {data && data.length > 0 ? (
-                          <LineChart data={data}>
-                              <XAxis 
-                              dataKey="TimeStamp"
-                              fontSize={10}
-                              />
-                              <YAxis
-                              fontSize={10}
-                              />
-                              <Tooltip/>
-                              {/* <Area type="monotone" dataKey="CurrentLevel(m)" stroke="#8EDCE6" fillOpacity={0.7} fill="#8EDCE6"/> */}
-                              <Line
-                              type="monotone" 
-                              dataKey="CurrentLevel(m)" 
-                              stroke="#8EDCE6" 
-                              strokeWidth={1}
-                              dot={false}
-                              />
-                          </LineChart>
-                      ) : (
-                          <Typography sx={{fontSize: 10, opacity: '40%'}}>No data available</Typography>
-                      )}
-                      </ResponsiveContainer>
-                    </Grid>
+        const formatHour = (TimeStamp: string) => {
+          const hour = parseInt(TimeStamp.split('_')[1], 10);
+          const suffix = hour >= 12 ? 'pm' : 'am';
+          const formattedHour = hour % 12 === 0 ? 12 : hour % 12;
+          return `${formattedHour}${suffix}`;
+          }    
 
-                    <Grid size={{xs:12, md:4}} sx={{mt: -5}} >
-                       <Grid sx={{mx: 4}} height='50%'>
-                        <Typography sx={{mb: 1}}>Station Data</Typography>
-                        <Typography style={{fontSize:12, fontWeight: 300}}>Current Level</Typography>
-                        <Typography style={{fontSize:28, marginTop: 1}}>{latestLevel !== null ? latestLevel : 'No data available'} <span style={{ fontSize: 10, marginLeft: -5  }}>m</span></Typography>
+        return ( 
+              <Card sx={{ flexGrow: 1, bgcolor: '#000'}}>
+                <CardContent>
+                  <Typography sx={{mb:2, mt:0.5, ml: 2}}>{station.Station_Name} Levels in {selectedBasinName}</Typography>
+                    <Grid size={{xs:12}} container direction="row" spacing={1}>
+                      <Grid size={{xs:12, md:8}}>
+                        <ResponsiveContainer width="105%" height={180} style={{ marginLeft: -25, marginBottom: -20 }}>
+                        {data && data.length > 0 ? (
+                            <LineChart data={data}>
+                                <XAxis 
+                                dataKey="TimeStamp"
+                                tickFormatter={formatHour}
+                                fontSize={10}
+                                />
+                                <YAxis
+                                fontSize={10} 
+                                />
+                                <Tooltip/>
+                                <ReferenceLine y={station.Warning_Level} stroke="red" strokeDasharray="5 5" />
+                                <ReferenceLine y={station.Danger_Level} stroke="orange" strokeDasharray="5 5" />
+                                {/* <Area type="monotone" dataKey="CurrentLevel(m)" stroke="#8EDCE6" fillOpacity={0.7} fill="#8EDCE6"/> */}
+                                <Line
+                                type="monotone" 
+                                dataKey="CurrentLevel(m)" 
+                                stroke="#8EDCE6" 
+                                strokeWidth={1}
+                                dot={false}
+                                />
+                            </LineChart>
+                        ) : (
+                            <Typography sx={{fontSize: 10, opacity: '40%'}}>No data available</Typography>
+                        )}
+                        </ResponsiveContainer>
                       </Grid>
-                      <Grid height='50%'>
-                        <Card sx={{mx: 4, bgcolor: '#000'}} >
-                          <CardContent sx={{marginBottom: -1.5, marginX: -1}}>
-                            {/* <Typography>Trial 1</Typography> */}
-                            <Grid size={{xs:12}} container direction="row" spacing={0.5} style={{ textAlign: 'center'}}>
-                              <Grid size={{xs:12, md:6}} style={{ textAlign: 'center'}}>
-                                <Typography style={{fontSize:12, fontWeight: 300}}>Warning Level</Typography>
-                                <Typography style={{fontSize:28, marginTop: 2}}>{station.Warning_Level}<span style={{ fontSize: 10, marginLeft: -2  }}> m</span></Typography>
+
+                      <Grid size={{xs:12, md:4}} sx={{mt: -5}} >
+                        <Grid sx={{mx: 3}} height='50%'>
+                          <Typography sx={{mb: 1}}>Station Data</Typography>
+                          <Typography style={{fontSize:12, fontWeight: 300}}>Current Level</Typography>
+                          <Typography style={{fontSize:28, marginTop: 1}}>{latestLevel !== null ? latestLevel : 'No data available'} <span style={{ fontSize: 10, marginLeft: -5  }}>m</span></Typography>
+                        </Grid>
+                        <Grid height='50%'>
+                          <Card sx={{mx: 3, bgcolor: '#000'}} >
+                            <CardContent sx={{marginBottom: -1.5, marginX: -1}}>
+                              {/* <Typography>Trial 1</Typography> */}
+                              <Grid size={{xs:12}} container direction="row" spacing={0.5} style={{ textAlign: 'center'}}>
+                                <Grid size={{xs:12, md:6}} style={{ textAlign: 'center'}}>
+                                  <Typography style={{fontSize:12, fontWeight: 300}}>Warning Level</Typography>
+                                  <Typography style={{fontSize:28, marginTop: 2}}>{station.Warning_Level}<span style={{ fontSize: 10, marginLeft: -2  }}> m</span></Typography>
+                                </Grid>
+                                <Grid size={{xs:12, md:6}}>
+                                  <Typography style={{fontSize:12, fontWeight: 300}}>Danger Level</Typography>
+                                  <Typography style={{fontSize:28, marginTop: 2}}>{station.Danger_Level}<span style={{ fontSize: 10, marginLeft: -2  }}> m</span></Typography>
+                                </Grid>
                               </Grid>
-                              <Grid size={{xs:12, md:6}}>
-                                <Typography style={{fontSize:12, fontWeight: 300}}>Danger Level</Typography>
-                                <Typography style={{fontSize:28, marginTop: 2}}>{station.Danger_Level}<span style={{ fontSize: 10, marginLeft: -2  }}> m</span></Typography>
-                              </Grid>
-                            </Grid>
-                          </CardContent>
-                        </Card>
+                            </CardContent>
+                          </Card>
+                        </Grid>
                       </Grid>
                     </Grid>
-                  </Grid>
-                  
-             </CardContent>
-            </Card>
-        )
+                    
+              </CardContent>
+              </Card>
+          )
       }
 
 

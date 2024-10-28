@@ -16,7 +16,6 @@ const ImpactScreen: React.FC = () => {
         {selectedMap === 'population' && <img src={population} alt=" " className="w-full h-full object-cover"/>}
         {selectedMap === 'households' && <img src={households} alt=" " className="w-full h-full object-cover"/>}
         {selectedMap === 'agriculture' && <img src={agriculture} alt=" " className="w-full h-full object-cover"/>}
-        {/* <Map /> */}
       </div>
 
       <div style={{ position: "absolute", top: "0px", left: "0px" }}>

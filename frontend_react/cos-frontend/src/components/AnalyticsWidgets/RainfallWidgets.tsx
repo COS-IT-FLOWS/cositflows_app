@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { Card, CardContent, Typography, ThemeProvider, Breadcrumbs, Link } from '@mui/material';
 import Grid from '@mui/material/Grid2';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import theme from '../theme';
 import { BarChart, LineChart, Bar, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell, Area } from 'recharts';
 import Papa from 'papaparse';
@@ -25,6 +24,8 @@ interface BarChartData {
 const RainfallAnalytics: React.FC = () => {
   const [data, setData] = useState<BarChartData[]>([]);
   const [cumulativeData, setCumulativeData] = useState<TransformedData[]>([]);
+
+  // const [selectedGauge, setSelectedGauge] = useState<Gauge | null> (null);
   const [seasonMax, setSeasonMax] = useState(0);
   const [averageRainfall, setAverageRainfall] = useState(0);
 
