@@ -37,7 +37,7 @@ on:
 env:
   PROJECT_ID: 'insight-gather-440002' # TODO: update to your Google Cloud project ID
   REGION: 'asia-south1' # TODO: update to your region
-  SERVICE: 'insight-gather-serverless' # TODO: update to your service name
+  SERVICE: 'insight-gather-repo' # TODO: update to your service name
   WORKLOAD_IDENTITY_PROVIDER: 'projects/353021075835/locations/global/workloadIdentityPools/github/providers/cositflows-app' # TODO: update to your workload identity provider
 
 jobs:
