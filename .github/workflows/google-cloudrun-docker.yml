@@ -41,7 +41,7 @@ env:
   ARTIFACT_REPO: 'insight-gather-github-repo' # TODO: update to your service name
   IMAGE_NAME: 'production'
   SERVICE: 'insight-gather-serverless'
-  WORKLOAD_IDENTITY_PROVIDER: 'https://iam.googleapis.com/projects/353021075835/locations/global/workloadIdentityPools/github-actions/providers/insight-gather-provider' # TODO: update to your workload identity provider
+  WORKLOAD_IDENTITY_PROVIDER: 'projects/353021075835/locations/global/workloadIdentityPools/github-actions/providers/insight-gather-provider' # TODO: update to your workload identity provider
 
 jobs:
   deploy:
