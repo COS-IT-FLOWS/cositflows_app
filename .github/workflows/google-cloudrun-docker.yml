@@ -36,7 +36,7 @@ on:
 
 env:
   PROJECT_ID: 'insight-gather-440002' # TODO: update to your Google Cloud project ID
-  REGION: 'global' # TODO: update to your region
+  REGION: 'asia-south1' # TODO: update to your region
   SERVICE: 'insight-gather-github-repo' # TODO: update to your service name
   WORKLOAD_IDENTITY_PROVIDER: 'projects/353021075835/locations/global/workloadIdentityPools/github/providers/cositflows-app' # TODO: update to your workload identity provider
 
@@ -69,6 +69,7 @@ jobs:
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@f112390a2df9932162083945e46d439060d66ec2' # google-github-actions/auth@v2
         with:
+          project_id: '${{ env.PROJECT_ID }}'
           workload_identity_provider: '${{ env.WORKLOAD_IDENTITY_PROVIDER }}'
 
       # BEGIN - Docker auth and build
@@ -77,7 +78,7 @@ jobs:
       - name: 'Docker Auth'
         uses: 'docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567' # docker/login-action@v3
         with:
-          username: 'oauth2accesstoken'
+          username: oauth2accesstoken
           password: '${{ steps.auth.outputs.auth_token }}'
           registry: '${{ env.REGION }}-docker.pkg.dev'
 
@@ -86,10 +87,10 @@ jobs:
           DOCKER_TAG="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}"
           docker build --tag "${DOCKER_TAG}" .
           docker push "${DOCKER_TAG}"
-      - name: 'Deploy to Cloud Run'
+      
 
         # END - Docker auth and build
-
+      - name: 'Deploy to Cloud Run'
         uses: 'google-github-actions/deploy-cloudrun@33553064113a37d688aa6937bacbdc481580be17' # google-github-actions/deploy-cloudrun@v2
         with:
           service: '${{ env.SERVICE }}'
