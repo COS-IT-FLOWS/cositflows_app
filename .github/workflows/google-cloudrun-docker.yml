@@ -38,7 +38,7 @@ env:
   PROJECT_ID: 'insight-gather-440002' # TODO: update to your Google Cloud project ID
   REGION: 'asia-south1' # TODO: update to your region
   SERVICE: 'insight-gather-github-repo' # TODO: update to your service name
-  WORKLOAD_IDENTITY_PROVIDER: 'projects/353021075835/locations/global/workloadIdentityPools/github/providers/cositflows-app' # TODO: update to your workload identity provider
+  WORKLOAD_IDENTITY_PROVIDER: 'projects/353021075835/locations/global/workloadIdentityPools/github-actions/providers/insight-gather-provider' # TODO: update to your workload identity provider
 
 jobs:
   deploy:
@@ -78,7 +78,7 @@ jobs:
       - name: 'Docker Auth'
         uses: 'docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567' # docker/login-action@v3
         with:
-          username: oauth2accesstoken
+          username: 'oauth2accesstoken'
           password: '${{ steps.auth.outputs.auth_token }}'
           registry: '${{ env.REGION }}-docker.pkg.dev'
 
