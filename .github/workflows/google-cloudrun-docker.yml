@@ -91,7 +91,7 @@ jobs:
           DOCKER_TAG="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
           echo "${DOCKER_TAG}"
           docker build --tag "${DOCKER_TAG}" .
-          docker push "$DOCKER_TAG"
+          docker push $DOCKER_TAG
       
 
         # END - Docker auth and build
