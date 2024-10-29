@@ -41,7 +41,7 @@ env:
   ARTIFACT_REPO: 'insight-gather-github-repo' # TODO: update to your service name
   IMAGE_NAME: 'production'
   SERVICE: 'insight-gather-serverless'
-  WORKLOAD_IDENTITY_PROVIDER: 'projects/353021075835/locations/global/workloadIdentityPools/github-actions/providers/insight-gather-provider' # TODO: update to your workload identity provider
+  WORKLOAD_IDENTITY_PROVIDER: 'https://iam.googleapis.com/projects/353021075835/locations/global/workloadIdentityPools/github-actions/providers/insight-gather-provider' # TODO: update to your workload identity provider
 
 jobs:
   deploy:
@@ -72,9 +72,9 @@ jobs:
         name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@f112390a2df9932162083945e46d439060d66ec2' # google-github-actions/auth@v2
         with:
+          service_account: '${{ env.SERVICE_ACCOUNT }}'
           project_id: '${{ env.PROJECT_ID }}'
           workload_identity_provider: '${{ env.WORKLOAD_IDENTITY_PROVIDER }}'
-          service_account: '${{ env.SERVICE_ACCOUNT }}'
 
       # BEGIN - Docker auth and build
       #
@@ -84,14 +84,14 @@ jobs:
         with:
           username: 'oauth2accesstoken'
           password: '${{ steps.auth.outputs.auth_token }}'
-          registry: '${{ env.REGION }}-docker.pkg.dev'
+          registry: 'htt${{ env.REGION }}-docker.pkg.dev'
 
       - name: 'Build and Push Container'
         run: |-
           DOCKER_TAG="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
-          echo "${DOCKER_TAG}"
-          docker build --tag "${DOCKER_TAG}" .
-          docker push "${DOCKER_TAG}"
+          echo "${ DOCKER_TAG }"
+          docker build --tag "${ DOCKER_TAG }" .
+          docker push "${ DOCKER_TAG }"
       
 
         # END - Docker auth and build
