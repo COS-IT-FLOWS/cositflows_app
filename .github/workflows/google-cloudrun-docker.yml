@@ -38,7 +38,7 @@ env:
   PROJECT_ID: 'insight-gather-440002' # TODO: update to your Google Cloud project ID
   SERVICE_ACCOUNT: 'build-and-deploy-account@insight-gather-440002.iam.gserviceaccount.com'
   REGION: 'asia-south1' # TODO: update to your region
-  ARTIFACT_REPO: 'insight-gather-repo' # TODO: update to your service name
+  ARTIFACT_REPO: 'insight-gather-github-repo' # TODO: update to your service name
   IMAGE_NAME: 'production'
   SERVICE: 'insight-gather-serverless'
   WORKLOAD_IDENTITY_PROVIDER: 'projects/353021075835/locations/global/workloadIdentityPools/github-actions/providers/insight-gather-provider' # TODO: update to your workload identity provider
@@ -88,24 +88,23 @@ jobs:
 
       - name: 'Build and Push Container'
         run: |-
-          echo "${{ steps.auth.outputs.auth_token }}"
-          # DOCKER_TAG="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
-          # # echo "${DOCKER_TAG}"
-          # docker build --tag "${DOCKER_TAG}" .
-          # docker push "${DOCKER_TAG}"
+          DOCKER_TAG="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
+          echo "${DOCKER_TAG}"
+          docker build --tag "${DOCKER_TAG}" .
+          docker push "${DOCKER_TAG}"
       
 
-      #   # END - Docker auth and build
-      # - name: 'Deploy to Cloud Run'
-      #   uses: 'google-github-actions/deploy-cloudrun@33553064113a37d688aa6937bacbdc481580be17' # google-github-actions/deploy-cloudrun@v2
-      #   with:
-      #     service: '${{ env.SERVICE }}'
-      #     region: '${{ env.REGION }}'
-      #     # NOTE: If using a pre-built image, update the image name below:
+        # END - Docker auth and build
+      - name: 'Deploy to Cloud Run'
+        uses: 'google-github-actions/deploy-cloudrun@33553064113a37d688aa6937bacbdc481580be17' # google-github-actions/deploy-cloudrun@v2
+        with:
+          service: '${{ env.SERVICE }}'
+          region: '${{ env.REGION }}'
+          # NOTE: If using a pre-built image, update the image name below:
 
-      #     image: '${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/${{ env.IMAGE_NAME }}:${{ github.sha }}'
-      # # If required, use the Cloud Run URL output in later steps
-      # - name: 'Show output'
-      #   run: |2-
+          image: '${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/${{ env.IMAGE_NAME }}:${{ github.sha }}'
+      # If required, use the Cloud Run URL output in later steps
+      - name: 'Show output'
+        run: |2-
 
-      #     echo ${{ steps.deploy.outputs.url }}
+          echo ${{ steps.deploy.outputs.url }}
