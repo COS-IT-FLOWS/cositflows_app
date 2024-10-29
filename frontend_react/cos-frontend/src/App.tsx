@@ -12,7 +12,9 @@ import ForecastAnalyticsScreen from './components/Screens/ForecastAnalyticsScree
 import ImpactAnalyticsScreen from './components/Screens/ImpactAnalyticsScreen';
 // import SplashScreen from './components/Screens/SplashScreen';
 
+
 const App: React.FC = () => {
+   // const [selectedStation, setSelectedStation] = useState('rainfall'); // Default is rainfall
    const [visibleWidgets, setVisibleWidgets] = useState({
       alerts: true,
       layers: true,
@@ -45,7 +47,7 @@ const App: React.FC = () => {
          <Routes>
             <Route path="/" element={<MainLayout onWidgetToggle={onWidgetToggle} visibleWidgets={visibleWidgets}/>} >
                <Route path="monitor-visualization" element={<MonitorScreen onWidgetToggle={onWidgetToggle} visibleWidgets={visibleWidgets}/>} />
-               <Route path="monitor-analytics" element={<MonitorAnalyticsScreen/>} />
+               <Route path="monitor-analytics" element={<MonitorAnalyticsScreen />} />
                <Route path="forecast-visualization" element={<ForecastScreen/>} />
                <Route path="forecast-analytics" element={<ForecastAnalyticsScreen/>} />
                <Route path="impact-visualization" element={<ImpactScreen/>} />

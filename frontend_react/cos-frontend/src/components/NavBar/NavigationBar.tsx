@@ -60,7 +60,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
         </div>
         <LocationSelector />
         <Avatar 
-          sx={{bgcolor: "#49968A", width: 35, height:35}} 
+          sx={{bgcolor: "#00738c", width: 35, height:35}} 
           alt="Apple Doe" 
           src="/broken-image.jpg"
         />

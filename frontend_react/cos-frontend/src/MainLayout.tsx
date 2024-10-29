@@ -13,22 +13,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({onWidgetToggle, visibleWidgets})
   const [activeControl, setActiveControl] = useState('monitor'); // Monitor, Forecast, Impact
   const [activeView, setActiveView] = useState('visualization'); // Visualization, Analytics, etc.
   const menuItems = ['Monitor','Forecast','Impact'];
-
-  // const [visibleWidgets, setVisibleWidgets] = useState({
-  //   alerts: true,
-  //   layers: true,
-  //   legend: true,
-  // });
-
-  // const handleWidgetToggle = (widget: "alerts" | "layers" | "legend", isVisible: boolean) => {
-  //   setVisibleWidgets((prev) => ({
-  //     ...prev,
-  //     [widget]: isVisible,
-  //   }));
-  // }
-
-  // console.log(activeControl, activeView); 
-
+  // console.log('Testing');
   return (
     <div className="app-container w-full h-screen relative bg-zinc-900 bg-opacity-98">
       <div className="fixed top-0 left-0 w-full z-10">
