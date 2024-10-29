@@ -26,3 +26,4 @@ yarn-error.log*
 # Ignore all config files - Temporarily not ignoring config file for deployment, but removed secret, instead ignore backup config 
 # **/*/config.json
 **/*/config_backup.json
+**/*/secrets.json

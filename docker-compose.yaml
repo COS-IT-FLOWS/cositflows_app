@@ -18,7 +18,7 @@ services:
       context: .
       dockerfile: Dockerfile
       target: frontend
-    volumes:
-      - ./frontend:/app/frontend
+    # volumes:
+      # - ./frontend_react/cos-frontend:/app/frontend
     ports:
       - "3000:3000"
