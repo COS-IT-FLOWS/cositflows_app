@@ -86,8 +86,8 @@ jobs:
 
       - name: 'Build and Push Container'
         run: |-
-          docker pull "${DOCKER_TAG}"
-          # DOCKER_TAG="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}"
+          DOCKER_TAG="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}"
+          echo "${DOCKER_TAG}"
           # docker build --tag "${DOCKER_TAG}" .
           # docker push "${DOCKER_TAG}"
       
