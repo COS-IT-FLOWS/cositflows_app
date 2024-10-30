@@ -3,6 +3,7 @@ import { useSprings, useSpring, animated } from 'react-spring';
 import Grid from '@mui/material/Grid2';
 import { Card, CardContent, Typography, ThemeProvider, Button, TextField, styled } from '@mui/material';
 import theme from "../theme";
+import { useNavigate } from 'react-router-dom';
 
 interface DamProps {
   level: number;
@@ -76,9 +77,11 @@ const ValidationTextField = styled(TextField)({
 });
 
 const ForecastScreen: React.FC = () => {
+  const navigate = useNavigate();
   const [rainfall, setRainfall] = useState<number | null>(null);
-  const [levels, setLevels] = useState([0, 0, 0, 0, 0, 0, 0, 0]);
+  const [levels, setLevels] = useState([80, 80, 70, 80, 80, 75, 78, 68]);
   const [visibleArrows, setVisibleArrows] = useState([false, false, false, false, false, false, false]);
+  const [showResults, setShowResults] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -116,6 +119,7 @@ const ForecastScreen: React.FC = () => {
         }
       }, index * 500); // Adjust delay between each dam (500ms here)
     });
+    setTimeout(() => setShowResults(true), newLevels.length * 500); // Show results after simulation
   };
 
   const [showTutorial, setShowTutorial] = useState(true);
@@ -123,6 +127,7 @@ const ForecastScreen: React.FC = () => {
   const handleBegin = () => {
     setShowTutorial(false);
   };
+
 
   return (
       <div className="monitor-screen w-full h-full mx-auto relative flex flex-col">
@@ -246,7 +251,41 @@ const ForecastScreen: React.FC = () => {
                         </CardContent>
                       </Card>
                     </Grid>
-                  </Grid></>
+                  </Grid>
+
+                  {showResults && (
+                    <div
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                     width: '100%',
+                      height: '100%',
+                      background: 'rgba(0, 0, 0, 0.7)',
+                      display: 'flex',
+                      justifyContent: 'center',
+                     alignItems: 'center',
+                    }}
+                    >
+                      <Card sx={{ width: '50%', padding: 2 }}>
+                        <CardContent>
+                          <Typography sx={{ fontSize: 24, fontWeight: '400' }}>Results</Typography>
+                          <Typography sx={{ fontSize: 18, marginTop: 1, fontWeight: '300'}}>
+                            Forecasted River water Level: <span style={{ fontWeight: '500'}}> 12m </span>
+                          </Typography>
+                          <Button
+                            sx={{ marginTop: 2 }}
+                            variant="contained"
+                            color="inherit"
+                            onClick={() => navigate('/impact-visualization')}
+                          >
+                            See Impact
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  )}
+                </>
               )}
               </Grid>
           </ThemeProvider>
