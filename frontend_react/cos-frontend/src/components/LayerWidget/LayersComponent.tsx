@@ -7,16 +7,16 @@ import Checkicon from "@mui/icons-material/CheckBox";
 import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import Draggable from "react-draggable";
 
-type GaugeType = "rainfall" | "reservoir" | "tidal" | "groundwater" | "riverWater" | "regulators";
+type GaugeType = "PRECIPITATION" | "RESERVOIR" | "TIDAL" | "GROUNDWATER" | "RIVER" | "REGULATOR";
 
 interface LayersProps {
   visibleGauges: {
-    rainfall: boolean;
-    reservoir: boolean;
-    tidal: boolean;
-    groundwater: boolean;
-    riverWater: boolean;
-    regulators: boolean;
+    PRECIPITATION: boolean;
+    RESERVOIR: boolean;
+    TIDAL: boolean;
+    GROUNDWATER: boolean;
+    RIVER: boolean;
+    REGULATOR: boolean;
   };
   toggleGauge: (gauge: GaugeType) => void;
   onClose: () => void;
@@ -82,8 +82,8 @@ const LayersComponent: React.FC<LayersProps> = ({ visibleGauges, toggleGauge, on
             <div className="flex flex-col px-5 gap-1 items-start mt-2 text-xs">
               <div className="flex items-center">
                 <Checkbox
-                 checked={visibleGauges.rainfall}
-                 onChange={() => toggleGauge("rainfall")}
+                 checked={visibleGauges.PRECIPITATION}
+                 onChange={() => toggleGauge("PRECIPITATION")}
                  icon={<CheckBoxOutlineBlankIcon  sx={{ color: "#9f9c9c", width: 14, height: 14}}/>}
                  checkedIcon={<Checkicon sx={{color: "#9f9c9c", width: 14, height: 14}}/>}
                  sx={{
@@ -99,8 +99,8 @@ const LayersComponent: React.FC<LayersProps> = ({ visibleGauges, toggleGauge, on
               </div>
               <div className="flex items-center">
                 <Checkbox
-                  checked={visibleGauges.reservoir}
-                  onChange={() => toggleGauge("reservoir")}
+                  checked={visibleGauges.RESERVOIR}
+                  onChange={() => toggleGauge("RESERVOIR")}
                   icon={<CheckBoxOutlineBlankIcon sx={{ color: "#9f9c9c",width: 14, height: 14 }} />}
                   checkedIcon={<Checkicon sx={{ color: "#9f9c9c", width: 14, height: 14 }} />}
                   sx={{
@@ -116,8 +116,8 @@ const LayersComponent: React.FC<LayersProps> = ({ visibleGauges, toggleGauge, on
               </div>
               <div className="flex items-center">
                 <Checkbox
-                  checked={visibleGauges.tidal}
-                  onChange={() => toggleGauge("tidal")}
+                  checked={visibleGauges.TIDAL}
+                  onChange={() => toggleGauge("TIDAL")}
                   icon={<CheckBoxOutlineBlankIcon sx={{ color: "#9f9c9c", width: 14, height:14 }} />}
                   checkedIcon={<Checkicon sx={{ color: "#9f9c9c", width: 14, height: 14 }} />}
                   sx={{
@@ -133,8 +133,8 @@ const LayersComponent: React.FC<LayersProps> = ({ visibleGauges, toggleGauge, on
               </div>
               <div className="flex items-center">
                 <Checkbox
-                  checked={visibleGauges.groundwater}
-                  onChange={() => toggleGauge("groundwater")}
+                  checked={visibleGauges.GROUNDWATER}
+                  onChange={() => toggleGauge("GROUNDWATER")}
                   icon={<CheckBoxOutlineBlankIcon sx={{ color: "#9f9c9c", width: 14, height:14 }} />}
                   checkedIcon={<Checkicon sx={{ color: "#9f9c9c", width: 14, height:14  }} />}
                   sx={{
@@ -150,8 +150,8 @@ const LayersComponent: React.FC<LayersProps> = ({ visibleGauges, toggleGauge, on
               </div>
               <div className="flex items-center">
                 <Checkbox
-                  checked={visibleGauges.riverWater}
-                  onChange={() => toggleGauge("riverWater")}
+                  checked={visibleGauges.RIVER}
+                  onChange={() => toggleGauge("RIVER")}
                   icon={<CheckBoxOutlineBlankIcon sx={{ color: "#9f9c9c", width: 14, height:14 }} />}
                   checkedIcon={<Checkicon sx={{ color: "#9f9c9c", width: 14, height:14  }} />}
                   sx={{
@@ -167,8 +167,8 @@ const LayersComponent: React.FC<LayersProps> = ({ visibleGauges, toggleGauge, on
               </div>
               <div className="flex items-center">
                 <Checkbox
-                  checked={visibleGauges.regulators}
-                  onChange={() => toggleGauge("regulators")}
+                  checked={visibleGauges.REGULATOR}
+                  onChange={() => toggleGauge("REGULATOR")}
                   icon={<CheckBoxOutlineBlankIcon sx={{ color: "#9f9c9c" , width: 14, height:14 }} />}
                   checkedIcon={<Checkicon sx={{ color: "#9f9c9c", width: 14, height:14  }} />}
                   sx={{

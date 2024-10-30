@@ -2,11 +2,10 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { Card, CardContent, Typography, ThemeProvider, Breadcrumbs, Link } from '@mui/material';
 import Grid from '@mui/material/Grid2';
-import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import theme from '../theme';
-import { BarChart, LineChart, Bar, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell } from 'recharts';
+import { BarChart, LineChart, Bar, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell, Area } from 'recharts';
 import Papa from 'papaparse';
-import Map from '../Maps/MonitoringMap';
+import { MonitoringMapComponent } from '../Maps/MonitoringMapComponent';
 
 interface FullData {
   [gaugeName: string]: number[];
@@ -25,6 +24,8 @@ interface BarChartData {
 const RainfallAnalytics: React.FC = () => {
   const [data, setData] = useState<BarChartData[]>([]);
   const [cumulativeData, setCumulativeData] = useState<TransformedData[]>([]);
+
+  // const [selectedGauge, setSelectedGauge] = useState<Gauge | null> (null);
   const [seasonMax, setSeasonMax] = useState(0);
   const [averageRainfall, setAverageRainfall] = useState(0);
 
@@ -173,7 +174,7 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                         {/* Bar Chart - Rechart */}
                         <Grid size={{xs: 12, md: 8}} > 
                           <Typography>Rainfall in Basin Gauges Today</Typography>
-                          <ResponsiveContainer width="102%" height={235} style={{ marginLeft: -35 }}>
+                          <ResponsiveContainer width="102%" height={250} style={{ marginLeft: -35, marginTop: 10 }}>
                             <BarChart data={data}>
                               {/* <XAxis dataKey="name" /> */}
                               <YAxis
@@ -269,7 +270,14 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                             opacity: '95%',
                             boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)',
                           }}>
-                            <Map/>
+                            <MonitoringMapComponent visibleGauges={{
+                        PRECIPITATION: false,
+                        RESERVOIR: false,
+                        TIDAL: false,
+                        GROUNDWATER: false,
+                        RIVER: false,
+                        REGULATOR: false
+                      }}/>
                           </Card>
                         </Grid>
                        </Grid>

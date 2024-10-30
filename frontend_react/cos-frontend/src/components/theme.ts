@@ -44,6 +44,17 @@ const theme = createTheme({
         },
       },
     },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          opacity: '95%',
+          border: '0.1px solid rgba(255, 255, 255, 0.3)',
+          color: '#18181B', // default text color
+          fontFamily: 'Inter',
+          borderRadius: '20px',
+        },
+      },
+    },
     MuiLink: {
       styleOverrides: {
         root: {
@@ -77,6 +88,34 @@ const theme = createTheme({
             flexWrap: 'nowrap',
             justifyContent: 'space-between',
           },
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'transparent',
+          opacity: '95%',
+          // padding: '4px 8px',
+          borderRadius: '10px',
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: 'white', // Set the label color
+          fontWeight: '300',
+          opacity: 0.85,
+          marginTop: 3,
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        input: {
+          color: '#ffffff', // Input text color
+          fontFamily: 'Inter',
         },
       },
     },

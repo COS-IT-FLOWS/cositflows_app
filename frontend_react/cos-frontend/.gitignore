@@ -27,3 +27,4 @@ yarn-error.log*
 # **/*/config.json
 **/*/config_backup.json
 **/*/secrets.json
+.env

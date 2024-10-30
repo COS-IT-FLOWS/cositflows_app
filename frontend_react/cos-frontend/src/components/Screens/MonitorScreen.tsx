@@ -2,34 +2,55 @@ import React, {useState} from "react";
 import AlertWidgetComponent from "../AlertWidget/AlertWidgetComponent";
 import LayerComponent from "../LayerWidget/LayersComponent";
 import Legend from "../LegendWidget/Legend";
-import Map from "../Maps/MonitoringMap";
-//import WidgetSelector from "../NavBar/WidgetSelector";
+import { MonitoringMapComponent } from "../Maps/MonitoringMapComponent";
 
-type Gaugetype = "rainfall" | "reservoir" | "tidal" | "groundwater" | "riverWater" | "regulators";
+// type GaugeType = "PRECIPITATION" | "RESERVOIR" | "TIDAL" | "GROUNDWATER" | "RIVER" | "REGULATOR";
+
+interface GaugeType {
+  PRECIPITATION: boolean;
+  RESERVOIR: boolean;
+  TIDAL: boolean;
+  GROUNDWATER: boolean;
+  RIVER: boolean;
+  REGULATOR: boolean;
+}
+
+const initialVisibleGauges = {
+  PRECIPITATION: false,
+  RESERVOIR: false,
+  TIDAL: false,
+  GROUNDWATER: false,
+  RIVER: false,
+  REGULATOR : false,
+};
 
 interface MonitorScreenProps {
-  visibleWidgets: { alerts: boolean; layers: boolean; legend: boolean };
+  visibleWidgets: {alerts: boolean, layers: boolean, legend: boolean};
   onWidgetToggle: (widget: "alerts" | "layers" | "legend", isVisible: boolean) => void;
 }
 
-const initialVisibleGauges: Record<Gaugetype, boolean> = {
-  rainfall: false,
-  reservoir: false,
-  tidal: false,
-  groundwater: false,
-  riverWater: false,
-  regulators: false,
-};
+const MonitorScreen: React.FC<MonitorScreenProps> = ({onWidgetToggle, visibleWidgets}) => {
+  // const [visibleWidgets, setVisibleWidgets] = useState({
+  //   alerts: true,
+  //   layers: true,
+  //   legend: true,
+  // });
 
-const MonitorScreen: React.FC<MonitorScreenProps> = ({onWidgetToggle,visibleWidgets}) => {
-  
+  // const onWidgetToggle = (widget: "alerts" | "layers" | "legend", isVisible: boolean) => {
+  //   setVisibleWidgets(prev => ({
+  //     ...prev,
+  //     [widget]: isVisible,
+  //   }));
+  // };
+
   const [visibleGauges, setVisibleGauges] = useState(initialVisibleGauges);
 
-  const toggleGauge = (gauge: Gaugetype) => {
-    setVisibleGauges((prevState) => ({
-      ...prevState,
-      [gauge]: !prevState[gauge],
-    }));
+  // const [visibleAlerts, setVisibleAlerts] = useState(true);
+  // const [visibleLayers, setVisibleLayers] = useState(true);
+  // const [visibleLegend, setVisibleLegend] = useState(true);
+
+  function toggleGauge(gaugeType: keyof GaugeType) {
+    setVisibleGauges({ ...visibleGauges, [gaugeType]: !visibleGauges[gaugeType] });
   };
 
   const isGaugesVisible = Object.values(visibleGauges).some((isVisible) => isVisible);
@@ -37,7 +58,8 @@ const MonitorScreen: React.FC<MonitorScreenProps> = ({onWidgetToggle,visibleWidg
   return (
     <div className="monitor-screen w-full h-full relative flex flex-col rounded-[15px] overflow-hidden">
       <div className="absolute w-full h-full rounded-[15px] overflow-hidden">
-        <Map />
+        <MonitoringMapComponent
+        visibleGauges={visibleGauges} />
       </div>
 
       {/* Widgets */}

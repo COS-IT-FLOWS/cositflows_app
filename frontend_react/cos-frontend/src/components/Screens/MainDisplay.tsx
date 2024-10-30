@@ -1,5 +1,4 @@
 import React from "react";
-import MonitoringMap from '../Maps/MonitoringMap';
 import ImpactScreen from './ImpactScreen';
 import ForecastMap from "../Maps/ForecastMap";
 import ForecastScreen from "./ForecastScreen";
@@ -27,7 +26,13 @@ if (activeControl === 'Impact') {
 }
 
 // Default to the Monitoring map if no matching case
-return <MonitoringMap />;
+return <MonitorScreen visibleWidgets={{
+    alerts: false,
+    layers: false,
+    legend: false
+}} onWidgetToggle={function (widget: "alerts" | "layers" | "legend", isVisible: boolean): void {
+    throw new Error("Function not implemented.");
+} } />;
 };
 
 export default MainDisplay;
