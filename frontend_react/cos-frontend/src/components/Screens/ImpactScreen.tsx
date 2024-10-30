@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import HighlightComponent from "../BasinHighlights/HighlightComponent";
 import ButtonComponent from "../LevelNav/ImpactButtons";
-import population from "../Maps/population.png";
-import households from "../Maps/dash_buldings_map.jpg";
-import agriculture from "../Maps/LULC.png";
-import floodInundation from "../Maps/flood_inundated area.png";
 import ImpactMapComponent from "../Maps/ImpactMapComponent";
+import { addBoundaryLayer, removeBoundaryLayer } from "../Layers/PolygonLayer";
 
 const ImpactScreen: React.FC = () => {
   const [selectedMap, setSelectedMap] = useState('flood-inundation');

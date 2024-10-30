@@ -1,6 +1,6 @@
 import * as turf from '@turf/turf';
 import maplibregl from 'maplibre-gl';
-import configData from '../../config.json';
+import { useconfig } from '../../ConfigContext';
 
 function centerLatLngFromFeature(feature) {
     const centroid = turf.centroid(feature.geometry);
@@ -11,9 +11,9 @@ function centerLatLngFromFeature(feature) {
 
 
 
-async function generateCustomMarker(layerType) {
-    const urlBase = configData.MARKER_BASE.URL;
-    const urlStation = configData.LAYERS.STATION[layerType].MARKER_PATH;
+async function generateCustomMarker(layerType, config) {
+    const urlBase = config.MARKER_BASE.URL;
+    const urlStation = config.LAYERS.STATION[layerType].MARKER_PATH;
     const [svg1, svg2] = await Promise.all([
         fetch(urlStation).then(response => response.text()),
         fetch(urlBase).then(response => response.text())
