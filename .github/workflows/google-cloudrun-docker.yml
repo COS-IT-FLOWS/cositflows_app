@@ -86,13 +86,17 @@ jobs:
           password: '${{ steps.auth.outputs.auth_token }}'
           registry: 'htt${{ env.REGION }}-docker.pkg.dev'
 
-      - name: 'Build and Push Container'
-        run: |-
-          DOCKER_TAG="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
-          echo "${DOCKER_TAG}"
-          docker build --tag "${DOCKER_TAG}" .
-          docker push $DOCKER_TAG
-      
+      # - name: 'Build and Push Container'
+      #   run: |-
+      #     DOCKER_TAG="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
+      #     echo "${DOCKER_TAG}"
+      #     docker build --tag "${DOCKER_TAG}" .
+      #     docker push $DOCKER_TAG
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          push: true
+          tags: "${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
 
         # END - Docker auth and build
       - name: 'Deploy to Cloud Run'
