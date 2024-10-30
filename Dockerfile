@@ -8,7 +8,8 @@ WORKDIR /app/frontend
 COPY frontend_react/cos-frontend/package*.json ./
 
 # Copy config.json
-COPY frontend_react/cos-frontend/src/config.json ./
+COPY frontend_react/cos-frontend/config.json ./config.json
+
 
 # Install dependencies
 RUN npm install
