@@ -59,7 +59,7 @@ jobs:
       - name: 'Replace Placeholder in Config JSON'
         id: 'replace-string'
         run: |
-          sed -i 's|MAPTILER_API_KEY_VALUE|'"${{ secrets.MAPTILER_API_KEY }}"'|g' frontend_react/cos-frontend/src/config.json
+          sed -i 's|MAPTILER_API_KEY_VALUE|'"${{ secrets.MAPTILER_API_KEY }}"'|g' frontend_react/cos-frontend/config.json
         # Replace 'PLACEHOLDER' with the secret value in the specified JSON file
     
 
