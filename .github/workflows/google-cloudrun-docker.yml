@@ -86,6 +86,11 @@ jobs:
           password: '${{ steps.auth.outputs.auth_token }}'
           registry: '${{ env.REGION }}-docker.pkg.dev'
 
+      - name: 'Configure Docker Client of gcloud'
+        run:  |-
+          gcloud auth configure-docker --quiet
+          gcloud auth configure-docker asia-south1-docker.pkg.dev --quiet
+
       # - name: 'Build and Push Container'
       #   run: |-
       #     DOCKER_TAG="${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
