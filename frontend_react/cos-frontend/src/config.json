@@ -87,6 +87,45 @@
                 "OPACITY": 0.3,
                 "OBJECT_NAME": "NAME"
             }
-        }    
+        },
+        "IMPACT": {
+            "RIVER_BASIN": { 
+                "LAYER_ID": "river-basin-layer",
+                "OUTLINE_LAYER_ID": "river-basin-outline",
+                "SOURCE_ID": "river-basin-boundary",
+                "URL": "https://api.maptiler.com/data/1867a4c6-1cde-4fc1-96c3-787d393e83e2/features.json?key=",
+                "MAP_OBJECT": "geojson",
+                "COLOR": "#ae9eea",
+                "LINECOLOR": "black",
+                "OPACITY": 0.5,
+                "OBJECT_NAME": "Type"
+            },
+            "STATE": {
+                "LAYER_ID": "state-layer",
+                "URL": ""
+            },
+            "DISTRICT": {
+                "LAYER_ID": "district-layer",
+                "OUTLINE_LAYER_ID": "district-outline",
+                "SOURCE_ID": "district-boundary",
+                "URL": "https://api.maptiler.com/data/dba9d3aa-822d-47c0-ad1c-55d46581bc26/features.json?key=",
+                "MAP_OBJECT": "geojson",
+                "COLOR": "#49988c",
+                "LINECOLOR": "black",
+                "OPACITY": 0.3,
+                "OBJECT_NAME": "NAME"
+            },
+            "PANCHAYAT": {
+                "LAYER_ID": "panchayat-layer",
+                "OUTLINE_LAYER_ID": "panchayat-outline",
+                "SOURCE_ID": "panchayat-boundary",
+                "URL": "https://api.maptiler.com/data/caba1447-f27e-49b7-bf6b-294e2ef1335b/features.json?key=",
+                "MAP_OBJECT": "geojson",
+                "COLOR": "#acb7f7",
+                "LINECOLOR": "grey",
+                "OPACITY": 0.3,
+                "OBJECT_NAME": "NAME"
+            }
+        }  
     }
 }

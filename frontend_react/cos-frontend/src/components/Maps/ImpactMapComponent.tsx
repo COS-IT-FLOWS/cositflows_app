@@ -5,7 +5,6 @@ import '../styles.css';
 import { useConfig } from "../../ConfigContext";
 import * as maptilersdk from '@maptiler/sdk';
 import "@maptiler/sdk/dist/maptiler-sdk.css";
-import {addPointSource, addPointLayer, addCustomMarkerForPointLayer, togglePointLayers, addBoundarySource, addBoundaryLayer, cursorToPointerOnHover, getIntersectingPolygons, handleClickOnLayer }  from '../Layers';
 import { LogoControl, NavigationControl } from '@maptiler/sdk';
 import { AddCircleOutlineSharp } from '@mui/icons-material';
 import { generateCustomMarker, incrementState } from '../Layers/misc';
@@ -21,7 +20,8 @@ const ImpactMapComponent: React.FC<ImpactMapComponentProps> = ({ selectedMap }) 
   const [map, setMap] = useState<maplibregl.Map | null>(null);
   // const [layerVisible, setLayerVisible] = useState<boolean>(true);
   const mapContainer = useRef<HTMLDivElement | null>(null);
-  const [mapState, setMapState] = useState(selectedMap);
+  const [mapState, setMapState] = useState();
+
 
   // const map = useRef<HTMLDivElement | null>(null);
   const lng = config.MAP_CONFIG.LON;
