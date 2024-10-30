@@ -1,6 +1,6 @@
 // src/ConfigContext.tsx
 import React, { createContext, useContext, useState } from 'react';
-import configData from './config.json';
+import configData from '../config.json';
 
 const ConfigContext = createContext<{
   config: Record<string, any>; // Use a generic type
