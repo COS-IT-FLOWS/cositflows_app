@@ -5,15 +5,15 @@ import { Box, Typography } from '@mui/material';
 const marks = [
   {
     value: 0,
-    label: '3m',
+    label: '11m',
   },
   {
     value: 50,
-    label: '4m',
+    label: '12m',
   },
   {
     value: 100,
-    label: '5m',
+    label: '13m',
   },
 ];
 
