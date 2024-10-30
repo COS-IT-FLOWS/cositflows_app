@@ -96,7 +96,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          context: frontend_react/cos-frontend
           tags: "${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.ARTIFACT_REPO }}/${{ env.IMAGE_NAME }}:${{ github.sha }}"
       # END - Docker auth and build
       
