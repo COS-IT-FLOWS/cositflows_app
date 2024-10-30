@@ -59,12 +59,12 @@ function removePointLayer(map, layerType, config) {
     }
 }
 
-async function addCustomMarkerForPointLayer(map, layerType, pointsCollection, setMarkerState) {
+async function addCustomMarkerForPointLayer(map, layerType, pointsCollection, setMarkerState, config) {
     // const layerConfigData = configData.LAYERS.STATION[layerType];
     const markers = []; 
     if (pointsCollection) {
         for (const point of pointsCollection.features) {
-            const marker = await generateCustomMarker(layerType);
+            const marker = await generateCustomMarker(layerType, config);
             // Add marker to map
             marker.setLngLat(point.geometry.coordinates).addTo(map);
             markers.push(marker);
@@ -119,7 +119,7 @@ function togglePointLayers(map, gaugeVisibility, mapState, currentFeatureLayerId
                 removePointLayer(map, layerType, config);
                 if (layerVisibility) {
                     const pointsCollection = await getPointsWithinIntersectingFeatures(map, layerType, currentFeatureLayerId, config);
-                    await addCustomMarkerForPointLayer(map, layerType, pointsCollection, setMarkerState);
+                    await addCustomMarkerForPointLayer(map, layerType, pointsCollection, setMarkerState, config);
                 } else {
                     await removeCustomMarkerLayer(map, layerType, markerState);
                 }

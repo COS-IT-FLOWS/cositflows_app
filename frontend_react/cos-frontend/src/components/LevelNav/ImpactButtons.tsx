@@ -4,13 +4,15 @@ import Box from '@mui/material/Box';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
 const buttons = [
-    { label: 'Flood Inundation', value: 'flood-inundation' },
-    { label: 'Population', value: 'population' },
-    { label: 'Households', value: 'households' },
-    { label: 'Agriculture', value: 'agriculture' },
+    { label: 'Flood Inundation', value: 'flood-inundation' as SelectedMapType },
+    { label: 'Population', value: 'population' as SelectedMapType },
+    { label: 'Households', value: 'households' as SelectedMapType},
+    { label: 'Agriculture', value: 'agriculture' as SelectedMapType},
 ];
 
-const ButtonComponent: React.FC<{ setSelectedMap: (map: string) => void }> = ({setSelectedMap}) => {
+type SelectedMapType = "flood-inundation" | "population" | "households" | "agriculture";
+
+const ButtonComponent: React.FC<{ setSelectedMap: (map: SelectedMapType) => void }> = ({setSelectedMap}) => {
   return (
     <Box
       sx={{

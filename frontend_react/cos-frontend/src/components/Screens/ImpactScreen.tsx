@@ -4,8 +4,13 @@ import ButtonComponent from "../LevelNav/ImpactButtons";
 import ImpactMapComponent from "../Maps/ImpactMapComponent";
 import { addBoundaryLayer, removeBoundaryLayer } from "../Layers/PolygonLayer";
 
+
+// Define the allowed types for selectedMap
+
+type SelectedMapType = "flood-inundation" | "population" | "households" | "agriculture";
+
 const ImpactScreen: React.FC = () => {
-  const [selectedMap, setSelectedMap] = useState('flood-inundation');
+  const [selectedMap, setSelectedMap] = useState<SelectedMapType>('flood-inundation');
   
   return (
     <div className="monitor-screen w-full h-full relative bg-white flex flex-col rounded-[15px] overflow-hidden">
