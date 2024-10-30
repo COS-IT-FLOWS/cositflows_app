@@ -1,5 +1,5 @@
 {
-    "MAPTILER_API_KEY": "MAPTILER_API_KEY_VALUE",
+    "MAPTILER_API_KEY": "test-id",
     "MAP_CONFIG": {
         "LAT": 10.650040024763096, 
         "LON": 76.35211754905616,
