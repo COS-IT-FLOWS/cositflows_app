@@ -10,28 +10,19 @@ import { LogoControl, NavigationControl } from '@maptiler/sdk';
 import { AddCircleOutlineSharp } from '@mui/icons-material';
 import { generateCustomMarker, incrementState } from '../Layers/misc';
 
-interface ImpactMapComponentProps {
 
+interface ImpactMapComponentProps {
+  selectedMap: string
 }
 
 // maptilersdk.config.apiKey = configData.MAP_TILER_API_KEY;
-const ImpactMapComponent: React.FC<ImpactMapComponentProps> = () => {
+const ImpactMapComponent: React.FC<ImpactMapComponentProps> = ({ selectedMap }) => {
   const { config } = useConfig();
   const [map, setMap] = useState<maplibregl.Map | null>(null);
   // const [layerVisible, setLayerVisible] = useState<boolean>(true);
   const mapContainer = useRef<HTMLDivElement | null>(null);
-  const [mapState, setMapState] = useState({boundaryLevel: 0});
-  const [pointLayerState, setPointLayerState] = useState({
-    PRECIPITATION: null,
-    RESERVOIR: null,
-    RIVER: null
-  });
-  const [markerState, setMarkerState] = useState({
-    PRECIPITATION: [],
-    RESERVOIR: [],
-    RIVER: []
-  });
-  const [currentFeatureLayerId, setCurrentFeatureLayerId] = useState<String | null>(null);
+  const [mapState, setMapState] = useState(selectedMap);
+
   // const map = useRef<HTMLDivElement | null>(null);
   const lng = config.MAP_CONFIG.LON;
   const lat = config.MAP_CONFIG.LAT;
