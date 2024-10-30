@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import maplibregl from 'maplibre-gl';
-import configData from '../../config.json';
+import {useConfig } from '../../ConfigContext';
 import * as turf from '@turf/turf';
 import { Sort, Visibility } from '@mui/icons-material';
 import { centerLatLngFromFeature, generateCustomMarker, incrementState } from './misc';
+import { addBoundaryLayer, removeBoundaryLayer, getIntersectingPolygons } from './PolygonLayer';
 
 
-function addPointSource(map, sourceType) {
-    const sourceConfigData = configData.LAYERS.STATION[sourceType];
+function addPointSource(map, sourceType, config) {
+    const apiKey = config.MAPTILER_API_KEY;
+    const sourceConfigData = config.LAYERS.STATION[sourceType];
     const sourceId = sourceConfigData.SOURCE_ID;
-    const url = sourceConfigData.URL;
+    const url = sourceConfigData.URL + apiKey;
 
     map.addSource(sourceId, {
         type: 'geojson',
@@ -17,8 +19,8 @@ function addPointSource(map, sourceType) {
     })
 };
 
-function addPointLayer(map, layerType, data) {
-    const layerConfigData = configData.LAYERS.STATION[layerType];
+function addPointLayer(map, layerType, data, config) {
+    const layerConfigData = config.LAYERS.STATION[layerType];
     const sourceId = layerConfigData.SOURCE_ID;
     const layerId = layerConfigData.LAYER_ID + (Math.random()).toString(36);
 
@@ -48,9 +50,9 @@ function addPointLayer(map, layerType, data) {
     // return map
 };
 
-function removePointLayer(map, layerType) {
+function removePointLayer(map, layerType, config) {
     const layers = map.getStyle().layers;
-    const layerId = configData.LAYERS.STATION[layerType].LAYER_ID;
+    const layerId = config.LAYERS.STATION[layerType].LAYER_ID;
     const layer = layers.find((layer) => layer.id.includes(layerId));
     if (layer) {
         map.removeLayer(layer.id);
@@ -80,43 +82,43 @@ async function removeCustomMarkerLayer(map, layerType, markerState) {
     }
 };
 
-function togglePointLayers(map, gaugeVisibility, mapState, currentFeatureLayerId, markerState, setMarkerState) {    
+function togglePointLayers(map, gaugeVisibility, mapState, currentFeatureLayerId, markerState, setMarkerState, config) {    
     const boundaryLevel = mapState['boundaryLevel'];
     if (boundaryLevel === 0) {
         Object.keys(gaugeVisibility).forEach(async (layerType) => {
             const layerVisibility = gaugeVisibility[layerType];
-            const layerConfigData = configData.LAYERS.STATION[layerType];
+            const layerConfigData = config.LAYERS.STATION[layerType];
             if (layerConfigData) {
                 if (layerVisibility == true) {
-                    addPointLayer(map, layerType, null);
+                    addPointLayer(map, layerType, null, config);
                 } else {
-                    removePointLayer(map, layerType);
+                    removePointLayer(map, layerType, config);
                 }
             }   
         });
     } else if (boundaryLevel > 0 && boundaryLevel < 2 ) {
         Object.keys(gaugeVisibility).forEach(async (layerType) => {
             const layerVisibility = gaugeVisibility[layerType];
-            const layerConfigData = configData.LAYERS.STATION[layerType];
+            const layerConfigData = config.LAYERS.STATION[layerType];
             if (layerConfigData) {
-                removePointLayer(map, layerType);
+                removePointLayer(map, layerType, config);
                 if (layerVisibility === true) {
-                    const pointsCollection = await getPointsWithinIntersectingFeatures(map, layerType, currentFeatureLayerId);
-                    addPointLayer(map, layerType, pointsCollection);
+                    const pointsCollection = await getPointsWithinIntersectingFeatures(map, layerType, currentFeatureLayerId, config);
+                    addPointLayer(map, layerType, pointsCollection, config);
                 } else if(layerVisibility === false && markerState[layerType] && markerState[layerType].length) {
-                    removePointLayer(map, layerType);
+                    removePointLayer(map, layerType, config);
                 }
             }   
         });
     } else if (boundaryLevel >= 2) {
         Object.keys(gaugeVisibility).forEach(async (layerType) => {
             const layerVisibility = gaugeVisibility[layerType]; 
-            const layerConfigData = configData.LAYERS.STATION[layerType];
+            const layerConfigData = config.LAYERS.STATION[layerType];
             // console.log(layerType, gaugeVisibility[layerType]);
             if (layerConfigData) {
-                removePointLayer(map, layerType);
+                removePointLayer(map, layerType, config);
                 if (layerVisibility) {
-                    const pointsCollection = await getPointsWithinIntersectingFeatures(map, layerType, currentFeatureLayerId);
+                    const pointsCollection = await getPointsWithinIntersectingFeatures(map, layerType, currentFeatureLayerId, config);
                     await addCustomMarkerForPointLayer(map, layerType, pointsCollection, setMarkerState);
                 } else {
                     await removeCustomMarkerLayer(map, layerType, markerState);
@@ -128,7 +130,7 @@ function togglePointLayers(map, gaugeVisibility, mapState, currentFeatureLayerId
     }
 }
 
-async function handleClickOnLayer(map, setMapState, setCurrentFeatureLayerId) {
+async function handleClickOnLayer(map, setMapState, setCurrentFeatureLayerId, config) {
     
     // const sourceConfigData = configData.LAYERS.BOUNDARY[sourceLayerType];
     // const layerConfigData = configData.LAYERS.BOUNDARY[targetLayerType];
@@ -143,29 +145,29 @@ async function handleClickOnLayer(map, setMapState, setCurrentFeatureLayerId) {
                 const layerId = feature.layer.id;
                 const targetLayerType = 'RIVER_BASIN';
                 removeBoundaryLayer(map, layerId);
-                intersectingFeatures = await getIntersectingPolygons(map, targetLayerType, feature);
-                targetLayerId = addBoundaryLayer(map, targetLayerType, intersectingFeatures);
+                intersectingFeatures = await getIntersectingPolygons(map, targetLayerType, feature, config);
+                targetLayerId = addBoundaryLayer(map, targetLayerType, intersectingFeatures, config);
                 setCurrentFeatureLayerId(targetLayerId);
                 const bbox = turf.bbox(intersectingFeatures);
                 map.fitBounds(bbox, {
                     padding: 80
                 })
                 setMapState(incrementState('boundaryLevel'));
-                cursorToPointerOnHover(map, targetLayerType, targetLayerId);
+                cursorToPointerOnHover(map, targetLayerType, targetLayerId, config);
                 
             } else if (feature.layer.id.includes('river-basin-layer')) {
                 const layerId = feature.layer.id;
                 const targetLayerType = 'PANCHAYAT';
                 removeBoundaryLayer(map, layerId);
-                intersectingFeatures = await getIntersectingPolygons(map, targetLayerType, feature);
-                targetLayerId = addBoundaryLayer(map, targetLayerType, intersectingFeatures);
+                intersectingFeatures = await getIntersectingPolygons(map, targetLayerType, feature, config);
+                targetLayerId = addBoundaryLayer(map, targetLayerType, intersectingFeatures, config);
                 setCurrentFeatureLayerId(targetLayerId);
                 const bbox = turf.bbox(intersectingFeatures);
                 map.fitBounds(bbox, {
                     padding: 80
                 })
                 setMapState(incrementState('boundaryLevel'));       
-                cursorToPointerOnHover(map, targetLayerType, targetLayerId);
+                cursorToPointerOnHover(map, targetLayerType, targetLayerId, config);
             }
             // TODO: Move this setState and other functions here from if-else-if statements
             // setBoundaryLevel(targetLayerType)     
@@ -173,8 +175,8 @@ async function handleClickOnLayer(map, setMapState, setCurrentFeatureLayerId) {
     });
 }
 
-function cursorToPointerOnHover(map, layerType, layerId) {
-    const layerConfigData = configData.LAYERS.BOUNDARY[layerType];
+function cursorToPointerOnHover(map, layerType, layerId, config) {
+    const layerConfigData = config.LAYERS.BOUNDARY[layerType];
     const objectName = layerConfigData.OBJECT_NAME;
 
     const popup = new maplibregl.Popup({
@@ -220,8 +222,8 @@ function cursorToPointerOnHover(map, layerType, layerId) {
     });
 }
 
-async function getPointsWithinIntersectingFeatures(map, pointType, polygonLayerId) {
-    const pointSourceId = configData.LAYERS.STATION[pointType].SOURCE_ID;
+async function getPointsWithinIntersectingFeatures(map, pointType, polygonLayerId, config) {
+    const pointSourceId = config.LAYERS.STATION[pointType].SOURCE_ID;
     const pointSource = map.getSource(pointSourceId);
     const pointData = await pointSource.getData();
     const polygonSource = await map.getSource(polygonLayerId);
@@ -232,21 +234,5 @@ async function getPointsWithinIntersectingFeatures(map, pointType, polygonLayerI
     }
 }
 
-async function getIntersectingPolygons(map, sourceType, polygon) {
 
-    const sourceId = configData.LAYERS.BOUNDARY[sourceType].SOURCE_ID;
-    let source;
-    let intersectingLayer;
-    source = map.getSource(sourceId);
-    const data = await source.getData();
-    const intersectingFeatures = data.features.filter((feature) => {
-        // console.log(feature.geometry, polygon.geometry);
-        return turf.intersect(turf.featureCollection([feature, polygon]));
-    });
-    
-    // // Do something with the intersecting features
-    intersectingLayer = turf.featureCollection(intersectingFeatures);
-    return intersectingLayer;
-}
-
-export { addPointSource, addPointLayer, addCustomMarkerForPointLayer, togglePointLayers, addBoundarySource, addBoundaryLayer, cursorToPointerOnHover, getIntersectingPolygons, handleClickOnLayer };
+export { addPointSource, addPointLayer, addCustomMarkerForPointLayer, togglePointLayers, cursorToPointerOnHover, handleClickOnLayer };

@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid2';
 import theme from '../theme';
 import { BarChart, LineChart, Bar, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell, Area } from 'recharts';
 import Papa from 'papaparse';
-import Map from '../Maps/MonitoringMap';
+import { MonitoringMapComponent } from '../Maps/MonitoringMapComponent';
 
 interface FullData {
   [gaugeName: string]: number[];
@@ -270,7 +270,14 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                             opacity: '95%',
                             boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)',
                           }}>
-                            <Map/>
+                            <MonitoringMapComponent visibleGauges={{
+                        PRECIPITATION: false,
+                        RESERVOIR: false,
+                        TIDAL: false,
+                        GROUNDWATER: false,
+                        RIVER: false,
+                        REGULATOR: false
+                      }}/>
                           </Card>
                         </Grid>
                        </Grid>

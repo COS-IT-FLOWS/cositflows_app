@@ -2,10 +2,12 @@ import React, { useRef, useEffect, useState } from 'react';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import '../styles.css';
-import configData from "../../config.json";
+import { useConfig } from '../../ConfigContext';
+// import configData from "../../config.json";
 import * as maptilersdk from '@maptiler/sdk';
 import "@maptiler/sdk/dist/maptiler-sdk.css";
-import {addPointSource, addPointLayer, addCustomMarkerForPointLayer, togglePointLayers, addBoundarySource, addBoundaryLayer, cursorToPointerOnHover, getIntersectingPolygons, handleClickOnLayer }  from '../Layers';
+import {addPointSource, addPointLayer, addCustomMarkerForPointLayer, togglePointLayers, cursorToPointerOnHover,  handleClickOnLayer }  from '../Layers/PointLayer';
+import { addBoundarySource, addBoundaryLayer, removeBoundaryLayer, getIntersectingPolygons } from '../Layers/PolygonLayer';
 import { LogoControl, NavigationControl } from '@maptiler/sdk';
 import { AddCircleOutlineSharp } from '@mui/icons-material';
 import { generateCustomMarker, incrementState } from '../Layers/misc';
@@ -23,6 +25,7 @@ interface MonitoringMapComponentProps {
 
 // maptilersdk.config.apiKey = configData.MAP_TILER_API_KEY;
 const MonitoringMapComponent: React.FC<MonitoringMapComponentProps> = React.memo(({visibleGauges}: MonitoringMapComponentProps) => {
+  const { config } = useConfig();
   const [map, setMap] = useState<maplibregl.Map | null>(null);
   // const [layerVisible, setLayerVisible] = useState<boolean>(true);
   const mapContainer = useRef<HTMLDivElement | null>(null);
@@ -39,11 +42,12 @@ const MonitoringMapComponent: React.FC<MonitoringMapComponentProps> = React.memo
   });
   const [currentFeatureLayerId, setCurrentFeatureLayerId] = useState<String | null>(null);
   // const map = useRef<HTMLDivElement | null>(null);
-  const lng = configData.MAP_CONFIG.LON;
-  const lat = configData.MAP_CONFIG.LAT;
-  const zoom = configData.MAP_CONFIG.ZOOM;
-  const API_KEY = configData.MAP_TILER_API_KEY;
-  const mapStyleUrl = configData.MAPS.MONITORING;
+  const lng = config.MAP_CONFIG.LON;
+  const lat = config.MAP_CONFIG.LAT;
+  const zoom = config.MAP_CONFIG.ZOOM;
+  const API_KEY = config.MAPTILER_API_KEY;
+  const mapStyleUrl = config.MAPS.MONITORING + API_KEY;
+
   // if (map.current) return; // stops map from intializing more than once
   useEffect(() => { 
     if(mapContainer.current) {
@@ -58,27 +62,27 @@ const MonitoringMapComponent: React.FC<MonitoringMapComponentProps> = React.memo
         let layerId, targetLayerId;
 
         // Add Boundary layer sources to map
-        addBoundarySource(map, 'DISTRICT');
-        addBoundarySource(map, 'RIVER_BASIN');
-        addBoundarySource(map, 'PANCHAYAT');
+        addBoundarySource(map, 'DISTRICT', config);
+        addBoundarySource(map, 'RIVER_BASIN', config);
+        addBoundarySource(map, 'PANCHAYAT', config);
 
-        // Add Point layer sources to map
-        addPointSource(map, 'PRECIPITATION');
-        addPointSource(map, 'RESERVOIR');
-        addPointSource(map, 'RIVER');
+        // // Add Point layer sources to map
+        addPointSource(map, 'PRECIPITATION', config);
+        addPointSource(map, 'RESERVOIR', config);
+        addPointSource(map, 'RIVER', config);
 
         
 
-        // addPointLayer(map, 'PRECIPITATION', 'circle');
-        // addPointLayer(map, 'RESERVOIR', 'circle');
-        // addPointLayer(map, 'RIVER', 'circle');
+        addPointLayer(map, 'PRECIPITATION', 'circle', config);
+        addPointLayer(map, 'RESERVOIR', 'circle', config);
+        addPointLayer(map, 'RIVER', 'circle', config);
 
         // Add District Boundary layer to map
-        layerId = addBoundaryLayer(map, 'DISTRICT', null);
+        layerId = addBoundaryLayer(map, 'DISTRICT', null, config);
         setMapState({boundaryLevel: 0});
         console.log(mapState);
-        cursorToPointerOnHover(map, 'DISTRICT', layerId);
-        await handleClickOnLayer(map, setMapState, setCurrentFeatureLayerId);
+        cursorToPointerOnHover(map, 'DISTRICT', layerId, config);
+        await handleClickOnLayer(map, setMapState, setCurrentFeatureLayerId, config);
         
         
         setMap(map);
@@ -95,7 +99,7 @@ const MonitoringMapComponent: React.FC<MonitoringMapComponentProps> = React.memo
     if (map) {
     type GaugeType = keyof typeof visibleGauges;
     // Add event listeners to toggle gauge layers
-    togglePointLayers(map, visibleGauges, mapState, currentFeatureLayerId, markerState, setMarkerState);
+    togglePointLayers(map, visibleGauges, mapState, currentFeatureLayerId, markerState, setMarkerState, config);
     }
   }, [visibleGauges, mapState, currentFeatureLayerId]);
 

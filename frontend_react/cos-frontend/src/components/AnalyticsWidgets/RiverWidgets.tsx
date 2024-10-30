@@ -3,8 +3,8 @@ import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContai
 import { Card, CardContent, Typography, ThemeProvider, Toolbar } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import theme from '../theme';
-import Map from '../Maps/MonitoringMap';
 import { useEffect, useState } from 'react';
+import { MonitoringMapComponent } from '../Maps/MonitoringMapComponent';
 
 interface RiverStation {
     Station_ID: string;
@@ -235,7 +235,14 @@ const RiverWidgets: React.FC = () => {
         <Grid size={{xs: 12, md: 4}} container direction="column" spacing={1} sx={{ height: '100%' }}>
           <Grid size={{xs: 12}} sx={{ height: '88%' }}>
             <Card sx={{ height: '100%' }}>
-              <Map />
+              <MonitoringMapComponent visibleGauges={{
+                PRECIPITATION: false,
+                RESERVOIR: false,
+                TIDAL: false,
+                GROUNDWATER: false,
+                RIVER: false,
+                REGULATOR: false
+              }} />
             </Card>
           </Grid>
           <Grid size={{xs:12}} sx={{ height: '10%' }}>

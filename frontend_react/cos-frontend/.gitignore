@@ -24,6 +24,7 @@ yarn-error.log*
 
 
 # Ignore all config files
-**/*/config.json
 **/*/config_backup.json
 **/*/secrets.json
+**/*/development.env
+.env

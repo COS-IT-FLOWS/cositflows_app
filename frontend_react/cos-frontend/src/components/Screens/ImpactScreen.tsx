@@ -13,6 +13,7 @@ const ImpactScreen: React.FC = () => {
   return (
     <div className="monitor-screen w-full h-full relative bg-white flex flex-col rounded-[15px] overflow-hidden">
       <div className="absolute w-full h-full rounded-[15px] overflow-hidden">
+        <ImpactMapComponent/>
         {selectedMap === 'flood-inundation' && <img src={floodInundation} alt="Flood Inundation" className="w-full h-full object-cover"/>}
         {selectedMap === 'population' && <img src={population} alt=" " className="w-full h-full object-cover"/>}
         {selectedMap === 'households' && <img src={households} alt=" " className="w-full h-full object-cover"/>}

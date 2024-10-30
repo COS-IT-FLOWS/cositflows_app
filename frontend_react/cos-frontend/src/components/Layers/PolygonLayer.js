@@ -1,15 +1,18 @@
 import { useState } from 'react';
 import maplibregl from 'maplibre-gl';
-import configData from '../../config.json';
+import { useConfig } from '../../ConfigContext';
 import * as turf from '@turf/turf';
 import { Sort, Visibility } from '@mui/icons-material';
 import { centerLatLngFromFeature, generateCustomMarker, incrementState } from './misc';
 
 
-function addBoundarySource(map, sourceType) {
-    let sourceConfigData = configData.LAYERS.BOUNDARY[sourceType];
+// const config = useConfig();
+
+function addBoundarySource(map, sourceType, config) {
+    const apiKey = config.MAPTILER_API_KEY;
+    let sourceConfigData = config.LAYERS.BOUNDARY[sourceType];
     let sourceId = sourceConfigData.SOURCE_ID;
-    const url = sourceConfigData.URL;
+    const url = sourceConfigData.URL + apiKey;
       
     map.addSource(sourceId, {
         type: 'geojson',
@@ -19,8 +22,8 @@ function addBoundarySource(map, sourceType) {
     return sourceId;
 }
 
-function addBoundaryLayer(map, layerType, data) {
-    const layerConfigData = configData.LAYERS.BOUNDARY[layerType];
+function addBoundaryLayer(map, layerType, data, config) {
+    const layerConfigData = config.LAYERS.BOUNDARY[layerType];
     const sourceId = layerConfigData.SOURCE_ID;
     const layerColor = layerConfigData.COLOR;
     const layerOpacity = layerConfigData.OPACITY;
@@ -72,5 +75,21 @@ function removeBoundaryLayer(map, layerId) {
     map.removeLayer('outline-' + layerId);
 }
 
+async function getIntersectingPolygons(map, sourceType, polygon, config) {
 
-export { addPointSource, addPointLayer, addCustomMarkerForPointLayer, togglePointLayers, addBoundarySource, addBoundaryLayer, cursorToPointerOnHover, getIntersectingPolygons, handleClickOnLayer };
+    const sourceId = config.LAYERS.BOUNDARY[sourceType].SOURCE_ID;
+    let source;
+    let intersectingLayer;
+    source = map.getSource(sourceId);
+    const data = await source.getData();
+    const intersectingFeatures = data.features.filter((feature) => {
+        // console.log(feature.geometry, polygon.geometry);
+        return turf.intersect(turf.featureCollection([feature, polygon]));
+    });
+    
+    // // Do something with the intersecting features
+    intersectingLayer = turf.featureCollection(intersectingFeatures);
+    return intersectingLayer;
+}
+
+export { addBoundarySource, addBoundaryLayer, removeBoundaryLayer, getIntersectingPolygons };
