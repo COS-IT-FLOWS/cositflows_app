@@ -1,5 +1,6 @@
 import React from 'react';
 import NavigationBar from './NavigationBar';
+import { useNavigate } from 'react-router-dom';
 
 interface NavComponentProps {
   activeControl: string;

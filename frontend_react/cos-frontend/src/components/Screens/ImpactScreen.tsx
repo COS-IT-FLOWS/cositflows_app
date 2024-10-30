@@ -5,6 +5,8 @@ import population from "../Maps/population.png";
 import households from "../Maps/dash_buldings_map.jpg";
 import agriculture from "../Maps/LULC.png";
 import floodInundation from "../Maps/flood_inundated area.png";
+import Slider from "../SliderWidget/Slider";
+
 
 const ImpactScreen: React.FC = () => {
   const [selectedMap, setSelectedMap] = useState('flood-inundation');
@@ -18,12 +20,16 @@ const ImpactScreen: React.FC = () => {
         {selectedMap === 'agriculture' && <img src={agriculture} alt=" " className="w-full h-full object-cover"/>}
       </div>
 
-      <div style={{ position: "absolute", top: "0px", left: "0px" }}>
+      <div style={{ position: "absolute", top: "0px", left: "0px"}}>
         <ButtonComponent setSelectedMap={setSelectedMap}/>
       </div>
 
       <div className="absolute font-inter top-0 right-0 mt-[10px] mr-[20px] flex flex-col items-end">
         <HighlightComponent/>
+      </div>
+
+      <div style={{position: "absolute", bottom: "10px", left: "10px"}}>
+        <Slider/>
       </div>
     </div>
   );

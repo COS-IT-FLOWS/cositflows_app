@@ -11,6 +11,13 @@ const buttons = [
 ];
 
 const ButtonComponent: React.FC<{ setSelectedMap: (map: string) => void }> = ({setSelectedMap}) => {
+  const [selectedValue, setSelectedValue] = React.useState<string | null>(null);
+
+  const handleButtonClick = (value: string) => {
+      setSelectedValue(value);
+      setSelectedMap(value);
+     }
+
   return (
     <Box
       sx={{
@@ -22,9 +29,6 @@ const ButtonComponent: React.FC<{ setSelectedMap: (map: string) => void }> = ({s
         },
       }}
     >
-      {/* <ButtonGroup size="small" aria-label="Small button group">
-        {buttons}
-      </ButtonGroup> */}
       <ButtonGroup variant="contained" color="primary" aria-label="Medium-sized button group"
         sx={{
             '& .MuiButton-contained': {
@@ -39,14 +43,21 @@ const ButtonComponent: React.FC<{ setSelectedMap: (map: string) => void }> = ({s
         }}
         >
        {buttons.map((button) => (
-         <Button key={button.value} onClick={() => setSelectedMap(button.value)} sx={{ fontSize: 'text-base', fontFamily: 'Inter', textTransform: 'none' }}>
+         <Button 
+            key={button.value} 
+            onClick={() => handleButtonClick(button.value)} 
+            sx={{ 
+              fontSize: 'text-base', 
+              fontFamily: 'Inter', 
+              textTransform: 'none' ,
+              backgroundColor: selectedValue === button.value ? '#18181B !important' : undefined,
+              color: selectedValue === button.value ? '#fff' : undefined, 
+              }}
+            >
             {button.label}
          </Button>
         ))}
       </ButtonGroup>
-      {/* <ButtonGroup size="large" aria-label="Large button group">
-        {buttons}
-      </ButtonGroup> */}
     </Box>
   );
 };
