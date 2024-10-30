@@ -195,10 +195,7 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                               ))}
                               <Tooltip content={<CustomTooltip active={false} payload={undefined} />}/>
                               {/* <Legend /> */}
-                              <Bar 
-                              dataKey="rainfall" 
-                              fill='#ff0000'
-                              >
+                              <Bar dataKey="rainfall" >
                                 {data.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill="#00738c" />
                               ))}

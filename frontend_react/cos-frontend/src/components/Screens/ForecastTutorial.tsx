@@ -4,7 +4,7 @@ import { Card, CardContent, Typography, ThemeProvider, Button } from '@mui/mater
 import theme from "../theme";
 
 const ForecastScreen: React.FC = () => {
-  return (
+    return (
     <div className="monitor-screen w-full h-full mx-auto relative flex flex-col">
       <div className="absolute inset-0" 
         style={{
@@ -23,7 +23,7 @@ const ForecastScreen: React.FC = () => {
               <Grid size={{xs:12}} sx={{ height: '90%' }}>
                 <Card sx={{ height: '100%', mixBlendMode: 'plus-lighter' }}>
                   <CardContent>
-                    <Typography>insert simulation</Typography>
+                    <Typography>insert animation</Typography>
                   </CardContent>
                 </Card>
               </Grid>
@@ -42,7 +42,8 @@ const ForecastScreen: React.FC = () => {
                     The change in the reservoirs values determine how much the river level rises. <br /><br />
                     This new river level value will be the focal point, used to map flooding impact in the region.<br /><br />
                   </Typography>
-                  <Button>
+                  <Button
+                  >
                     Begin
                   </Button>
             </Grid>

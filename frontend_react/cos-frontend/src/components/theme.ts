@@ -83,7 +83,7 @@ const theme = createTheme({
           padding: '4px 8px',
           color: '#ffffff', // default text color
           fontFamily: 'Inter',
-          borderRadius: '10px',
+          borderRadius: '4px',
           '& .MuiBreadCrumb-ol':{
             flexWrap: 'nowrap',
             justifyContent: 'space-between',
@@ -116,6 +116,34 @@ const theme = createTheme({
         input: {
           color: '#ffffff', // Input text color
           fontFamily: 'Inter',
+        },
+      },
+    },
+    MuiSelect: {
+      styleOverrides: {
+        icon: {
+          color: '#fff',
+          opacity: '75%',
+        },
+        root: {
+          height:'30px',
+          fontFamily: 'Inter',
+          fontSize: '14px',
+          '& .MuiSelect-select': {
+            padding: '0 14px',
+          },
+        }
+      }
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          height: '30px', // Set the height of each dropdown option globally
+          '&:hover': {
+            // color: '#000',
+            backgroundColor: '#00738c', // Change background color on hover
+            opacity: 0.8, // Reduce opacity on hover
+          },
         },
       },
     },
