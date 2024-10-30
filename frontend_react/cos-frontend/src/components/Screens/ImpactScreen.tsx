@@ -7,13 +7,13 @@ import population from "../Maps/population.png";
 import households from "../Maps/dash_buldings_map.jpg";
 import agriculture from "../Maps/LULC.png";
 import floodInundation from "../Maps/flood_inundated area.png";
-
+import Slider from "../SliderWidget/Slider";
 
 
 // Define the allowed types for selectedMap
 
 type SelectedMapType = "flood-inundation" | "population" | "households" | "agriculture";
-import Slider from "../SliderWidget/Slider";
+
 
 
 const ImpactScreen: React.FC = () => {
