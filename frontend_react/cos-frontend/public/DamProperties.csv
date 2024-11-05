@@ -1,0 +1,9 @@
+Dam,"Catchment Area (sq,km)",Input Runoff (mm),Inflow (Mm3),Percent Storage (%),Gross Storage Capacity (Mm3),Maximum Possible Diversion (Mm3/day),Inflow after diversion (Mm3/day),Expected Spill (Mm3/day),Updated Storage (%),Spillway Gates Opening,Spill Gate 1,Spill Gate 2,Spill Gate 3
+Dam 1,75.11,100,0,80,1.1,6.36,-6.36,0,80,,,,
+Dam 2,37.2,100,3.72,80,7.8,5.38,-1.66,0,80,,,,
+Dam 3,121.72,100,12.172,80,152.7,3.62,12.272,8.55,85.6,,,,
+Dam 4,228.41,100,22.841,80,504.66,3.42,21.261,19.42,83.85,,,,
+Dam 5,43.2,100,4.32,80,15.8,3.42,4.32,0.9,85.7,,,,
+Dam 6,15.8,100,1.58,80,3.9,1.36,3.64,0.22,85.64,,,,
+Dam 7,64.7,100,6.47,80,153.6,1.94,8.15,4.53,82.95,,,,
+Dam 8,569.37,100,56.937,80,31.99,3.4,,100.68,100,,,,
