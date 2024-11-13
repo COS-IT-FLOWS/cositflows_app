@@ -230,6 +230,7 @@ const ForecastScreen: React.FC = () => {
   const [adjacencyList, setAdjacencyList] = useState<Map<string, string[]> | null>(null);
   const [results, setResults] = useState({});
   const [spillData, setSpillData] = useState<Map<string, string[]> | null>(null);
+  const [spillValues, setSpillValues] = useState(Array(8).fill(0));
   const [propertiesData, setPropertiesData] = useState<Map<string, any> | null>(null);
   const [integrationDict, setIntegrationDict] = useState<Record<string, string[]>>({});
 
@@ -321,6 +322,7 @@ const ForecastScreen: React.FC = () => {
     console.log('Props data:', propertiesData);
     fetchPropertiesData();
   }, []);
+
 
 const RUNOFF_COEFFICIENT = 1;
 
@@ -478,22 +480,37 @@ const updateStorageAndSpill = (
   };
 
   const handleSimulate = () => {
-    if(rainfall === null) return;
-    // Calculate the new water levels based on the rainfall input
-    // Dummy equations to be replaced with actual logic above
-    const newLevels = [
-      Math.min(levels[0] + (rainfall * 4) / 100, 100), // Max level capped at 100%
-      Math.min(levels[1] + (rainfall * 4) / 100, 100),
-      Math.min(levels[2] + (rainfall * 4) / 100, 100),
-      Math.min(levels[3] + (rainfall * 4) / 100, 100),
-      Math.min(levels[4] + (rainfall * 4) / 100, 100),
-      Math.min(levels[5] + (rainfall * 4) / 100, 100),
-      Math.min(levels[6] + (rainfall * 4) / 100, 100),
-      Math.min(levels[7] + (rainfall * 4) / 100, 100),
-    ];
+    // Create a DataFrame-like structure for the inputs
+    const inputRunoffStorage: Record<string, InputRunoffStorage> = {};
+    runoffValues.forEach((runoff, index) => {
+      inputRunoffStorage[`Dam ${index + 1}`] = {
+      input_runoff: runoff,
+      storage_pct: storageValues[index],
+      };
+    });
+    
+    const adjacencyList = new Map<string, string[]>();
+    const propertiesData = new Map<string, DamProperties>();
+    const spillDict = new Map<string, string[]>();
+    const integrationDict: Record<string, string[]> = {};
+    
+    const updatedDamProperties = updateStorageAndSpill(
+      adjacencyList,
+      propertiesData,
+      spillDict,
+      inputRunoffStorage,
+      integrationDict
+    );
 
-    // Sequentially update levels with delays
-    newLevels.forEach((level, index) => {
+    const newLevels: number[] = [];
+    const spillValues: number[] = [];
+
+    updatedDamProperties.forEach((damProps, damName) => {
+      newLevels.push(damProps['Updated Storage (%)']);
+      spillValues.push(damProps['Expected Spill (Mm3/day)']);
+    });
+
+    newLevels.forEach((level,index) => {
       setTimeout(() => {
         setLevels((prevLevels) => {
           const updatedLevels = [...prevLevels];
@@ -505,19 +522,38 @@ const updateStorageAndSpill = (
             const updated = [...prev];
             updated[index] = true;
             return updated;
-          });
-        }
-      }, index * 500); // Adjust delay between each dam (500ms here)
+        });
+       }
+      }, index * 500);
     });
-    setTimeout(() => setShowResults(true), newLevels.length * 500); // Show results after simulation
+
+    setTimeout(() => {
+      setShowResults(true);
+      setSpillValues(spillValues);
+     }, newLevels.length * 500); // Show results after simulation
+
   };
+
+  const [runoffValues, setRunoffValues] = useState(Array(8).fill(200)); 
+  const [storageValues, setStorageValues] = useState(Array(8).fill(50)); // Default storage percentages
+
+  const handleRunoffChange = (index: number, value: number) => {
+      const newRunoffValues = [...runoffValues];
+      newRunoffValues[index] = value;
+      setRunoffValues(newRunoffValues);
+    };
+
+  const handleStorageChange = (index: number, value: number) => {
+      const newStorageValues = [...storageValues];
+      newStorageValues[index] = value;
+      setStorageValues(newStorageValues);
+    };
 
   const [showTutorial, setShowTutorial] = useState(true);
 
   const handleBegin = () => {
     setShowTutorial(false);
   };
-
 
   return (
       <div className="monitor-screen w-full h-full mx-auto relative flex flex-col">
@@ -575,19 +611,36 @@ const updateStorageAndSpill = (
                       <Card sx={{ height: '100%' }}>
                         <CardContent>
                           <Typography sx={{ fontSize: 24, pl: 2, pt: 1 }}>Input Values</Typography>
-                          <ValidationTextField
-                            type='number'
-                            style={{ marginTop: 20, marginLeft: 10 }}
-                            label="Enter Rainfall"
-                            required
-                            variant="outlined"
-                            id="validation-outlined-input"
-                            value={rainfall !== null ? rainfall : ''}
-                            onChange={handleInputChange} /> <br /> <br />
-                          <Typography sx={{ fontSize: '10px', fontWeight: '200', opacity: '80%', marginLeft: 2 }}>
-                            Rainfall value must be between the ranges of X to Y, <br />
-                            in accordance with daily occurring data.<br /> <br />
-                          </Typography>
+                          <div>
+                            {runoffValues.map((_, index) => (
+                            <div key={index}>
+                              <ValidationTextField
+                                type='number'
+                                style={{ marginTop: 20, marginLeft: 10 }}
+                                label={`Runoff for Dam ${index + 1}`}
+                                required
+                                variant="outlined"
+                                id="validation-outlined-input"
+                                value={runoffValues}
+                                onChange={(e) => handleRunoffChange(index, Number(e.target.value))}
+                                /> <br /> <br />
+                                <ValidationTextField
+                                type='number'
+                                style={{ marginTop: 20, marginLeft: 10 }}
+                                label={`Storage % for Dam ${index + 1}`}
+                                required
+                                variant="outlined"
+                                id="validation-outlined-input"
+                                value={storageValues[index]}
+                                onChange={(e) => handleStorageChange(index, Number(e.target.value))}
+                                /> <br /> <br />
+                              {/* <Typography sx={{ fontSize: '10px', fontWeight: '200', opacity: '80%', marginLeft: 2 }}>
+                                Rainfall value must be between the ranges of X to Y, <br />
+                                in accordance with daily occurring data.<br /> <br />
+                              </Typography> */}
+                            </div>
+                           ))}
+                          </div>
                           <Button
                             style={{ marginLeft: 10 }}
                             onClick={handleSimulate}
@@ -619,14 +672,14 @@ const updateStorageAndSpill = (
                               </defs>
 
                               {/* Render dams in network layout */}
-                              <Dam level={levels[0]} label="Upper Nirar" x={SVG_WIDTH * 0.07} y={SVG_HEIGHT * 0.05} />
-                              <Dam level={levels[1]} label="Lower Nirar" x={SVG_WIDTH * 0.2} y={SVG_HEIGHT * 0.1} />
-                              <Dam level={levels[2]} label="TN Sholayar" x={SVG_WIDTH * 0.15} y={SVG_HEIGHT * 0.27} />
-                              <Dam level={levels[3]} label="Parambikulam" x={SVG_WIDTH * 0.2} y={SVG_HEIGHT * 0.45} />
-                              <Dam level={levels[4]} label="Thunacadavu" x={SVG_WIDTH * 0.25} y={SVG_HEIGHT * 0.6}/>
-                              <Dam level={levels[5]} label="Peruvarippalam" x={SVG_WIDTH * 0.2} y={SVG_HEIGHT * 0.75} />
-                              <Dam level={levels[6]} label="KL Sholayar" x={SVG_WIDTH * 0.5} y={SVG_HEIGHT * 0.35} />
-                              <Dam level={levels[7]} label="Poringalkuthu" x={SVG_WIDTH * 0.8} y={SVG_HEIGHT * 0.75} />
+                              <Dam level={levels[0]} label={`Upper Nirar (Storage: ${storageValues[0]}%, Spill: ${spillValues[0]})`} x={SVG_WIDTH * 0.07} y={SVG_HEIGHT * 0.05} />
+                              <Dam level={levels[1]} label={`Lower Nirar (Storage: ${storageValues[1]}%, Spill: ${spillValues[1]})`} x={SVG_WIDTH * 0.2} y={SVG_HEIGHT * 0.1} />
+                              <Dam level={levels[2]} label={`TN Sholayar (Storage: ${storageValues[2]}%, Spill: ${spillValues[2]})`} x={SVG_WIDTH * 0.15} y={SVG_HEIGHT * 0.27} />
+                              <Dam level={levels[3]} label={`Parambikulam (Storage: ${storageValues[3]}%, Spill: ${spillValues[3]})`} x={SVG_WIDTH * 0.2} y={SVG_HEIGHT * 0.45} />
+                              <Dam level={levels[4]} label={`Thunacadavu (Storage: ${storageValues[4]}%, Spill: ${spillValues[4]})`} x={SVG_WIDTH * 0.25} y={SVG_HEIGHT * 0.6}/>
+                              <Dam level={levels[5]} label={`Peruvarippalam (Storage: ${storageValues[5]}%, Spill: ${spillValues[5]})`} x={SVG_WIDTH * 0.2} y={SVG_HEIGHT * 0.75} />
+                              <Dam level={levels[6]} label={`KL Sholayar (Storage: ${storageValues[6]}%, Spill: ${spillValues[6]})`} x={SVG_WIDTH * 0.5} y={SVG_HEIGHT * 0.35} />
+                              <Dam level={levels[7]} label={`Poringalkuthu (Storage: ${storageValues[7]}%, Spill: ${spillValues[7]})`} x={SVG_WIDTH * 0.8} y={SVG_HEIGHT * 0.75} />
 
                               {/* Render arrows */}
                               <Arrow x1="10%" y1="15%" x2="17%" y2="26.5%" visible={visibleArrows[0]} />
