@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSprings, useSpring, animated } from 'react-spring';
 import Grid from '@mui/material/Grid2';
 import { Card, CardContent, Typography, ThemeProvider, Button, TextField, styled } from '@mui/material';
+import Close from '@mui/icons-material/Close';
 import theme from "../theme";
 import { useNavigate } from 'react-router-dom';
 import Papa from 'papaparse';
@@ -224,6 +225,10 @@ const ForecastScreen: React.FC = () => {
   const [levels, setLevels] = useState([80, 80, 70, 80, 80, 75, 78, 68]);
   const [visibleArrows, setVisibleArrows] = useState([false, false, false, false, false, false, false]);
   const [showResults, setShowResults] = useState(false);
+
+  const handleCloseResults = () => {
+   setShowResults(false); // Close the results overlay
+  };
   
   // IRM Data variables
   const [damData, setDamData] = useState<DamData[]>([]);
@@ -324,9 +329,9 @@ const ForecastScreen: React.FC = () => {
   }, []);
 
 
-const RUNOFF_COEFFICIENT = 1;
+  const RUNOFF_COEFFICIENT = 1;
 
-const updateStorageAndSpill = (
+  const updateStorageAndSpill = (
   adjacencyList: Map<string, string[]>,
   propertiesData: Map<string, DamProperties>, 
   spillDict: Map<string, string[]>, 
@@ -471,7 +476,7 @@ const updateStorageAndSpill = (
   }
   console.log('\n');
   return updatedProperties;
-};
+  };
 
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -484,20 +489,20 @@ const updateStorageAndSpill = (
     const inputRunoffStorage: Record<string, InputRunoffStorage> = {};
     runoffValues.forEach((runoff, index) => {
       inputRunoffStorage[`Dam ${index + 1}`] = {
-      input_runoff: runoff,
+      input_runoff: runoff[index],
       storage_pct: storageValues[index],
       };
     });
-    
-    const adjacencyList = new Map<string, string[]>();
-    const propertiesData = new Map<string, DamProperties>();
-    const spillDict = new Map<string, string[]>();
-    const integrationDict: Record<string, string[]> = {};
-    
+
+    if(!adjacencyList || !propertiesData || !spillData) {
+      console.error("Req. dam data is missing for calculations");
+      return;
+    }
+  
     const updatedDamProperties = updateStorageAndSpill(
       adjacencyList,
       propertiesData,
-      spillDict,
+      spillData,
       inputRunoffStorage,
       integrationDict
     );
@@ -534,8 +539,8 @@ const updateStorageAndSpill = (
 
   };
 
-  const [runoffValues, setRunoffValues] = useState(Array(8).fill(200)); 
-  const [storageValues, setStorageValues] = useState(Array(8).fill(50)); // Default storage percentages
+  const [runoffValues, setRunoffValues] = useState(Array(8).fill(100)); 
+  const [storageValues, setStorageValues] = useState(Array(8).fill(80)); // Default storage percentages
 
   const handleRunoffChange = (index: number, value: number) => {
       const newRunoffValues = [...runoffValues];
@@ -564,7 +569,7 @@ const updateStorageAndSpill = (
             position: 'relative', 
             background: 'radial-gradient(circle at 100% 1%, #283ADE 10%, #61B3FF 69%, #A1C7F1 85%, #E1EFFE 99%)', 
             borderRadius: 15, 
-            overflow: 'hidden',
+            overflow: 'auto',
           }}
         >
           <ThemeProvider theme={theme}>
@@ -587,7 +592,7 @@ const updateStorageAndSpill = (
                     Welcome to  <br />Forecast.
                   </Typography>
                   <Typography sx={{ color: 'white', fontSize: 20, fontWeight: '500' }} style={{ paddingBottom: 10 }}>
-                    How this works
+                    How it works
                   </Typography>
                   <Typography sx={{ color: 'white', fontSize: 16, fontWeight: '300', wordBreak: 'break-word', whiteSpace: 'normal', lineHeight: '22px' }}>
                     Input a predicted rainfall value for tomorrow in your region. <br /><br />
@@ -621,9 +626,9 @@ const updateStorageAndSpill = (
                                 required
                                 variant="outlined"
                                 id="validation-outlined-input"
-                                value={runoffValues}
+                                value={runoffValues[index]}
                                 onChange={(e) => handleRunoffChange(index, Number(e.target.value))}
-                                /> <br /> <br />
+                                /> 
                                 <ValidationTextField
                                 type='number'
                                 style={{ marginTop: 20, marginLeft: 10 }}
@@ -633,14 +638,14 @@ const updateStorageAndSpill = (
                                 id="validation-outlined-input"
                                 value={storageValues[index]}
                                 onChange={(e) => handleStorageChange(index, Number(e.target.value))}
-                                /> <br /> <br />
+                                /> <br /> 
                               {/* <Typography sx={{ fontSize: '10px', fontWeight: '200', opacity: '80%', marginLeft: 2 }}>
                                 Rainfall value must be between the ranges of X to Y, <br />
                                 in accordance with daily occurring data.<br /> <br />
                               </Typography> */}
                             </div>
                            ))}
-                          </div>
+                          </div> <br/>
                           <Button
                             style={{ marginLeft: 10 }}
                             onClick={handleSimulate}
@@ -712,7 +717,17 @@ const updateStorageAndSpill = (
                     >
                       <Card sx={{ width: '50%', padding: 2 }}>
                         <CardContent>
-                          <Typography sx={{ fontSize: 24, fontWeight: '400' }}>Results</Typography>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <Typography sx={{ fontSize: 24, fontWeight: '400' }}>Results</Typography>
+                            <Close 
+                              onClick={handleCloseResults} 
+                              style={{ 
+                                cursor: 'pointer', 
+                                color: 'gray',
+                                marginBottom: 5,
+                              }}
+                              />
+                            </div>
                           <Typography sx={{ fontSize: 18, marginTop: 1, fontWeight: '300'}}>
                             Forecasted River water Level: <span style={{ fontWeight: '500'}}> 12m </span>
                           </Typography>

@@ -32,7 +32,7 @@ const LayersComponent: React.FC<LayersProps> = ({ visibleGauges, toggleGauge, on
       <div className={`flex flex-col w-full pb-4 ${isCollapsed ? "rounded-[18px] bg-opacity-90" : "rounded-3xl bg-opacity-80"} bg-zinc-900`}>
         <header className={`flex flex-col pt-3.5 w-full ${isCollapsed ? "bg-transparent" : "rounded-[22px_22px_1px_1px] bg-zinc-800 bg-opacity-80 shadow-[0px_2px_5px_rgba(0,0,0,0.1)]"}`}>
           <div className="flex items-center justify-between">
-            <div className="pl-5 text-base font-semibold leading-none">
+            <div className="pl-5 text-base font-inter font-[500] leading-none">
               Layers
             </div>
             <div className="flex pr-4 items-center gap-1">

@@ -30,7 +30,7 @@ const SliderWidget: React.FC = () => {
         justifyContent: 'center',
         width: '300px',
         height: '80px',
-        borderRadius: '8px',
+        borderRadius: '12px',
         backgroundColor: 'rgb(24,24,27,0.99)',
         paddingTop: '5px',
         paddingBottom: '5px',

@@ -83,7 +83,7 @@ const ImpactAnalytics: React.FC = () => {
   
   return (
     <ThemeProvider theme={theme}>
-      <div className="monitor-screen overflow-hidden rounded-[15px] w-full h-full mx-auto relative bg-slate-200">  
+      <div className="monitor-screen overflow-auto rounded-[15px] w-full h-full mx-auto relative bg-slate-200">  
         <Grid 
           container 
           spacing={1} 
@@ -285,6 +285,7 @@ const ImpactAnalytics: React.FC = () => {
                         backgroundColor: selectedView === 'Roads' ? '#000' : 'transparent',
                         cursor: 'pointer',
                         minHeight: '150px',
+                        marginBottom: -2,
                     }}
                       onClick={() => handleCardClick('Roads')}
                       >
