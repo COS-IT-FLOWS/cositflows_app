@@ -6,11 +6,11 @@ import { useConfig } from '../../ConfigContext';
 // import configData from "../../config.json";
 import * as maptilersdk from '@maptiler/sdk';
 import "@maptiler/sdk/dist/maptiler-sdk.css";
-import {addPointSource, addPointLayer, addCustomMarkerForPointLayer, togglePointLayers, cursorToPointerOnHover,  handleClickOnLayer }  from '../Layers/PointLayer';
-import { addBoundarySource, addBoundaryLayer, removeBoundaryLayer, getIntersectingPolygons } from '../Layers/PolygonLayer';
+import {addPointSource, addPointLayer, addCustomMarkerForPointLayer, togglePointLayers, cursorToPointerOnHover,  handleClickOnLayer }  from '../../layers/PointLayer';
+import { addBoundarySource, addBoundaryLayer, removeBoundaryLayer, getIntersectingPolygons } from '../../layers/PolygonLayer';
 import { LogoControl, NavigationControl } from '@maptiler/sdk';
 import { AddCircleOutlineSharp } from '@mui/icons-material';
-import { generateCustomMarker, incrementState } from '../Layers/misc';
+import { generateCustomMarker, incrementState } from '../../layers/misc';
 
 interface MonitoringMapComponentProps {
     visibleGauges: {

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import HighlightComponent from "../BasinHighlights/HighlightComponent";
 import ButtonComponent from "../LevelNav/ImpactButtons";
 import ImpactMapComponent from "../Maps/ImpactMapComponent";
-import { addBoundaryLayer, removeBoundaryLayer } from "../Layers/PolygonLayer";
+import { addBoundaryLayer, removeBoundaryLayer } from "../../layers/PolygonLayer";
 import population from "../Maps/population.png";
 import households from "../Maps/dash_buldings_map.jpg";
 import agriculture from "../Maps/LULC.png";
@@ -21,17 +21,17 @@ const ImpactScreen: React.FC = () => {
   
   return (
     <div className="monitor-screen w-full h-full relative bg-white flex flex-col rounded-[15px] overflow-hidden">
-      {/* <div className="absolute w-full h-full rounded-[15px] overflow-hidden">
+      <div className="absolute w-full h-full rounded-[15px] overflow-hidden">
         <ImpactMapComponent
           selectedMap = {selectedMap}
         />
-      </div> */}
-      <div className="absolute w-full h-full rounded-[15px] overflow-hidden">
+      </div>
+      {/* <div className="absolute w-full h-full rounded-[15px] overflow-hidden">
         {selectedMap === 'flood-inundation' && <img src={floodInundation} alt="Flood Inundation" className="w-full h-full object-cover"/>}
         {selectedMap === 'population' && <img src={population} alt=" " className="w-full h-full object-cover"/>}
         {selectedMap === 'households' && <img src={households} alt=" " className="w-full h-full object-cover"/>}
         {selectedMap === 'agriculture' && <img src={agriculture} alt=" " className="w-full h-full object-cover"/>}
-      </div>
+      </div> */}
 
       <div style={{ position: "absolute", top: "0px", left: "0px"}}>
         <ButtonComponent setSelectedMap={setSelectedMap}/>

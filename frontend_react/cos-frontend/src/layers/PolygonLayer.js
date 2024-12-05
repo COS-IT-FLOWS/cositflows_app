@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import maplibregl from 'maplibre-gl';
-import { useConfig } from '../../ConfigContext';
+import { useConfig } from '../ConfigContext';
 import * as turf from '@turf/turf';
 import { Sort, Visibility } from '@mui/icons-material';
 import { centerLatLngFromFeature, generateCustomMarker, incrementState } from './misc';
@@ -91,5 +91,14 @@ async function getIntersectingPolygons(map, sourceType, polygon, config) {
     intersectingLayer = turf.featureCollection(intersectingFeatures);
     return intersectingLayer;
 }
+
+// function addBoundaryLayerLocal(map, layer) {
+
+//     const file = 
+//     const reader = function (thisFile) 
+//     const layerData = JSON.parse()
+
+
+// }
 
 export { addBoundarySource, addBoundaryLayer, removeBoundaryLayer, getIntersectingPolygons };

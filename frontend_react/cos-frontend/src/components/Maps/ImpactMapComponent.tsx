@@ -5,7 +5,7 @@ import '../styles.css';
 import { useConfig } from "../../ConfigContext";
 import * as maptilersdk from '@maptiler/sdk';
 import "@maptiler/sdk/dist/maptiler-sdk.css";
-import { addBoundaryLayer, addBoundarySource, removeBoundaryLayer } from '../Layers/PolygonLayer';
+import { addBoundaryLayer, addBoundarySource, removeBoundaryLayer } from '../../layers/PolygonLayer';
 
 interface ImpactMapComponentProps {
   selectedMap: string

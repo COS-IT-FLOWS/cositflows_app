@@ -17,7 +17,7 @@
             "PRECIPITATION": {
                 "LAYER_ID": "precipitation-station-layer",
                 "SOURCE_ID": "precipitation",
-                "URL": "https://api.maptiler.com/data/2c04ffe4-54f1-4367-bf6a-f15355d887e6/features.json?key=",
+                "URL": "https://api.maptiler.com/data/2c04ffe4-54f1-4367-bf6a-f15355d887e6/features.json?key=rOzi4RnlGlqlLc5ozKz4",
                 "COLOR": "#41f0d4",
                 "MARKER_ID": "precipitation-station-marker",
                 "MARKER_PATH": "https://res.cloudinary.com/dmjyqylzz/image/upload/v1726639729/precipitation_station_augzbc.svg"
