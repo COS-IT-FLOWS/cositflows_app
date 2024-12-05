@@ -25,7 +25,10 @@ const AlertCard: React.FC<AlertCardProps> = ({
   onClick,
 }) => {
   return (
-      <article className="flex flex-col font-semibold max-w-[174px] h-[90px] rounded-2xl bg-neutral-300 p-2"
+      <article className="flex flex-col font-inter max-w-[174px] h-[85px] rounded-2xl bg-zinc-900 bg-opacity-90 p-2"
+      // style={{
+      //   border: '0.1px solid rgba(255, 255, 255, 0.5)'
+      // }}
       onClick={onClick}
       >
         <div className="flex items-start">
@@ -34,7 +37,7 @@ const AlertCard: React.FC<AlertCardProps> = ({
           </div>
         </div>
 
-        <div className="flex gap-1.5 pl-1 space-x-1">
+        <div className="flex gap-0.5 pl-1 space-x-1">
           <div className="flex-none">
               <IntensityCard intensity={intensity} />
             </div>

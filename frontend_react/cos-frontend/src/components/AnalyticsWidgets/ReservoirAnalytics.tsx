@@ -260,7 +260,6 @@ const ReservoirAnalytics: React.FC = () => {
                               
                                 <Bar 
                                 dataKey="level" 
-                                fill='#00738c'
                                 >
                                   {data.map((entry, index) => (
                                     <Cell 
@@ -270,7 +269,7 @@ const ReservoirAnalytics: React.FC = () => {
                                      const rsvrData = getReservoirData(entry.Station_ID)
                                      setSelectedReservoir(rsvrData)
                                     }}
-                                    fill={entry.Station_ID === selectedReservoir?.Station_ID ? '#8EDCE6' : '#00738c'}
+                                    fill={entry.Station_ID === selectedReservoir?.Station_ID ? '#BFDBF7' : '#00A7E1'}
                                     />
                                     ))}
                                 </Bar>
@@ -359,7 +358,7 @@ const ReservoirAnalytics: React.FC = () => {
                         <Line 
                           type="monotone"
                           dataKey="Level(m)"
-                          stroke="#8EDCE6"
+                          stroke="#BFDBF7"
                           strokeWidth={1}
                           dot={false}
                         />
@@ -384,7 +383,7 @@ const ReservoirAnalytics: React.FC = () => {
                         <Line 
                           type="monotone"
                           dataKey="Storage_Percent(%)"
-                          stroke="#8EDCE6"
+                          stroke="#BFDBF7"
                           strokeWidth={1}
                           dot={false}
                         />

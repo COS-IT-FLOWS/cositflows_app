@@ -80,7 +80,7 @@ const MyComponent: React.FC<AlertWidget> = ({visibleAlerts, OnClose}) => {
       )}
 
         {showOverlay && selectedAlert && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30">
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
                 <AlertOverlay
                     alertType={selectedAlert.alertType}
                     date={selectedAlert.date}
