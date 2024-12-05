@@ -27,8 +27,8 @@ const LightningAlert: React.FC<LightningAlertProps> = ({
   onClose,
 }) => {
   return (
-    <section className="flex flex-col font-inter max-w-[299px] text-neutral-600">
-      <div className="flex flex-col p-3.5 w-full rounded-3xl bg-stone-300">
+    <section className="flex flex-col text-zinc-900 font-inter max-w-[299px]">
+      <div className="flex flex-col p-3.5 w-full rounded-3xl bg-zinc-900 bg-opacity-90">
         <AlertHeader alertType={alertType} onClose={onClose}/>
         <AlertInfo date={date} time={time} issuer={issuer} /> 
         <div className="flex gap-2 mt-1.5">

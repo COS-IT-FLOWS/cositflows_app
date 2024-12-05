@@ -170,11 +170,11 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                       <Typography variant="h5">
                         {`Today's Rainfall`}
                       </Typography>
-                      <Grid container spacing={1}>
+                      <Grid container spacing={1} >
                         {/* Bar Chart - Rechart */}
-                        <Grid size={{xs: 12, md: 8}} > 
+                        <Grid size={{xs: 12, md: 8}} sx={{ display: 'flex', flexDirection:'column', alignItems: 'flex-start'}}> 
                           <Typography>Rainfall in Basin Gauges Today</Typography>
-                          <ResponsiveContainer width="102%" height={250} style={{ marginLeft: -35, marginTop: 10 }}>
+                          <ResponsiveContainer width="100%" height={250} style={{ marginLeft: -35}}>
                             <BarChart data={data}>
                               {/* <XAxis dataKey="name" /> */}
                               <YAxis
@@ -183,12 +183,6 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                                 tickLine={false}
                                 tick={{ fill: '#E4F7F2', fontSize: 12 }}
                                 axisLine={false}
-                                // tickSize={10}
-                                // interval={0}
-                                // tickFormatter={(value) => `${value} mm`}
-                                // tickCount={3}
-                                // minTickGap={10}
-                                // padding={{ top: 10, bottom: 10 }}
                               />
                               {ticks.map(tick => (
                                 <ReferenceLine key={tick} y={tick} stroke="#E4F7F2"  strokeOpacity="50%" strokeDasharray="5 5" />
@@ -197,7 +191,7 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                               {/* <Legend /> */}
                               <Bar dataKey="rainfall" >
                                 {data.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill="#00738c" />
+                                <Cell key={`cell-${index}`} fill="#00A7E1" />
                               ))}
                               </Bar>
                             </BarChart>
@@ -211,47 +205,50 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                         size={{xs: 12, md: 4}} 
                         container 
                         direction="column" 
-                        spacing={2}
+                        spacing={0}
                         sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}
                         >
-                              <Grid size={{xs:12}} sx={{ marginBottom: -1.5}} >
+                              <Grid size={{xs:12}}>
                                 <Card sx={{
-                                  height: '100%',
+                                  height: '90%',
                                   background: '#000',
                                   opacity: '95%',
                                   color: '#fff',
                                   boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)',
-                                  marginBottom: -1,
+                                  border: '0.5px solid rgba(97, 179, 255, 0.5)',
+                                  // marginBottom: -1,
                                 }}>
                                   <CardContent>
-                                    <Typography variant='h6' sx={{ fontSize: 12, fontWeight: 300, lineHeight:'15px' }}>Today's Max Rainfall</Typography>
+                                    <Typography variant='h6' sx={{ fontSize: 12, fontWeight: 300, lineHeight:'15px', whiteSpace: 'nowrap' }}>Today's Max Rainfall</Typography>
                                     <Typography variant='body1' sx={{ fontSize: 32}}>{maxRainfall}<span style={{ fontSize: 14, marginLeft: -2  }}> mm</span></Typography>
                                   </CardContent>
                                 </Card>
                             </Grid>
-                            <Grid size={{xs: 12}} sx={{ marginBottom: -1.5}}>
+                            <Grid size={{xs: 12}}>
                               <Card sx={{
-                                height: '100%',
+                                height: '90%',
                                 background: '#000',
                                 opacity: '95%',
                                 color: '#fff',
                                 boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)',
-                                marginBottom: -1,
+                                border: '0.5px solid rgba(97, 179, 255, 0.5)',
+                                // marginBottom: -1,
                               }}>
                                 <CardContent>
-                                  <Typography variant='h6' sx={{ fontSize: 12, fontWeight: 300,lineHeight:'15px'}}>Today's Avg Rainfall</Typography>
+                                  <Typography variant='h6' sx={{ fontSize: 12, fontWeight: 300, lineHeight:'15px', whiteSpace: 'nowrap'}}>Today's Avg Rainfall</Typography>
                                   <Typography variant='body1' sx={{ fontSize: 32}}>{avgRainfall.toFixed(2)}<span style={{ fontSize: 14, marginLeft: -2 }}> mm</span></Typography>
                                 </CardContent>
                               </Card>
                             </Grid>
                             <Grid size={{xs: 12}}>
                               <Card sx={{
-                                height: '100%',
+                                height: '90%',
                                 background: '#000',
                                 opacity: '95%',
                                 color: '#fff',
                                 boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)',
-                                marginBottom: -1,
+                                border: '0.5px solid rgba(97, 179, 255, 0.5)',
+                                // marginBottom: -1,
                               }}>
                                 <CardContent>
                                   <Typography variant='h6' sx={{ fontSize: 12, fontWeight: 300,lineHeight:'15px'}}>No. of Gauges</Typography>
@@ -289,7 +286,7 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
               <Grid size={{ xs:12 }} sx={{ height: '70%' }}>
                 <Card sx={{ height: '100%' }}>
                   <CardContent>Cumulative Rainfall in Basin</CardContent>
-                  <ResponsiveContainer width="99%" height={200} style={{ marginLeft: -25 }}>
+                  <ResponsiveContainer width="100%" height={200} style={{ marginLeft: -25 }}>
                         <LineChart data={cumulativeData}>
                           <XAxis 
                           dataKey="date" 
@@ -311,7 +308,7 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                            {/* {ticks.map(tick => (
                             <ReferenceLine key={tick} y={tick} stroke="#E4F7F2" strokeOpacity="50%" strokeDasharray="3 3" />
                           ))} */}
-                          <Tooltip/>
+                          {/* <Tooltip/> */}
                           {/* <Legend /> */}
                           {Object.keys(cumulativeData[0] || {})
                             .filter((key) => key !== 'date') // Filter out the 'date' key to only get gauge names
@@ -331,7 +328,7 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                               dataKey={Object.keys(cumulativeData[0] || {}).filter(key => key !== 'date')[0]}
                               strokeWidth={2}
                               dot={false}
-                              stroke="#8EDCE6"
+                              stroke="#99E6FF"
                               />
                         </LineChart>
                       </ResponsiveContainer>
@@ -386,6 +383,7 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                             <Card sx={{
                               height: '90%',
                               background: '#000',
+                              border: '0.5px solid rgba(97, 179, 255, 0.5)',
                               opacity: '95%',
                               color: '#fff',
                               boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)'
@@ -400,6 +398,7 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                           <Card sx={{
                             height: '90%',
                             background: '#000',
+                            border: '0.5px solid rgba(97, 179, 255, 0.5)',
                             opacity: '95%',
                             color: '#fff',
                             boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)'
@@ -414,6 +413,7 @@ const CustomTooltip = ({ active, payload }: { active: boolean; payload: any}) =>
                           <Card sx={{
                             height: '90%',
                             background: '#000',
+                            border: '0.5px solid rgba(97, 179, 255, 0.5)',
                             opacity: '95%',
                             color: '#fff',
                             boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.3)'

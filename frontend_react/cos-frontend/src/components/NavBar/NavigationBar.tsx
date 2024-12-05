@@ -3,6 +3,8 @@ import WidgetSelector from "./WidgetSelector";
 import LocationSelector from "./LocationSelector";
 import Avatar from "@mui/material/Avatar";
 import { Link } from "react-router-dom";
+import { IconButton } from "@mui/material";
+import { Person } from "@mui/icons-material";
 
 interface NavigationBarProps {
   activeControl: string;
@@ -59,11 +61,21 @@ const NavigationBar: React.FC<NavigationBarProps> = ({
           )}
         </div>
         <LocationSelector />
-        <Avatar 
-          sx={{bgcolor: "#00738c", width: 35, height:35}} 
-          alt="Apple Doe" 
-          src="/broken-image.jpg"
-        />
+        <IconButton
+          aria-label={'user'}
+          // size="large"
+          sx={{
+            width: '35px',
+            height: '35px',
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            border: '0.5px solid rgba(97, 179, 255, 0.5)',
+            color: '#61B3FF',
+            borderRadius: '50%',
+            padding: '10px',
+          }}
+        >
+         <Person sx={{color: '#fff'}}/>
+        </IconButton>
       </div>
     </header>
   );

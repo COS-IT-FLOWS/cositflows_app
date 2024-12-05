@@ -1,6 +1,7 @@
 import React from "react";
-import lightning_icon from "../lightning_icon.svg";
 import Close from "@mui/icons-material/Close";
+import { Bolt } from "@mui/icons-material";
+import { Typography } from "@mui/material";
 
 interface AlertHeaderProps {
   alertType: string;
@@ -9,14 +10,15 @@ interface AlertHeaderProps {
 
 const AlertHeader: React.FC<AlertHeaderProps> = ({alertType, onClose}) => {
   return (
-    <header className="flex gap-5 justify-between w-full text-xl leading-none text-neutral-700">
-      <div className="flex gap-1.5">
-        <h1 className="grow my-auto">{alertType}</h1>
-        <img
-          loading="lazy"
-          src={lightning_icon}
-          className="object-contain shrink-0 aspect-square w-[30px]"
-          alt=""
+    <header className="flex gap-5 justify-between w-full text-xl leading-none text-white">
+      <div className="flex">
+        <Typography style={{fontSize:20, fontWeight: 500}}>{alertType}</Typography>
+        <Bolt
+        sx={{
+          color: 'white',
+          width: '20px',
+          height: '25px'
+        }}
         />
       </div>
       <Close

@@ -36,7 +36,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: '#18181b', // default background
-          opacity: '95%',
+          opacity: '98%',
           border: '0.1px solid rgba(255, 255, 255, 0.3)',
           color: '#ffffff', // default text color
           fontFamily: 'Inter',
@@ -71,7 +71,7 @@ const theme = createTheme({
           fontFamily: 'Inter',
           fontWeight: 300,
           fontSize: '14px',
-          borderRadius: '12px',
+          borderRadius: '5px',
         },
       },
     },
@@ -83,7 +83,7 @@ const theme = createTheme({
           padding: '4px 8px',
           color: '#ffffff', // default text color
           fontFamily: 'Inter',
-          borderRadius: '4px',
+          borderRadius: '5px',
           '& .MuiBreadCrumb-ol':{
             flexWrap: 'nowrap',
             justifyContent: 'space-between',
@@ -111,6 +111,14 @@ const theme = createTheme({
         },
       },
     },
+    MuiButtonGroup: {
+      styleOverrides: {
+        root: {
+          fontFamily: 'Inter',
+          borderRadius: '10px',
+        },
+      },
+    },
     MuiInputBase: {
       styleOverrides: {
         input: {
@@ -132,6 +140,9 @@ const theme = createTheme({
           '& .MuiSelect-select': {
             padding: '0 14px',
           },
+          '& .MuiOutlinedInput-notchedOutline': {
+            border: 'none', // Remove the default outline
+         },
         }
       }
     },
