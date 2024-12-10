@@ -32,3 +32,6 @@ yarn-error.log*
 # Ignore js libraries
 /**/*/node_modules
 /node_modules
+
+# Ignore shapefiles
+/public/shapefiles
