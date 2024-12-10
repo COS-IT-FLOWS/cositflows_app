@@ -8,10 +8,10 @@ import { addBoundaryLayer, removeBoundaryLayer, getIntersectingPolygons } from '
 
 
 function addPointSource(map, sourceType, config) {
-    const apiKey = config.MAPTILER_API_KEY;
+    // const apiKey = config.MAPTILER_API_KEY;
     const sourceConfigData = config.LAYERS.STATION[sourceType];
     const sourceId = sourceConfigData.SOURCE_ID;
-    const url = sourceConfigData.URL + apiKey;
+    const url = sourceConfigData.URL;
 
     map.addSource(sourceId, {
         type: 'geojson',

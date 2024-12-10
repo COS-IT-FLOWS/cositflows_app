@@ -3,10 +3,6 @@ import HighlightComponent from "../BasinHighlights/HighlightComponent";
 import ButtonComponent from "../LevelNav/ImpactButtons";
 import ImpactMapComponent from "../Maps/ImpactMapComponent";
 import { addBoundaryLayer, removeBoundaryLayer } from "../../layers/PolygonLayer";
-import population from "../Maps/population.png";
-import households from "../Maps/dash_buldings_map.jpg";
-import agriculture from "../Maps/LULC.png";
-import floodInundation from "../Maps/flood_inundated area.png";
 import Slider from "../SliderWidget/Slider";
 
 

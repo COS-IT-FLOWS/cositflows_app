@@ -12,7 +12,7 @@ function addBoundarySource(map, sourceType, config) {
     const apiKey = config.MAPTILER_API_KEY;
     let sourceConfigData = config.LAYERS.BOUNDARY[sourceType];
     let sourceId = sourceConfigData.SOURCE_ID;
-    const url = sourceConfigData.URL + apiKey;
+    const url = sourceConfigData.URL;
       
     map.addSource(sourceId, {
         type: 'geojson',
@@ -92,13 +92,39 @@ async function getIntersectingPolygons(map, sourceType, polygon, config) {
     return intersectingLayer;
 }
 
-// function addBoundaryLayerLocal(map, layer) {
+async function addBoundaryLayerLocal(map, layer, configData) {
+    const config = configData.LAYERS.IMPACT[layer];
+    // console.log(config);
 
-//     const file = 
-//     const reader = function (thisFile) 
-//     const layerData = JSON.parse()
+    const loadGeoJSON = async () => {
+        const fileUrl = config.URL;
+        console.log(fileUrl);
 
+        try {
+            const response = await fetch(fileUrl);
+            const geoJSONContent = await response.json();
 
-// }
+            map.addSource(config.SOURCE_ID, {
+                'type': 'geojson',
+                'data': geoJSONContent
+            })
 
-export { addBoundarySource, addBoundaryLayer, removeBoundaryLayer, getIntersectingPolygons };
+            map.addLayer({
+                'id': config.LAYER_ID,
+                'type': 'line',
+                'source': config.SOURCE_ID,
+                paint: {
+                    'line-color': config.COLOR,
+                    // 'fill-outline-color': config.OUTLINE_COLOR,
+                    // 'fill-opacity': 0.8
+                }
+            });
+        } catch (error) {
+            console.error('Error fetching or parsing GeoJSON', error);
+        }
+    }
+
+    loadGeoJSON();
+}
+
+export { addBoundarySource, addBoundaryLayer, removeBoundaryLayer, getIntersectingPolygons, addBoundaryLayerLocal };

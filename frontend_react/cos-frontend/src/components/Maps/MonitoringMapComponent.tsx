@@ -7,7 +7,7 @@ import { useConfig } from '../../ConfigContext';
 import * as maptilersdk from '@maptiler/sdk';
 import "@maptiler/sdk/dist/maptiler-sdk.css";
 import {addPointSource, addPointLayer, addCustomMarkerForPointLayer, togglePointLayers, cursorToPointerOnHover,  handleClickOnLayer }  from '../../layers/PointLayer';
-import { addBoundarySource, addBoundaryLayer, removeBoundaryLayer, getIntersectingPolygons } from '../../layers/PolygonLayer';
+import { addBoundarySource, addBoundaryLayer, removeBoundaryLayer, getIntersectingPolygons, addBoundaryLayerLocal } from '../../layers/PolygonLayer';
 import { LogoControl, NavigationControl } from '@maptiler/sdk';
 import { AddCircleOutlineSharp } from '@mui/icons-material';
 import { generateCustomMarker, incrementState } from '../../layers/misc';
@@ -46,7 +46,7 @@ const MonitoringMapComponent: React.FC<MonitoringMapComponentProps> = React.memo
   const lat = config.MAP_CONFIG.LAT;
   const zoom = config.MAP_CONFIG.ZOOM;
   const API_KEY = config.MAPTILER_API_KEY;
-  const mapStyleUrl = config.MAPS.MONITORING + API_KEY;
+  const mapStyleUrl = config.MAPS.MONITORING;
 
   // if (map.current) return; // stops map from intializing more than once
   useEffect(() => { 
@@ -65,6 +65,7 @@ const MonitoringMapComponent: React.FC<MonitoringMapComponentProps> = React.memo
         addBoundarySource(map, 'DISTRICT', config);
         addBoundarySource(map, 'RIVER_BASIN', config);
         addBoundarySource(map, 'PANCHAYAT', config);
+        // addBoundaryLayerLocal(map, 'PANCHAYAT', config);
 
         // // Add Point layer sources to map
         addPointSource(map, 'PRECIPITATION', config);

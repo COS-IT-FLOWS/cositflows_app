@@ -5,7 +5,7 @@ import '../styles.css';
 import { useConfig } from "../../ConfigContext";
 import * as maptilersdk from '@maptiler/sdk';
 import "@maptiler/sdk/dist/maptiler-sdk.css";
-import { addBoundaryLayer, addBoundarySource, removeBoundaryLayer } from '../../layers/PolygonLayer';
+import { addBoundaryLayer, addBoundaryLayerLocal, addBoundarySource, removeBoundaryLayer } from '../../layers/PolygonLayer';
 
 interface ImpactMapComponentProps {
   selectedMap: string
@@ -23,26 +23,26 @@ const ImpactMapComponent: React.FC<ImpactMapComponentProps> = () => {
   const lat = config.MAP_CONFIG.LAT;
   const zoom = config.MAP_CONFIG.ZOOM;
   const API_KEY = config.MAPTILER_API_KEY;
-  const mapStyleUrl = config.MAPS.IMPACT + API_KEY;
+  const mapStyleUrl = config.MAPS.IMPACT;
   const [currentFeatureLayerId, setCurrentFeatureLayerId] = useState<string | null>(null);
 
-  useEffect(() => { 
+  useEffect(() => {   
     if (mapContainer.current) {
       const map = new maplibregl.Map({
         container: mapContainer.current,
         style: mapStyleUrl,
         center: [lng, lat],
-        zoom: zoom,
+        zoom: 15,
       });   
 
       map.on('load', async () => {
         setMap(map);
 
         // Add boundary sources
-        addBoundarySource(map, 'households', config);
+        // addBoundarySource(map, 'roads', config);
         // addBoundarySource(map, 'population', config);
         // addBoundarySource(map, 'P', config);
-        addBoundaryLayer(map, 'households', null, config);
+        addBoundaryLayerLocal(map, 'ROADS', config);
 
       });
 
