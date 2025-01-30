@@ -6,7 +6,8 @@
 .pnp.js
 
 # testing
-/coverage
+/coverage/**/*
+!/coverage/cobertura-coverage.xml
 
 # production
 /build
@@ -28,3 +29,4 @@ yarn-error.log*
 **/*/config_backup.json
 **/*/secrets.json
 .env
+

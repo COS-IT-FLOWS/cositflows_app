@@ -4,6 +4,7 @@ module.exports = {
     "^.+\\.tsx?$": "ts-jest",
     '^.+\\.jsx?$': 'babel-jest', // Use ts-jest for TypeScript files
   },
+  coverageReporters: ["text", "cobertura"],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
   // ... other configurations ...
   setupFilesAfterEnv: ['./setupTests.ts'],
