@@ -21,7 +21,7 @@ jobs:
         id: coverage
         uses: irongut/CodeCoverageSummary@v1.3.0
         with:
-          filename: coverage/cobertura-coverage.xml
+          filename: frontend_react/cos-frontend/coverage/cobertura-coverage.xml
           output: file
           badge: true
           format: markdown
