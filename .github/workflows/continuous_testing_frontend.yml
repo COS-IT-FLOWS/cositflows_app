@@ -2,9 +2,9 @@ name: Run GAs on Standard Github Hosted Runner
 
 on:
   push:
-    branches: [main, testing]
+    branches: [production, testing]
   pull_request:
-    branches: [main, testing]
+    branches: [production, testing]
     
 jobs:
   build:
