@@ -1,10 +1,15 @@
 <?xml version="1.0" ?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
+<<<<<<< HEAD
 <coverage lines-valid="118" lines-covered="107" line-rate="0.9067000000000001" branches-valid="67" branches-covered="62" branch-rate="0.9253" timestamp="1738224930096" complexity="0" version="0.1">
+=======
+<coverage lines-valid="840" lines-covered="706" line-rate="0.8404" branches-valid="258" branches-covered="175" branch-rate="0.6781999999999999" timestamp="1739952179819" complexity="0" version="0.1">
+>>>>>>> testing
   <sources>
     <source>/home/equidev/Organisations/EQUINOCT/COS-IT-FLOWS/cositflows_app/frontend_react/cos-frontend</source>
   </sources>
   <packages>
+<<<<<<< HEAD
     <package name="components" line-rate="1" branch-rate="1">
       <classes>
         <class name="theme.ts" filename="src/components/theme.ts" line-rate="1" branch-rate="1">
@@ -14,10 +19,154 @@
             <line number="1" hits="2" branch="false"/>
             <line number="3" hits="2" branch="false"/>
             <line number="87" hits="2" branch="false"/>
+=======
+    <package name="src" line-rate="0.8031999999999999" branch-rate="1">
+      <classes>
+        <class name="App.tsx" filename="src/App.tsx" line-rate="0.9582999999999999" branch-rate="1">
+          <methods>
+            <method name="(anonymous_7)" hits="3" signature="()V">
+              <lines>
+                <line number="15" hits="3"/>
+              </lines>
+            </method>
+            <method name="(anonymous_8)" hits="3" signature="()V">
+              <lines>
+                <line number="18" hits="3"/>
+              </lines>
+            </method>
+            <method name="(anonymous_9)" hits="0" signature="()V">
+              <lines>
+                <line number="33" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_10)" hits="0" signature="()V">
+              <lines>
+                <line number="34" hits="0"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="2" hits="1" branch="false"/>
+            <line number="3" hits="1" branch="false"/>
+            <line number="4" hits="1" branch="false"/>
+            <line number="5" hits="1" branch="false"/>
+            <line number="6" hits="1" branch="false"/>
+            <line number="7" hits="1" branch="false"/>
+            <line number="8" hits="1" branch="false"/>
+            <line number="9" hits="1" branch="false"/>
+            <line number="10" hits="1" branch="false"/>
+            <line number="11" hits="1" branch="false"/>
+            <line number="12" hits="1" branch="false"/>
+            <line number="13" hits="1" branch="false"/>
+            <line number="15" hits="1" branch="false"/>
+            <line number="16" hits="3" branch="false"/>
+            <line number="18" hits="3" branch="false"/>
+            <line number="20" hits="3" branch="false"/>
+            <line number="21" hits="3" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="22" hits="3" branch="false"/>
+            <line number="24" hits="3" branch="false"/>
+            <line number="27" hits="3" branch="false"/>
+            <line number="33" hits="3" branch="false"/>
+            <line number="34" hits="0" branch="false"/>
+            <line number="40" hits="3" branch="false"/>
+            <line number="56" hits="1" branch="false"/>
+          </lines>
+        </class>
+        <class name="ConfigContext.tsx" filename="src/ConfigContext.tsx" line-rate="0.9229999999999999" branch-rate="1">
+          <methods>
+            <method name="(anonymous_7)" hits="1" signature="()V">
+              <lines>
+                <line number="10" hits="1"/>
+              </lines>
+            </method>
+            <method name="(anonymous_8)" hits="0" signature="()V">
+              <lines>
+                <line number="13" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_9)" hits="0" signature="()V">
+              <lines>
+                <line number="14" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_10)" hits="46" signature="()V">
+              <lines>
+                <line number="27" hits="46"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="2" hits="3" branch="false"/>
+            <line number="3" hits="3" branch="false"/>
+            <line number="5" hits="3" branch="false"/>
+            <line number="10" hits="3" branch="false"/>
+            <line number="11" hits="1" branch="false"/>
+            <line number="13" hits="1" branch="false"/>
+            <line number="14" hits="0" branch="false"/>
+            <line number="20" hits="1" branch="false"/>
+            <line number="27" hits="3" branch="false"/>
+            <line number="28" hits="46" branch="false"/>
+            <line number="29" hits="45" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="30" hits="44" branch="false"/>
+            <line number="32" hits="1" branch="false"/>
+          </lines>
+        </class>
+        <class name="MainLayout.tsx" filename="src/MainLayout.tsx" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_7)" hits="9" signature="()V">
+              <lines>
+                <line number="12" hits="9"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="2" branch="false"/>
+            <line number="2" hits="2" branch="false"/>
+            <line number="3" hits="2" branch="false"/>
+            <line number="4" hits="2" branch="false"/>
+            <line number="12" hits="2" branch="false"/>
+            <line number="13" hits="9" branch="false"/>
+            <line number="14" hits="9" branch="false"/>
+            <line number="15" hits="9" branch="false"/>
+            <line number="17" hits="9" branch="false"/>
+            <line number="43" hits="2" branch="false"/>
+          </lines>
+        </class>
+        <class name="WeatherIcon.tsx" filename="src/WeatherIcon.tsx" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="2" signature="()V">
+              <lines>
+                <line number="3" hits="2"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="1" branch="false"/>
+            <line number="3" hits="1" branch="false"/>
+            <line number="4" hits="2" branch="false"/>
+            <line number="11" hits="1" branch="false"/>
+          </lines>
+        </class>
+        <class name="index.tsx" filename="src/index.tsx" line-rate="0" branch-rate="1">
+          <methods>
+          </methods>
+          <lines>
+            <line number="3" hits="0" branch="false"/>
+            <line number="4" hits="0" branch="false"/>
+            <line number="5" hits="0" branch="false"/>
+            <line number="6" hits="0" branch="false"/>
+            <line number="7" hits="0" branch="false"/>
+            <line number="8" hits="0" branch="false"/>
+            <line number="9" hits="0" branch="false"/>
+            <line number="16" hits="0" branch="false"/>
+            <line number="17" hits="0" branch="false"/>
+            <line number="27" hits="0" branch="false"/>
+>>>>>>> testing
           </lines>
         </class>
       </classes>
     </package>
+<<<<<<< HEAD
     <package name="components.AnalyticsWidgets" line-rate="1" branch-rate="1">
       <classes>
         <class name="GroundWaterWidgets.tsx" filename="src/components/AnalyticsWidgets/GroundWaterWidgets.tsx" line-rate="1" branch-rate="1">
@@ -25,6 +174,973 @@
             <method name="(anonymous_7)" hits="1" signature="()V">
               <lines>
                 <line number="7" hits="1"/>
+=======
+    <package name="src.components.AlertWidget" line-rate="0.8965000000000001" branch-rate="0.7692">
+      <classes>
+        <class name="AlertWidget.tsx" filename="src/components/AlertWidget/AlertWidget.tsx" line-rate="0.8" branch-rate="0.625">
+          <methods>
+            <method name="(anonymous_7)" hits="26" signature="()V">
+              <lines>
+                <line number="26" hits="26"/>
+              </lines>
+            </method>
+            <method name="handleClick" hits="0" signature="()V">
+              <lines>
+                <line number="27" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_9)" hits="0" signature="()V">
+              <lines>
+                <line number="43" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_10)" hits="0" signature="()V">
+              <lines>
+                <line number="50" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_11)" hits="112" signature="()V">
+              <lines>
+                <line number="67" hits="112"/>
+              </lines>
+            </method>
+            <method name="(anonymous_12)" hits="3" signature="()V">
+              <lines>
+                <line number="77" hits="3"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="2" hits="4" branch="false"/>
+            <line number="3" hits="4" branch="false"/>
+            <line number="4" hits="4" branch="false"/>
+            <line number="5" hits="4" branch="false"/>
+            <line number="6" hits="4" branch="false"/>
+            <line number="7" hits="4" branch="false"/>
+            <line number="26" hits="4" branch="false"/>
+            <line number="28" hits="0" branch="false"/>
+            <line number="30" hits="26" branch="false"/>
+            <line number="33" hits="26" branch="false"/>
+            <line number="43" hits="0" branch="false"/>
+            <line number="50" hits="0" branch="false"/>
+            <line number="68" hits="112" branch="false"/>
+            <line number="77" hits="3" branch="false"/>
+            <line number="88" hits="4" branch="false"/>
+          </lines>
+        </class>
+        <class name="AlertWidgetComponent.tsx" filename="src/components/AlertWidget/AlertWidgetComponent.tsx" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_7)" hits="21" signature="()V">
+              <lines>
+                <line number="10" hits="21"/>
+              </lines>
+            </method>
+            <method name="(anonymous_8)" hits="2" signature="()V">
+              <lines>
+                <line number="62" hits="2"/>
+              </lines>
+            </method>
+            <method name="(anonymous_9)" hits="1" signature="()V">
+              <lines>
+                <line number="67" hits="1"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="3" branch="false"/>
+            <line number="2" hits="3" branch="false"/>
+            <line number="3" hits="3" branch="false"/>
+            <line number="10" hits="3" branch="false"/>
+            <line number="11" hits="21" branch="false"/>
+            <line number="12" hits="21" branch="false"/>
+            <line number="14" hits="21" branch="false"/>
+            <line number="62" hits="21" branch="false"/>
+            <line number="63" hits="2" branch="false"/>
+            <line number="64" hits="2" branch="false"/>
+            <line number="67" hits="21" branch="false"/>
+            <line number="68" hits="1" branch="false"/>
+            <line number="71" hits="21" branch="false"/>
+            <line number="100" hits="3" branch="false"/>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="src.components.AlertWidget.AlertCard" line-rate="1" branch-rate="1">
+      <classes>
+        <class name="AlertCard.tsx" filename="src/components/AlertWidget/AlertCard/AlertCard.tsx" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="112" signature="()V">
+              <lines>
+                <line number="17" hits="112"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="4" branch="false"/>
+            <line number="2" hits="4" branch="false"/>
+            <line number="3" hits="4" branch="false"/>
+            <line number="4" hits="4" branch="false"/>
+            <line number="17" hits="4" branch="false"/>
+            <line number="27" hits="112" branch="false"/>
+            <line number="58" hits="4" branch="false"/>
+          </lines>
+        </class>
+        <class name="AlertDetails.tsx" filename="src/components/AlertWidget/AlertCard/AlertDetails.tsx" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="112" signature="()V">
+              <lines>
+                <line number="11" hits="112"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="4" branch="false"/>
+            <line number="11" hits="4" branch="false"/>
+            <line number="18" hits="112" branch="false"/>
+            <line number="47" hits="4" branch="false"/>
+          </lines>
+        </class>
+        <class name="AlertHeader.tsx" filename="src/components/AlertWidget/AlertCard/AlertHeader.tsx" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="112" signature="()V">
+              <lines>
+                <line number="8" hits="112"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="4" branch="false"/>
+            <line number="2" hits="4" branch="false"/>
+            <line number="8" hits="4" branch="false"/>
+            <line number="9" hits="112" branch="false"/>
+            <line number="23" hits="4" branch="false"/>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="src.components.AlertWidget.AlertCard.IntensityCard" line-rate="0.9582999999999999" branch-rate="0.8332999999999999">
+      <classes>
+        <class name="IntensityCard.tsx" filename="src/components/AlertWidget/AlertCard/IntensityCard/IntensityCard.tsx" line-rate="0.9166" branch-rate="0.8332999999999999">
+          <methods>
+            <method name="GaugePointer" hits="116" signature="()V">
+              <lines>
+                <line number="14" hits="116"/>
+              </lines>
+            </method>
+            <method name="(anonymous_2)" hits="116" signature="()V">
+              <lines>
+                <line number="38" hits="116"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="5" branch="false"/>
+            <line number="2" hits="5" branch="false"/>
+            <line number="15" hits="116" branch="false"/>
+            <line number="17" hits="116" branch="true" condition-coverage="0% (0/1)"/>
+            <line number="19" hits="0" branch="false"/>
+            <line number="22" hits="116" branch="false"/>
+            <line number="26" hits="116" branch="false"/>
+            <line number="38" hits="5" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="39" hits="116" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="40" hits="116" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="42" hits="116" branch="false"/>
+            <line number="64" hits="5" branch="false"/>
+          </lines>
+        </class>
+        <class name="IntensityCardList.tsx" filename="src/components/AlertWidget/AlertCard/IntensityCard/IntensityCardList.tsx" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="3" signature="()V">
+              <lines>
+                <line number="12" hits="3"/>
+              </lines>
+            </method>
+            <method name="(anonymous_2)" hits="7" signature="()V">
+              <lines>
+                <line number="17" hits="7"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="1" branch="false"/>
+            <line number="2" hits="1" branch="false"/>
+            <line number="12" hits="1" branch="false"/>
+            <line number="15" hits="3" branch="false"/>
+            <line number="18" hits="7" branch="false"/>
+            <line number="27" hits="1" branch="false"/>
+          </lines>
+        </class>
+        <class name="IntensitySection.tsx" filename="src/components/AlertWidget/AlertCard/IntensityCard/IntensitySection.tsx" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="2" signature="()V">
+              <lines>
+                <line number="10" hits="2"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="1" branch="false"/>
+            <line number="2" hits="1" branch="false"/>
+            <line number="4" hits="1" branch="false"/>
+            <line number="10" hits="1" branch="false"/>
+            <line number="11" hits="2" branch="false"/>
+            <line number="18" hits="1" branch="false"/>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="src.components.AlertWidget.AlertCard.Overlay" line-rate="0.8332999999999999" branch-rate="1">
+      <classes>
+        <class name="LocationInfo.tsx" filename="src/components/AlertWidget/AlertCard/Overlay/LocationInfo.tsx" line-rate="0.8" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="0" signature="()V">
+              <lines>
+                <line number="8" hits="0"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="2" branch="false"/>
+            <line number="2" hits="2" branch="false"/>
+            <line number="8" hits="2" branch="false"/>
+            <line number="9" hits="0" branch="false"/>
+            <line number="22" hits="2" branch="false"/>
+          </lines>
+        </class>
+        <class name="OverlayCard.tsx" filename="src/components/AlertWidget/AlertCard/Overlay/OverlayCard.tsx" line-rate="0.8887999999999999" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="0" signature="()V">
+              <lines>
+                <line number="19" hits="0"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="2" branch="false"/>
+            <line number="2" hits="2" branch="false"/>
+            <line number="3" hits="2" branch="false"/>
+            <line number="4" hits="2" branch="false"/>
+            <line number="5" hits="2" branch="false"/>
+            <line number="6" hits="2" branch="false"/>
+            <line number="19" hits="2" branch="false"/>
+            <line number="29" hits="0" branch="false"/>
+            <line number="46" hits="2" branch="false"/>
+          </lines>
+        </class>
+        <class name="OverlayHeader.tsx" filename="src/components/AlertWidget/AlertCard/Overlay/OverlayHeader.tsx" line-rate="0.8571" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="0" signature="()V">
+              <lines>
+                <line number="11" hits="0"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="2" branch="false"/>
+            <line number="2" hits="2" branch="false"/>
+            <line number="3" hits="2" branch="false"/>
+            <line number="4" hits="2" branch="false"/>
+            <line number="11" hits="2" branch="false"/>
+            <line number="12" hits="0" branch="false"/>
+            <line number="32" hits="2" branch="false"/>
+          </lines>
+        </class>
+        <class name="OverlayInfo.tsx" filename="src/components/AlertWidget/AlertCard/Overlay/OverlayInfo.tsx" line-rate="0.75" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="0" signature="()V">
+              <lines>
+                <line number="9" hits="0"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="2" branch="false"/>
+            <line number="9" hits="2" branch="false"/>
+            <line number="10" hits="0" branch="false"/>
+            <line number="32" hits="2" branch="false"/>
+          </lines>
+        </class>
+        <class name="WarningInfo.tsx" filename="src/components/AlertWidget/AlertCard/Overlay/WarningInfo.tsx" line-rate="0.8" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="0" signature="()V">
+              <lines>
+                <line number="9" hits="0"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="2" branch="false"/>
+            <line number="2" hits="2" branch="false"/>
+            <line number="9" hits="2" branch="false"/>
+            <line number="10" hits="0" branch="false"/>
+            <line number="33" hits="2" branch="false"/>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="src.components.AnalyticsWidgets" line-rate="0.8928" branch-rate="0.8018000000000001">
+      <classes>
+        <class name="GroundWaterWidgets.tsx" filename="src/components/AnalyticsWidgets/GroundWaterWidgets.tsx" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_7)" hits="7" signature="()V">
+              <lines>
+                <line number="7" hits="7"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="3" branch="false"/>
+            <line number="2" hits="3" branch="false"/>
+            <line number="3" hits="3" branch="false"/>
+            <line number="4" hits="3" branch="false"/>
+            <line number="7" hits="3" branch="false"/>
+            <line number="8" hits="7" branch="false"/>
+            <line number="88" hits="3" branch="false"/>
+          </lines>
+        </class>
+        <class name="RainfallWidgets.tsx" filename="src/components/AnalyticsWidgets/RainfallWidgets.tsx" line-rate="0.95" branch-rate="0.7894">
+          <methods>
+            <method name="(anonymous_14)" hits="3" signature="()V">
+              <lines>
+                <line number="24" hits="3"/>
+              </lines>
+            </method>
+            <method name="(anonymous_15)" hits="1" signature="()V">
+              <lines>
+                <line number="32" hits="1"/>
+              </lines>
+            </method>
+            <method name="(anonymous_16)" hits="1" signature="()V">
+              <lines>
+                <line number="33" hits="1"/>
+              </lines>
+            </method>
+            <method name="(anonymous_17)" hits="1" signature="()V">
+              <lines>
+                <line number="33" hits="1"/>
+              </lines>
+            </method>
+            <method name="(anonymous_18)" hits="1" signature="()V">
+              <lines>
+                <line number="43" hits="1"/>
+              </lines>
+            </method>
+            <method name="(anonymous_19)" hits="17" signature="()V">
+              <lines>
+                <line number="51" hits="17"/>
+              </lines>
+            </method>
+            <method name="(anonymous_20)" hits="2" signature="()V">
+              <lines>
+                <line number="55" hits="2"/>
+              </lines>
+            </method>
+            <method name="(anonymous_21)" hits="6" signature="()V">
+              <lines>
+                <line number="59" hits="6"/>
+              </lines>
+            </method>
+            <method name="(anonymous_22)" hits="2" signature="()V">
+              <lines>
+                <line number="72" hits="2"/>
+              </lines>
+            </method>
+            <method name="(anonymous_23)" hits="3" signature="()V">
+              <lines>
+                <line number="84" hits="3"/>
+              </lines>
+            </method>
+            <method name="(anonymous_24)" hits="6" signature="()V">
+              <lines>
+                <line number="91" hits="6"/>
+              </lines>
+            </method>
+            <method name="(anonymous_25)" hits="2" signature="()V">
+              <lines>
+                <line number="108" hits="2"/>
+              </lines>
+            </method>
+            <method name="(anonymous_26)" hits="5" signature="()V">
+              <lines>
+                <line number="113" hits="5"/>
+              </lines>
+            </method>
+            <method name="(anonymous_27)" hits="2" signature="()V">
+              <lines>
+                <line number="129" hits="2"/>
+              </lines>
+            </method>
+            <method name="(anonymous_28)" hits="2" signature="()V">
+              <lines>
+                <line number="130" hits="2"/>
+              </lines>
+            </method>
+            <method name="(anonymous_29)" hits="1" signature="()V">
+              <lines>
+                <line number="134" hits="1"/>
+              </lines>
+            </method>
+            <method name="(anonymous_30)" hits="0" signature="()V">
+              <lines>
+                <line number="137" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_31)" hits="1" signature="()V">
+              <lines>
+                <line number="187" hits="1"/>
+              </lines>
+            </method>
+            <method name="(anonymous_32)" hits="2" signature="()V">
+              <lines>
+                <line number="193" hits="2"/>
+              </lines>
+            </method>
+            <method name="(anonymous_33)" hits="3" signature="()V">
+              <lines>
+                <line number="314" hits="3"/>
+              </lines>
+            </method>
+            <method name="(anonymous_34)" hits="1" signature="()V">
+              <lines>
+                <line number="316" hits="1"/>
+              </lines>
+            </method>
+            <method name="(anonymous_35)" hits="3" signature="()V">
+              <lines>
+                <line number="328" hits="3"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="2" branch="false"/>
+            <line number="2" hits="2" branch="false"/>
+            <line number="3" hits="2" branch="false"/>
+            <line number="4" hits="2" branch="false"/>
+            <line number="5" hits="2" branch="false"/>
+            <line number="6" hits="2" branch="false"/>
+            <line number="7" hits="2" branch="false"/>
+            <line number="8" hits="2" branch="false"/>
+            <line number="24" hits="2" branch="false"/>
+            <line number="25" hits="3" branch="false"/>
+            <line number="26" hits="2" branch="false"/>
+            <line number="29" hits="2" branch="false"/>
+            <line number="30" hits="2" branch="false"/>
+            <line number="32" hits="2" branch="false"/>
+            <line number="33" hits="1" branch="false"/>
+            <line number="34" hits="1" branch="false"/>
+            <line number="35" hits="1" branch="false"/>
+            <line number="37" hits="1" branch="false"/>
+            <line number="38" hits="1" branch="false"/>
+            <line number="40" hits="1" branch="false"/>
+            <line number="44" hits="1" branch="false"/>
+            <line number="45" hits="1" branch="false"/>
+            <line number="47" hits="1" branch="false"/>
+            <line number="49" hits="1" branch="true" condition-coverage="100% (3/3)"/>
+            <line number="50" hits="1" branch="false"/>
+            <line number="51" hits="17" branch="false"/>
+            <line number="53" hits="1" branch="false"/>
+            <line number="55" hits="1" branch="false"/>
+            <line number="56" hits="2" branch="false"/>
+            <line number="57" hits="2" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="59" hits="2" branch="false"/>
+            <line number="60" hits="6" branch="false"/>
+            <line number="62" hits="6" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="63" hits="5" branch="false"/>
+            <line number="68" hits="1" branch="false"/>
+            <line number="69" hits="1" branch="false"/>
+            <line number="71" hits="1" branch="false"/>
+            <line number="72" hits="1" branch="false"/>
+            <line number="73" hits="2" branch="false"/>
+            <line number="74" hits="2" branch="false"/>
+            <line number="75" hits="2" branch="false"/>
+            <line number="81" hits="1" branch="false"/>
+            <line number="83" hits="1" branch="false"/>
+            <line number="85" hits="3" branch="false"/>
+            <line number="86" hits="3" branch="false"/>
+            <line number="89" hits="3" branch="false"/>
+            <line number="91" hits="3" branch="false"/>
+            <line number="92" hits="6" branch="false"/>
+            <line number="93" hits="6" branch="false"/>
+            <line number="94" hits="6" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="95" hits="3" branch="false"/>
+            <line number="98" hits="6" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="103" hits="6" branch="false"/>
+            <line number="106" hits="3" branch="false"/>
+            <line number="108" hits="2" branch="false"/>
+            <line number="110" hits="1" branch="false"/>
+            <line number="111" hits="1" branch="false"/>
+            <line number="112" hits="1" branch="false"/>
+            <line number="113" hits="5" branch="false"/>
+            <line number="114" hits="1" branch="false"/>
+            <line number="115" hits="1" branch="false"/>
+            <line number="116" hits="1" branch="false"/>
+            <line number="122" hits="0" branch="false"/>
+            <line number="126" hits="1" branch="false"/>
+            <line number="129" hits="2" branch="false"/>
+            <line number="130" hits="2" branch="false"/>
+            <line number="131" hits="2" branch="false"/>
+            <line number="133" hits="2" branch="false"/>
+            <line number="134" hits="2" branch="false"/>
+            <line number="137" hits="2" branch="false"/>
+            <line number="138" hits="0" branch="true" condition-coverage="0% (0/4)"/>
+            <line number="139" hits="0" branch="false"/>
+            <line number="156" hits="0" branch="false"/>
+            <line number="159" hits="2" branch="false"/>
+            <line number="188" hits="1" branch="false"/>
+            <line number="194" hits="2" branch="false"/>
+            <line number="314" hits="3" branch="false"/>
+            <line number="317" hits="1" branch="false"/>
+            <line number="328" hits="3" branch="true" condition-coverage="100% (2/2)"/>
+            <line number="439" hits="2" branch="false"/>
+          </lines>
+        </class>
+        <class name="ReservoirAnalytics.tsx" filename="src/components/AnalyticsWidgets/ReservoirAnalytics.tsx" line-rate="0.8959999999999999" branch-rate="0.9179999999999999">
+          <methods>
+            <method name="(anonymous_14)" hits="6" signature="()V">
+              <lines>
+                <line number="37" hits="6"/>
+              </lines>
+            </method>
+            <method name="(anonymous_15)" hits="12" signature="()V">
+              <lines>
+                <line number="42" hits="12"/>
+              </lines>
+            </method>
+            <method name="(anonymous_16)" hits="14" signature="()V">
+              <lines>
+                <line number="46" hits="14"/>
+              </lines>
+            </method>
+            <method name="loadReservoirData" hits="7" signature="()V">
+              <lines>
+                <line number="51" hits="7"/>
+              </lines>
+            </method>
+            <method name="loadTimeSeriesData" hits="26" signature="()V">
+              <lines>
+                <line number="68" hits="26"/>
+              </lines>
+            </method>
+            <method name="initializeBasins" hits="7" signature="()V">
+              <lines>
+                <line number="93" hits="7"/>
+              </lines>
+            </method>
+            <method name="(anonymous_23)" hits="16" signature="()V">
+              <lines>
+                <line number="123" hits="16"/>
+              </lines>
+            </method>
+            <method name="(anonymous_24)" hits="7" signature="()V">
+              <lines>
+                <line number="131" hits="7"/>
+              </lines>
+            </method>
+            <method name="(anonymous_25)" hits="7" signature="()V">
+              <lines>
+                <line number="132" hits="7"/>
+              </lines>
+            </method>
+            <method name="(anonymous_26)" hits="7" signature="()V">
+              <lines>
+                <line number="132" hits="7"/>
+              </lines>
+            </method>
+            <method name="(anonymous_27)" hits="7" signature="()V">
+              <lines>
+                <line number="141" hits="7"/>
+              </lines>
+            </method>
+            <method name="(anonymous_28)" hits="7" signature="()V">
+              <lines>
+                <line number="141" hits="7"/>
+              </lines>
+            </method>
+            <method name="(anonymous_29)" hits="2" signature="()V">
+              <lines>
+                <line number="175" hits="2"/>
+              </lines>
+            </method>
+            <method name="(anonymous_30)" hits="2" signature="()V">
+              <lines>
+                <line number="177" hits="2"/>
+              </lines>
+            </method>
+            <method name="(anonymous_31)" hits="2" signature="()V">
+              <lines>
+                <line number="185" hits="2"/>
+              </lines>
+            </method>
+            <method name="(anonymous_32)" hits="2" signature="()V">
+              <lines>
+                <line number="185" hits="2"/>
+              </lines>
+            </method>
+            <method name="(anonymous_33)" hits="4" signature="()V">
+              <lines>
+                <line number="191" hits="4"/>
+              </lines>
+            </method>
+            <method name="(anonymous_34)" hits="9" signature="()V">
+              <lines>
+                <line number="204" hits="9"/>
+              </lines>
+            </method>
+            <method name="(anonymous_35)" hits="16" signature="()V">
+              <lines>
+                <line number="211" hits="16"/>
+              </lines>
+            </method>
+            <method name="(anonymous_36)" hits="4" signature="()V">
+              <lines>
+                <line number="216" hits="4"/>
+              </lines>
+            </method>
+            <method name="(anonymous_37)" hits="16" signature="()V">
+              <lines>
+                <line number="222" hits="16"/>
+              </lines>
+            </method>
+            <method name="(anonymous_38)" hits="16" signature="()V">
+              <lines>
+                <line number="265" hits="16"/>
+              </lines>
+            </method>
+            <method name="(anonymous_39)" hits="2" signature="()V">
+              <lines>
+                <line number="269" hits="2"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="2" branch="false"/>
+            <line number="2" hits="2" branch="false"/>
+            <line number="3" hits="2" branch="false"/>
+            <line number="4" hits="2" branch="false"/>
+            <line number="5" hits="2" branch="false"/>
+            <line number="6" hits="2" branch="false"/>
+            <line number="7" hits="2" branch="false"/>
+            <line number="38" hits="6" branch="false"/>
+            <line number="39" hits="6" branch="false"/>
+            <line number="43" hits="12" branch="false"/>
+            <line number="47" hits="14" branch="false"/>
+            <line number="52" hits="7" branch="false"/>
+            <line number="53" hits="7" branch="false"/>
+            <line number="54" hits="6" branch="true" condition-coverage="0% (0/1)"/>
+            <line number="55" hits="0" branch="false"/>
+            <line number="57" hits="6" branch="false"/>
+            <line number="58" hits="6" branch="false"/>
+            <line number="59" hits="6" branch="false"/>
+            <line number="61" hits="1" branch="false"/>
+            <line number="62" hits="1" branch="false"/>
+            <line number="66" hits="2" branch="false"/>
+            <line number="69" hits="26" branch="true" condition-coverage="0% (0/1)"/>
+            <line number="70" hits="0" branch="false"/>
+            <line number="71" hits="0" branch="false"/>
+            <line number="74" hits="26" branch="false"/>
+            <line number="75" hits="26" branch="false"/>
+            <line number="80" hits="26" branch="true" condition-coverage="0% (0/1)"/>
+            <line number="81" hits="0" branch="false"/>
+            <line number="83" hits="26" branch="false"/>
+            <line number="84" hits="26" branch="false"/>
+            <line number="85" hits="26" branch="false"/>
+            <line number="87" hits="0" branch="false"/>
+            <line number="88" hits="0" branch="false"/>
+            <line number="94" hits="7" branch="false"/>
+            <line number="95" hits="7" branch="false"/>
+            <line number="96" hits="7" branch="false"/>
+            <line number="97" hits="7" branch="false"/>
+            <line number="98" hits="7" branch="false"/>
+            <line number="100" hits="7" branch="false"/>
+            <line number="101" hits="12" branch="true" condition-coverage="50% (1/2)"/>
+            <line number="102" hits="12" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="103" hits="6" branch="false"/>
+            <line number="105" hits="12" branch="false"/>
+            <line number="108" hits="7" branch="false"/>
+            <line number="109" hits="6" branch="false"/>
+            <line number="110" hits="12" branch="false"/>
+            <line number="111" hits="12" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="112" hits="12" branch="false"/>
+            <line number="116" hits="7" branch="false"/>
+            <line number="118" hits="0" branch="false"/>
+            <line number="119" hits="0" branch="false"/>
+            <line number="123" hits="2" branch="false"/>
+            <line number="124" hits="16" branch="false"/>
+            <line number="125" hits="16" branch="false"/>
+            <line number="127" hits="16" branch="false"/>
+            <line number="128" hits="16" branch="false"/>
+            <line number="129" hits="16" branch="false"/>
+            <line number="131" hits="16" branch="false"/>
+            <line number="132" hits="7" branch="false"/>
+            <line number="133" hits="7" branch="false"/>
+            <line number="134" hits="7" branch="false"/>
+            <line number="135" hits="7" branch="false"/>
+            <line number="138" hits="7" branch="false"/>
+            <line number="141" hits="16" branch="false"/>
+            <line number="142" hits="7" branch="false"/>
+            <line number="144" hits="7" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="145" hits="6" branch="false"/>
+            <line number="146" hits="6" branch="false"/>
+            <line number="147" hits="6" branch="false"/>
+            <line number="149" hits="6" branch="false"/>
+            <line number="150" hits="12" branch="false"/>
+            <line number="151" hits="12" branch="false"/>
+            <line number="152" hits="12" branch="false"/>
+            <line number="154" hits="12" branch="false"/>
+            <line number="155" hits="12" branch="false"/>
+            <line number="156" hits="12" branch="false"/>
+            <line number="158" hits="12" branch="true" condition-coverage="100% (4/4)"/>
+            <line number="159" hits="10" branch="false"/>
+            <line number="160" hits="10" branch="false"/>
+            <line number="161" hits="10" branch="false"/>
+            <line number="163" hits="2" branch="false"/>
+            <line number="166" hits="0" branch="false"/>
+            <line number="169" hits="6" branch="false"/>
+            <line number="170" hits="6" branch="false"/>
+            <line number="171" hits="6" branch="false"/>
+            <line number="175" hits="16" branch="false"/>
+            <line number="176" hits="2" branch="false"/>
+            <line number="177" hits="2" branch="false"/>
+            <line number="178" hits="2" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="179" hits="2" branch="false"/>
+            <line number="182" hits="0" branch="false"/>
+            <line number="185" hits="16" branch="false"/>
+            <line number="186" hits="2" branch="false"/>
+            <line number="187" hits="2" branch="false"/>
+            <line number="188" hits="2" branch="false"/>
+            <line number="191" hits="4" branch="false"/>
+            <line number="193" hits="2" branch="true" condition-coverage="50% (1/2)"/>
+            <line number="194" hits="2" branch="false"/>
+            <line number="196" hits="0" branch="false"/>
+            <line number="197" hits="0" branch="false"/>
+            <line number="200" hits="0" branch="false"/>
+            <line number="204" hits="16" branch="false"/>
+            <line number="205" hits="9" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="206" hits="2" branch="false"/>
+            <line number="211" hits="16" branch="false"/>
+            <line number="213" hits="16" branch="true" condition-coverage="100% (3/3)"/>
+            <line number="214" hits="14" branch="false"/>
+            <line number="216" hits="4" branch="false"/>
+            <line number="217" hits="2" branch="false"/>
+            <line number="218" hits="2" branch="false"/>
+            <line number="219" hits="2" branch="false"/>
+            <line number="222" hits="16" branch="false"/>
+            <line number="223" hits="16" branch="false"/>
+            <line number="224" hits="16" branch="false"/>
+            <line number="225" hits="18" branch="false"/>
+            <line number="227" hits="16" branch="false"/>
+            <line number="230" hits="16" branch="false"/>
+            <line number="231" hits="16" branch="false"/>
+            <line number="232" hits="16" branch="false"/>
+            <line number="234" hits="16" branch="false"/>
+            <line number="237" hits="16" branch="false"/>
+            <line number="266" hits="16" branch="false"/>
+            <line number="270" hits="2" branch="false"/>
+            <line number="271" hits="2" branch="false"/>
+            <line number="502" hits="2" branch="false"/>
+          </lines>
+        </class>
+        <class name="RiverWidgets.tsx" filename="src/components/AnalyticsWidgets/RiverWidgets.tsx" line-rate="0.8314" branch-rate="0.5384">
+          <methods>
+            <method name="(anonymous_14)" hits="3" signature="()V">
+              <lines>
+                <line number="22" hits="3"/>
+              </lines>
+            </method>
+            <method name="(anonymous_15)" hits="3" signature="()V">
+              <lines>
+                <line number="27" hits="3"/>
+              </lines>
+            </method>
+            <method name="(anonymous_16)" hits="6" signature="()V">
+              <lines>
+                <line number="31" hits="6"/>
+              </lines>
+            </method>
+            <method name="loadRiverStationData" hits="7" signature="()V">
+              <lines>
+                <line number="35" hits="7"/>
+              </lines>
+            </method>
+            <method name="(anonymous_19)" hits="6" signature="()V">
+              <lines>
+                <line number="43" hits="6"/>
+              </lines>
+            </method>
+            <method name="loadTimeSeriesData" hits="6" signature="()V">
+              <lines>
+                <line number="59" hits="6"/>
+              </lines>
+            </method>
+            <method name="initializeBasins" hits="4" signature="()V">
+              <lines>
+                <line number="83" hits="4"/>
+              </lines>
+            </method>
+            <method name="(anonymous_24)" hits="8" signature="()V">
+              <lines>
+                <line number="114" hits="8"/>
+              </lines>
+            </method>
+            <method name="(anonymous_25)" hits="4" signature="()V">
+              <lines>
+                <line number="120" hits="4"/>
+              </lines>
+            </method>
+            <method name="(anonymous_26)" hits="4" signature="()V">
+              <lines>
+                <line number="121" hits="4"/>
+              </lines>
+            </method>
+            <method name="(anonymous_27)" hits="4" signature="()V">
+              <lines>
+                <line number="121" hits="4"/>
+              </lines>
+            </method>
+            <method name="(anonymous_28)" hits="4" signature="()V">
+              <lines>
+                <line number="130" hits="4"/>
+              </lines>
+            </method>
+            <method name="(anonymous_29)" hits="4" signature="()V">
+              <lines>
+                <line number="130" hits="4"/>
+              </lines>
+            </method>
+            <method name="(anonymous_30)" hits="3" signature="()V">
+              <lines>
+                <line number="135" hits="3"/>
+              </lines>
+            </method>
+            <method name="(anonymous_31)" hits="3" signature="()V">
+              <lines>
+                <line number="135" hits="3"/>
+              </lines>
+            </method>
+            <method name="(anonymous_32)" hits="3" signature="()V">
+              <lines>
+                <line number="137" hits="3"/>
+              </lines>
+            </method>
+            <method name="(anonymous_33)" hits="3" signature="()V">
+              <lines>
+                <line number="146" hits="3"/>
+              </lines>
+            </method>
+            <method name="(anonymous_34)" hits="2" signature="()V">
+              <lines>
+                <line number="150" hits="2"/>
+              </lines>
+            </method>
+            <method name="(anonymous_35)" hits="0" signature="()V">
+              <lines>
+                <line number="165" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_36)" hits="2" signature="()V">
+              <lines>
+                <line number="270" hits="2"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="2" branch="false"/>
+            <line number="2" hits="2" branch="false"/>
+            <line number="3" hits="2" branch="false"/>
+            <line number="4" hits="2" branch="false"/>
+            <line number="5" hits="2" branch="false"/>
+            <line number="6" hits="2" branch="false"/>
+            <line number="7" hits="2" branch="false"/>
+            <line number="23" hits="3" branch="false"/>
+            <line number="24" hits="3" branch="false"/>
+            <line number="28" hits="3" branch="false"/>
+            <line number="32" hits="6" branch="false"/>
+            <line number="36" hits="7" branch="false"/>
+            <line number="37" hits="7" branch="false"/>
+            <line number="38" hits="7" branch="true" condition-coverage="0% (0/1)"/>
+            <line number="39" hits="0" branch="false"/>
+            <line number="41" hits="7" branch="false"/>
+            <line number="42" hits="7" branch="false"/>
+            <line number="43" hits="7" branch="false"/>
+            <line number="52" hits="0" branch="false"/>
+            <line number="53" hits="0" branch="false"/>
+            <line number="57" hits="2" branch="false"/>
+            <line number="60" hits="6" branch="true" condition-coverage="0% (0/1)"/>
+            <line number="61" hits="0" branch="false"/>
+            <line number="62" hits="0" branch="false"/>
+            <line number="65" hits="6" branch="false"/>
+            <line number="66" hits="6" branch="false"/>
+            <line number="71" hits="6" branch="true" condition-coverage="0% (0/1)"/>
+            <line number="72" hits="0" branch="false"/>
+            <line number="74" hits="6" branch="false"/>
+            <line number="75" hits="6" branch="false"/>
+            <line number="76" hits="6" branch="false"/>
+            <line number="78" hits="0" branch="false"/>
+            <line number="79" hits="0" branch="false"/>
+            <line number="84" hits="4" branch="false"/>
+            <line number="85" hits="4" branch="false"/>
+            <line number="86" hits="4" branch="false"/>
+            <line number="87" hits="4" branch="false"/>
+            <line number="88" hits="4" branch="false"/>
+            <line number="90" hits="4" branch="false"/>
+            <line number="91" hits="3" branch="true" condition-coverage="50% (1/2)"/>
+            <line number="92" hits="3" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="93" hits="3" branch="false"/>
+            <line number="95" hits="3" branch="false"/>
+            <line number="98" hits="4" branch="false"/>
+            <line number="99" hits="3" branch="false"/>
+            <line number="100" hits="3" branch="false"/>
+            <line number="101" hits="3" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="102" hits="3" branch="false"/>
+            <line number="106" hits="4" branch="false"/>
+            <line number="108" hits="0" branch="false"/>
+            <line number="109" hits="0" branch="false"/>
+            <line number="114" hits="2" branch="false"/>
+            <line number="115" hits="8" branch="false"/>
+            <line number="116" hits="7" branch="false"/>
+            <line number="117" hits="7" branch="false"/>
+            <line number="120" hits="7" branch="false"/>
+            <line number="121" hits="4" branch="false"/>
+            <line number="122" hits="4" branch="false"/>
+            <line number="123" hits="4" branch="false"/>
+            <line number="124" hits="4" branch="false"/>
+            <line number="127" hits="4" branch="false"/>
+            <line number="130" hits="7" branch="false"/>
+            <line number="131" hits="4" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="132" hits="3" branch="false"/>
+            <line number="134" hits="3" branch="false"/>
+            <line number="135" hits="3" branch="false"/>
+            <line number="136" hits="3" branch="false"/>
+            <line number="137" hits="3" branch="false"/>
+            <line number="138" hits="3" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="139" hits="3" branch="false"/>
+            <line number="140" hits="3" branch="false"/>
+            <line number="142" hits="3" branch="false"/>
+            <line number="146" hits="3" branch="false"/>
+            <line number="150" hits="7" branch="false"/>
+            <line number="151" hits="2" branch="false"/>
+            <line number="152" hits="2" branch="true" condition-coverage="66.66666666666666% (2/3)"/>
+            <line number="153" hits="0" branch="false"/>
+            <line number="161" hits="2" branch="true" condition-coverage="75% (3/4)"/>
+            <line number="162" hits="2" branch="false"/>
+            <line number="163" hits="2" branch="false"/>
+            <line number="165" hits="2" branch="false"/>
+            <line number="166" hits="0" branch="false"/>
+            <line number="167" hits="0" branch="true" condition-coverage="0% (0/2)"/>
+            <line number="168" hits="0" branch="true" condition-coverage="0% (0/2)"/>
+            <line number="169" hits="0" branch="false"/>
+            <line number="172" hits="2" branch="false"/>
+            <line number="240" hits="7" branch="false"/>
+            <line number="271" hits="2" branch="false"/>
+            <line number="293" hits="2" branch="false"/>
+          </lines>
+        </class>
+        <class name="TidalWidgets.tsx" filename="src/components/AnalyticsWidgets/TidalWidgets.tsx" line-rate="0.8571" branch-rate="1">
+          <methods>
+            <method name="(anonymous_7)" hits="0" signature="()V">
+              <lines>
+                <line number="7" hits="0"/>
+>>>>>>> testing
               </lines>
             </method>
           </methods>
@@ -34,12 +1150,18 @@
             <line number="3" hits="1" branch="false"/>
             <line number="4" hits="1" branch="false"/>
             <line number="7" hits="1" branch="false"/>
+<<<<<<< HEAD
             <line number="8" hits="1" branch="false"/>
             <line number="88" hits="1" branch="false"/>
+=======
+            <line number="8" hits="0" branch="false"/>
+            <line number="59" hits="1" branch="false"/>
+>>>>>>> testing
           </lines>
         </class>
       </classes>
     </package>
+<<<<<<< HEAD
     <package name="components.LayerWidget" line-rate="0.7142000000000001" branch-rate="1">
       <classes>
         <class name="LayerItem.tsx" filename="src/components/LayerWidget/LayerItem.tsx" line-rate="1" branch-rate="1">
@@ -47,10 +1169,30 @@
             <method name="(anonymous_1)" hits="5" signature="()V">
               <lines>
                 <line number="13" hits="5"/>
+=======
+    <package name="src.components.BasinHighlights" line-rate="0.95" branch-rate="0.6666">
+      <classes>
+        <class name="BasinHighlights.tsx" filename="src/components/BasinHighlights/BasinHighlights.tsx" line-rate="0.9" branch-rate="0">
+          <methods>
+            <method name="(anonymous_7)" hits="10" signature="()V">
+              <lines>
+                <line number="9" hits="10"/>
+              </lines>
+            </method>
+            <method name="(anonymous_8)" hits="0" signature="()V">
+              <lines>
+                <line number="22" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_9)" hits="30" signature="()V">
+              <lines>
+                <line number="25" hits="30"/>
+>>>>>>> testing
               </lines>
             </method>
           </methods>
           <lines>
+<<<<<<< HEAD
             <line number="1" hits="1" branch="false"/>
             <line number="2" hits="1" branch="false"/>
             <line number="3" hits="1" branch="false"/>
@@ -63,6 +1205,78 @@
             <method name="(anonymous_7)" hits="8" signature="()V">
               <lines>
                 <line number="25" hits="8"/>
+=======
+            <line number="1" hits="2" branch="false"/>
+            <line number="2" hits="2" branch="false"/>
+            <line number="3" hits="2" branch="false"/>
+            <line number="9" hits="2" branch="false"/>
+            <line number="10" hits="10" branch="false"/>
+            <line number="12" hits="10" branch="true" condition-coverage="0% (0/1)"/>
+            <line number="14" hits="10" branch="false"/>
+            <line number="22" hits="0" branch="false"/>
+            <line number="26" hits="30" branch="false"/>
+            <line number="33" hits="2" branch="false"/>
+          </lines>
+        </class>
+        <class name="HighlightCard.tsx" filename="src/components/BasinHighlights/HighlightCard.tsx" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="30" signature="()V">
+              <lines>
+                <line number="9" hits="30"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="2" branch="false"/>
+            <line number="9" hits="2" branch="false"/>
+            <line number="14" hits="30" branch="false"/>
+            <line number="27" hits="2" branch="false"/>
+          </lines>
+        </class>
+        <class name="HighlightComponent.tsx" filename="src/components/BasinHighlights/HighlightComponent.tsx" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="10" signature="()V">
+              <lines>
+                <line number="11" hits="10"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="2" branch="false"/>
+            <line number="2" hits="2" branch="false"/>
+            <line number="5" hits="2" branch="false"/>
+            <line number="11" hits="2" branch="false"/>
+            <line number="12" hits="10" branch="false"/>
+            <line number="15" hits="2" branch="false"/>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="src.components.LayerWidget" line-rate="0.7726999999999999" branch-rate="0.6818000000000001">
+      <classes>
+        <class name="LayerItem.tsx" filename="src/components/LayerWidget/LayerItem.tsx" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="46" signature="()V">
+              <lines>
+                <line number="16" hits="46"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="2" branch="false"/>
+            <line number="2" hits="2" branch="false"/>
+            <line number="3" hits="2" branch="false"/>
+            <line number="16" hits="2" branch="false"/>
+            <line number="17" hits="46" branch="false"/>
+            <line number="30" hits="2" branch="false"/>
+          </lines>
+        </class>
+        <class name="LayersComponent.tsx" filename="src/components/LayerWidget/LayersComponent.tsx" line-rate="0.5652" branch-rate="0.65">
+          <methods>
+            <method name="(anonymous_7)" hits="12" signature="()V">
+              <lines>
+                <line number="25" hits="12"/>
+>>>>>>> testing
               </lines>
             </method>
             <method name="(anonymous_8)" hits="0" signature="()V">
@@ -70,9 +1284,15 @@
                 <line number="43" hits="0"/>
               </lines>
             </method>
+<<<<<<< HEAD
             <method name="(anonymous_9)" hits="1" signature="()V">
               <lines>
                 <line number="50" hits="1"/>
+=======
+            <method name="(anonymous_9)" hits="0" signature="()V">
+              <lines>
+                <line number="50" hits="0"/>
+>>>>>>> testing
               </lines>
             </method>
             <method name="(anonymous_10)" hits="0" signature="()V">
@@ -80,9 +1300,15 @@
                 <line number="64" hits="0"/>
               </lines>
             </method>
+<<<<<<< HEAD
             <method name="(anonymous_11)" hits="1" signature="()V">
               <lines>
                 <line number="69" hits="1"/>
+=======
+            <method name="(anonymous_11)" hits="0" signature="()V">
+              <lines>
+                <line number="69" hits="0"/>
+>>>>>>> testing
               </lines>
             </method>
             <method name="(anonymous_12)" hits="0" signature="()V">
@@ -117,6 +1343,7 @@
             </method>
           </methods>
           <lines>
+<<<<<<< HEAD
             <line number="1" hits="1" branch="false"/>
             <line number="2" hits="1" branch="false"/>
             <line number="3" hits="1" branch="false"/>
@@ -133,12 +1360,31 @@
             <line number="50" hits="1" branch="false"/>
             <line number="64" hits="0" branch="false"/>
             <line number="69" hits="1" branch="false"/>
+=======
+            <line number="1" hits="2" branch="false"/>
+            <line number="2" hits="2" branch="false"/>
+            <line number="3" hits="2" branch="false"/>
+            <line number="4" hits="2" branch="false"/>
+            <line number="5" hits="2" branch="false"/>
+            <line number="6" hits="2" branch="false"/>
+            <line number="7" hits="2" branch="false"/>
+            <line number="8" hits="2" branch="false"/>
+            <line number="25" hits="2" branch="false"/>
+            <line number="26" hits="12" branch="false"/>
+            <line number="27" hits="12" branch="false"/>
+            <line number="29" hits="12" branch="false"/>
+            <line number="43" hits="0" branch="false"/>
+            <line number="50" hits="0" branch="false"/>
+            <line number="64" hits="0" branch="false"/>
+            <line number="69" hits="0" branch="false"/>
+>>>>>>> testing
             <line number="86" hits="0" branch="false"/>
             <line number="103" hits="0" branch="false"/>
             <line number="120" hits="0" branch="false"/>
             <line number="137" hits="0" branch="false"/>
             <line number="154" hits="0" branch="false"/>
             <line number="171" hits="0" branch="false"/>
+<<<<<<< HEAD
             <line number="205" hits="1" branch="false"/>
           </lines>
         </class>
@@ -161,10 +1407,41 @@
             <method name="(anonymous_3)" hits="84" signature="()V">
               <lines>
                 <line number="49" hits="84"/>
+=======
+            <line number="205" hits="2" branch="false"/>
+          </lines>
+        </class>
+        <class name="LayersList.tsx" filename="src/components/LayerWidget/LayersList.tsx" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_7)" hits="7" signature="()V">
+              <lines>
+                <line number="21" hits="7"/>
+              </lines>
+            </method>
+            <method name="(anonymous_8)" hits="4" signature="()V">
+              <lines>
+                <line number="24" hits="4"/>
+              </lines>
+            </method>
+            <method name="(anonymous_9)" hits="4" signature="()V">
+              <lines>
+                <line number="25" hits="4"/>
+              </lines>
+            </method>
+            <method name="(anonymous_10)" hits="42" signature="()V">
+              <lines>
+                <line number="35" hits="42"/>
+              </lines>
+            </method>
+            <method name="(anonymous_11)" hits="4" signature="()V">
+              <lines>
+                <line number="41" hits="4"/>
+>>>>>>> testing
               </lines>
             </method>
           </methods>
           <lines>
+<<<<<<< HEAD
             <line number="1" hits="2" branch="false"/>
             <line number="11" hits="2" branch="false"/>
             <line number="12" hits="16" branch="false"/>
@@ -185,6 +1462,63 @@
             <method name="(anonymous_7)" hits="9" signature="()V">
               <lines>
                 <line number="22" hits="9"/>
+=======
+            <line number="1" hits="1" branch="false"/>
+            <line number="2" hits="1" branch="false"/>
+            <line number="7" hits="1" branch="false"/>
+            <line number="21" hits="1" branch="false"/>
+            <line number="22" hits="7" branch="false"/>
+            <line number="24" hits="7" branch="false"/>
+            <line number="25" hits="4" branch="false"/>
+            <line number="26" hits="4" branch="false"/>
+            <line number="27" hits="4" branch="false"/>
+            <line number="28" hits="4" branch="false"/>
+            <line number="29" hits="4" branch="false"/>
+            <line number="33" hits="7" branch="false"/>
+            <line number="36" hits="42" branch="false"/>
+            <line number="41" hits="4" branch="false"/>
+            <line number="48" hits="1" branch="false"/>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="src.components.LegendWidget" line-rate="0.7619" branch-rate="0">
+      <classes>
+        <class name="GaugeSection.tsx" filename="src/components/LegendWidget/GaugeSection.tsx" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="4" signature="()V">
+              <lines>
+                <line number="11" hits="4"/>
+              </lines>
+            </method>
+            <method name="(anonymous_2)" hits="12" signature="()V">
+              <lines>
+                <line number="27" hits="12"/>
+              </lines>
+            </method>
+            <method name="(anonymous_3)" hits="12" signature="()V">
+              <lines>
+                <line number="49" hits="12"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="3" branch="false"/>
+            <line number="11" hits="3" branch="false"/>
+            <line number="18" hits="4" branch="false"/>
+            <line number="19" hits="4" branch="false"/>
+            <line number="21" hits="4" branch="false"/>
+            <line number="28" hits="12" branch="false"/>
+            <line number="50" hits="12" branch="false"/>
+            <line number="71" hits="3" branch="false"/>
+          </lines>
+        </class>
+        <class name="Legend.tsx" filename="src/components/LegendWidget/Legend.tsx" line-rate="0.6153" branch-rate="0">
+          <methods>
+            <method name="(anonymous_7)" hits="0" signature="()V">
+              <lines>
+                <line number="22" hits="0"/>
+>>>>>>> testing
               </lines>
             </method>
             <method name="(anonymous_8)" hits="0" signature="()V">
@@ -192,9 +1526,58 @@
                 <line number="38" hits="0"/>
               </lines>
             </method>
+<<<<<<< HEAD
             <method name="(anonymous_9)" hits="1" signature="()V">
               <lines>
                 <line number="45" hits="1"/>
+=======
+            <method name="(anonymous_9)" hits="0" signature="()V">
+              <lines>
+                <line number="45" hits="0"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="2" branch="false"/>
+            <line number="2" hits="2" branch="false"/>
+            <line number="3" hits="2" branch="false"/>
+            <line number="4" hits="2" branch="false"/>
+            <line number="5" hits="2" branch="false"/>
+            <line number="6" hits="2" branch="false"/>
+            <line number="22" hits="2" branch="false"/>
+            <line number="23" hits="0" branch="false"/>
+            <line number="25" hits="0" branch="true" condition-coverage="0% (0/1)"/>
+            <line number="27" hits="0" branch="false"/>
+            <line number="38" hits="0" branch="false"/>
+            <line number="45" hits="0" branch="false"/>
+            <line number="131" hits="2" branch="false"/>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="src.components.LevelNav" line-rate="0.6818000000000001" branch-rate="0">
+      <classes>
+        <class name="ImpactButtons.tsx" filename="src/components/LevelNav/ImpactButtons.tsx" line-rate="0.5" branch-rate="0">
+          <methods>
+            <method name="(anonymous_7)" hits="0" signature="()V">
+              <lines>
+                <line number="15" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_8)" hits="0" signature="()V">
+              <lines>
+                <line number="18" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_9)" hits="0" signature="()V">
+              <lines>
+                <line number="47" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_10)" hits="0" signature="()V">
+              <lines>
+                <line number="50" hits="0"/>
+>>>>>>> testing
               </lines>
             </method>
           </methods>
@@ -203,6 +1586,7 @@
             <line number="2" hits="1" branch="false"/>
             <line number="3" hits="1" branch="false"/>
             <line number="4" hits="1" branch="false"/>
+<<<<<<< HEAD
             <line number="5" hits="1" branch="false"/>
             <line number="6" hits="1" branch="false"/>
             <line number="22" hits="9" branch="false"/>
@@ -218,6 +1602,20 @@
     </package>
     <package name="components.LevelNav" line-rate="1" branch-rate="1">
       <classes>
+=======
+            <line number="6" hits="1" branch="false"/>
+            <line number="15" hits="1" branch="false"/>
+            <line number="16" hits="0" branch="false"/>
+            <line number="18" hits="0" branch="false"/>
+            <line number="19" hits="0" branch="false"/>
+            <line number="20" hits="0" branch="false"/>
+            <line number="23" hits="0" branch="false"/>
+            <line number="48" hits="0" branch="false"/>
+            <line number="50" hits="0" branch="false"/>
+            <line number="67" hits="1" branch="false"/>
+          </lines>
+        </class>
+>>>>>>> testing
         <class name="MonitorButton.tsx" filename="src/components/LevelNav/MonitorButton.tsx" line-rate="1" branch-rate="1">
           <methods>
             <method name="(anonymous_7)" hits="2" signature="()V">
@@ -239,6 +1637,7 @@
         </class>
       </classes>
     </package>
+<<<<<<< HEAD
     <package name="components.Menu" line-rate="1" branch-rate="1">
       <classes>
         <class name="MenuList.tsx" filename="src/components/Menu/MenuList.tsx" line-rate="1" branch-rate="1">
@@ -251,6 +1650,167 @@
             <method name="(anonymous_2)" hits="24" signature="()V">
               <lines>
                 <line number="26" hits="24"/>
+=======
+    <package name="src.components.Maps" line-rate="0.7368000000000001" branch-rate="0.8887999999999999">
+      <classes>
+        <class name="ImpactMapComponent.tsx" filename="src/components/Maps/ImpactMapComponent.tsx" line-rate="0.9285" branch-rate="1">
+          <methods>
+            <method name="(anonymous_14)" hits="24" signature="()V">
+              <lines>
+                <line number="18" hits="24"/>
+              </lines>
+            </method>
+            <method name="(anonymous_15)" hits="3" signature="()V">
+              <lines>
+                <line number="29" hits="3"/>
+              </lines>
+            </method>
+            <method name="(anonymous_16)" hits="0" signature="()V">
+              <lines>
+                <line number="38" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_17)" hits="0" signature="()V">
+              <lines>
+                <line number="38" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_18)" hits="3" signature="()V">
+              <lines>
+                <line number="49" hits="3"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="3" branch="false"/>
+            <line number="2" hits="3" branch="false"/>
+            <line number="3" hits="3" branch="false"/>
+            <line number="4" hits="3" branch="false"/>
+            <line number="5" hits="3" branch="false"/>
+            <line number="7" hits="3" branch="false"/>
+            <line number="8" hits="3" branch="false"/>
+            <line number="15" hits="3" branch="false"/>
+            <line number="18" hits="3" branch="false"/>
+            <line number="19" hits="24" branch="false"/>
+            <line number="20" hits="3" branch="false"/>
+            <line number="21" hits="3" branch="false"/>
+            <line number="22" hits="3" branch="false"/>
+            <line number="23" hits="3" branch="false"/>
+            <line number="24" hits="3" branch="false"/>
+            <line number="25" hits="3" branch="false"/>
+            <line number="26" hits="3" branch="false"/>
+            <line number="27" hits="3" branch="false"/>
+            <line number="29" hits="3" branch="false"/>
+            <line number="30" hits="3" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="31" hits="3" branch="false"/>
+            <line number="38" hits="3" branch="false"/>
+            <line number="39" hits="0" branch="false"/>
+            <line number="45" hits="0" branch="false"/>
+            <line number="49" hits="3" branch="false"/>
+            <line number="50" hits="3" branch="false"/>
+            <line number="75" hits="3" branch="false"/>
+            <line number="82" hits="3" branch="false"/>
+          </lines>
+        </class>
+        <class name="MonitoringMapComponent.tsx" filename="src/components/Maps/MonitoringMapComponent.tsx" line-rate="0.625" branch-rate="0.875">
+          <methods>
+            <method name="(anonymous_14)" hits="25" signature="()V">
+              <lines>
+                <line number="27" hits="25"/>
+              </lines>
+            </method>
+            <method name="(anonymous_15)" hits="1" signature="()V">
+              <lines>
+                <line number="52" hits="1"/>
+              </lines>
+            </method>
+            <method name="(anonymous_16)" hits="0" signature="()V">
+              <lines>
+                <line number="61" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_18)" hits="0" signature="()V">
+              <lines>
+                <line number="92" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_19)" hits="1" signature="()V">
+              <lines>
+                <line number="99" hits="1"/>
+              </lines>
+            </method>
+            <method name="(anonymous_20)" hits="1" signature="()V">
+              <lines>
+                <line number="114" hits="1"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="3" branch="false"/>
+            <line number="2" hits="3" branch="false"/>
+            <line number="3" hits="3" branch="false"/>
+            <line number="4" hits="3" branch="false"/>
+            <line number="5" hits="3" branch="false"/>
+            <line number="8" hits="3" branch="false"/>
+            <line number="9" hits="3" branch="false"/>
+            <line number="10" hits="3" branch="false"/>
+            <line number="27" hits="3" branch="false"/>
+            <line number="28" hits="25" branch="false"/>
+            <line number="29" hits="1" branch="false"/>
+            <line number="31" hits="1" branch="false"/>
+            <line number="32" hits="1" branch="false"/>
+            <line number="33" hits="1" branch="false"/>
+            <line number="38" hits="1" branch="false"/>
+            <line number="43" hits="1" branch="false"/>
+            <line number="45" hits="1" branch="false"/>
+            <line number="46" hits="1" branch="false"/>
+            <line number="47" hits="1" branch="false"/>
+            <line number="48" hits="1" branch="false"/>
+            <line number="49" hits="1" branch="false"/>
+            <line number="52" hits="1" branch="false"/>
+            <line number="53" hits="1" branch="true" condition-coverage="100% (1/1)"/>
+            <line number="54" hits="1" branch="false"/>
+            <line number="61" hits="1" branch="false"/>
+            <line number="65" hits="0" branch="false"/>
+            <line number="66" hits="0" branch="false"/>
+            <line number="67" hits="0" branch="false"/>
+            <line number="71" hits="0" branch="false"/>
+            <line number="72" hits="0" branch="false"/>
+            <line number="73" hits="0" branch="false"/>
+            <line number="77" hits="0" branch="false"/>
+            <line number="78" hits="0" branch="false"/>
+            <line number="79" hits="0" branch="false"/>
+            <line number="82" hits="0" branch="false"/>
+            <line number="83" hits="0" branch="false"/>
+            <line number="84" hits="0" branch="false"/>
+            <line number="85" hits="0" branch="false"/>
+            <line number="86" hits="0" branch="false"/>
+            <line number="89" hits="0" branch="false"/>
+            <line number="92" hits="0" branch="false"/>
+            <line number="93" hits="0" branch="false"/>
+            <line number="99" hits="1" branch="false"/>
+            <line number="100" hits="1" branch="true" condition-coverage="0% (0/1)"/>
+            <line number="103" hits="0" branch="false"/>
+            <line number="108" hits="1" branch="false"/>
+            <line number="116" hits="1" branch="false"/>
+            <line number="126" hits="3" branch="false"/>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="src.components.Menu" line-rate="1" branch-rate="1">
+      <classes>
+        <class name="MenuList.tsx" filename="src/components/Menu/MenuList.tsx" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="9" signature="()V">
+              <lines>
+                <line number="21" hits="9"/>
+              </lines>
+            </method>
+            <method name="(anonymous_2)" hits="36" signature="()V">
+              <lines>
+                <line number="26" hits="36"/>
+>>>>>>> testing
               </lines>
             </method>
             <method name="(anonymous_3)" hits="2" signature="()V">
@@ -260,6 +1820,7 @@
             </method>
           </methods>
           <lines>
+<<<<<<< HEAD
             <line number="1" hits="1" branch="false"/>
             <line number="2" hits="1" branch="false"/>
             <line number="3" hits="1" branch="false"/>
@@ -272,12 +1833,375 @@
             <line number="26" hits="24" branch="false"/>
             <line number="35" hits="2" branch="false"/>
             <line number="56" hits="1" branch="false"/>
+=======
+            <line number="1" hits="2" branch="false"/>
+            <line number="2" hits="2" branch="false"/>
+            <line number="3" hits="2" branch="false"/>
+            <line number="4" hits="2" branch="false"/>
+            <line number="5" hits="2" branch="false"/>
+            <line number="6" hits="2" branch="false"/>
+            <line number="8" hits="2" branch="false"/>
+            <line number="21" hits="2" branch="false"/>
+            <line number="22" hits="9" branch="false"/>
+            <line number="27" hits="36" branch="false"/>
+            <line number="35" hits="2" branch="false"/>
+            <line number="59" hits="2" branch="false"/>
+>>>>>>> testing
           </lines>
         </class>
       </classes>
     </package>
+<<<<<<< HEAD
     <package name="components.Screens" line-rate="0.9411" branch-rate="0.9375">
       <classes>
+=======
+    <package name="src.components.NavBar" line-rate="0.9229999999999999" branch-rate="0.875">
+      <classes>
+        <class name="LocationSelector.tsx" filename="src/components/NavBar/LocationSelector.tsx" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="6" signature="()V">
+              <lines>
+                <line number="9" hits="6"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="4" branch="false"/>
+            <line number="2" hits="4" branch="false"/>
+            <line number="3" hits="4" branch="false"/>
+            <line number="9" hits="4" branch="false"/>
+            <line number="10" hits="6" branch="false"/>
+            <line number="29" hits="4" branch="false"/>
+          </lines>
+        </class>
+        <class name="NavComponent.tsx" filename="src/components/NavBar/NavComponent.tsx" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="1" signature="()V">
+              <lines>
+                <line number="14" hits="1"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="1" branch="false"/>
+            <line number="2" hits="1" branch="false"/>
+            <line number="14" hits="1" branch="false"/>
+            <line number="23" hits="1" branch="false"/>
+            <line number="38" hits="1" branch="false"/>
+          </lines>
+        </class>
+        <class name="NavigationBar.tsx" filename="src/components/NavBar/NavigationBar.tsx" line-rate="0.8332999999999999" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="5" signature="()V">
+              <lines>
+                <line number="19" hits="5"/>
+              </lines>
+            </method>
+            <method name="(anonymous_2)" hits="15" signature="()V">
+              <lines>
+                <line number="32" hits="15"/>
+              </lines>
+            </method>
+            <method name="(anonymous_3)" hits="0" signature="()V">
+              <lines>
+                <line number="37" hits="0"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="3" branch="false"/>
+            <line number="2" hits="3" branch="false"/>
+            <line number="3" hits="3" branch="false"/>
+            <line number="5" hits="3" branch="false"/>
+            <line number="6" hits="3" branch="false"/>
+            <line number="7" hits="3" branch="false"/>
+            <line number="19" hits="3" branch="false"/>
+            <line number="28" hits="5" branch="false"/>
+            <line number="33" hits="15" branch="false"/>
+            <line number="38" hits="0" branch="false"/>
+            <line number="39" hits="0" branch="false"/>
+            <line number="79" hits="3" branch="false"/>
+          </lines>
+        </class>
+        <class name="WidgetSelector.tsx" filename="src/components/NavBar/WidgetSelector.tsx" line-rate="0.9375" branch-rate="0.8">
+          <methods>
+            <method name="(anonymous_1)" hits="6" signature="()V">
+              <lines>
+                <line number="11" hits="6"/>
+              </lines>
+            </method>
+            <method name="(anonymous_2)" hits="1" signature="()V">
+              <lines>
+                <line number="15" hits="1"/>
+              </lines>
+            </method>
+            <method name="(anonymous_3)" hits="0" signature="()V">
+              <lines>
+                <line number="18" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_4)" hits="1" signature="()V">
+              <lines>
+                <line number="65" hits="1"/>
+              </lines>
+            </method>
+            <method name="(anonymous_5)" hits="1" signature="()V">
+              <lines>
+                <line number="68" hits="1"/>
+              </lines>
+            </method>
+            <method name="(anonymous_6)" hits="1" signature="()V">
+              <lines>
+                <line number="71" hits="1"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="4" branch="false"/>
+            <line number="2" hits="4" branch="false"/>
+            <line number="3" hits="4" branch="false"/>
+            <line number="4" hits="4" branch="false"/>
+            <line number="11" hits="4" branch="false"/>
+            <line number="12" hits="6" branch="false"/>
+            <line number="13" hits="6" branch="false"/>
+            <line number="15" hits="6" branch="false"/>
+            <line number="16" hits="1" branch="false"/>
+            <line number="18" hits="6" branch="false"/>
+            <line number="19" hits="0" branch="false"/>
+            <line number="22" hits="6" branch="false"/>
+            <line number="65" hits="1" branch="false"/>
+            <line number="68" hits="1" branch="false"/>
+            <line number="71" hits="1" branch="false"/>
+            <line number="79" hits="4" branch="false"/>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="src.components.Screens" line-rate="0.7384000000000001" branch-rate="0.5416">
+      <classes>
+        <class name="AboutScreen.tsx" filename="src/components/Screens/AboutScreen.tsx" line-rate="0.75" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="0" signature="()V">
+              <lines>
+                <line number="3" hits="0"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="1" branch="false"/>
+            <line number="3" hits="1" branch="false"/>
+            <line number="4" hits="0" branch="false"/>
+            <line number="34" hits="1" branch="false"/>
+          </lines>
+        </class>
+        <class name="ForecastAnalyticsScreen.tsx" filename="src/components/Screens/ForecastAnalyticsScreen.tsx" line-rate="0.75" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="0" signature="()V">
+              <lines>
+                <line number="3" hits="0"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="1" branch="false"/>
+            <line number="3" hits="1" branch="false"/>
+            <line number="4" hits="0" branch="false"/>
+            <line number="10" hits="1" branch="false"/>
+          </lines>
+        </class>
+        <class name="ForecastTutorial.tsx" filename="src/components/Screens/ForecastTutorial.tsx" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_1)" hits="3" signature="()V">
+              <lines>
+                <line number="6" hits="3"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="1" branch="false"/>
+            <line number="2" hits="1" branch="false"/>
+            <line number="3" hits="1" branch="false"/>
+            <line number="4" hits="1" branch="false"/>
+            <line number="6" hits="1" branch="false"/>
+            <line number="7" hits="3" branch="false"/>
+            <line number="58" hits="1" branch="false"/>
+          </lines>
+        </class>
+        <class name="ImpactAnalyticsScreen.tsx" filename="src/components/Screens/ImpactAnalyticsScreen.tsx" line-rate="0.7209" branch-rate="0.3157">
+          <methods>
+            <method name="(anonymous_7)" hits="5" signature="()V">
+              <lines>
+                <line number="35" hits="5"/>
+              </lines>
+            </method>
+            <method name="(anonymous_8)" hits="4" signature="()V">
+              <lines>
+                <line number="40" hits="4"/>
+              </lines>
+            </method>
+            <method name="(anonymous_9)" hits="0" signature="()V">
+              <lines>
+                <line number="55" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_10)" hits="4" signature="()V">
+              <lines>
+                <line number="59" hits="4"/>
+              </lines>
+            </method>
+            <method name="(anonymous_11)" hits="4" signature="()V">
+              <lines>
+                <line number="61" hits="4"/>
+              </lines>
+            </method>
+            <method name="(anonymous_12)" hits="4" signature="()V">
+              <lines>
+                <line number="62" hits="4"/>
+              </lines>
+            </method>
+            <method name="(anonymous_13)" hits="0" signature="()V">
+              <lines>
+                <line number="63" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_14)" hits="0" signature="()V">
+              <lines>
+                <line number="66" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_15)" hits="0" signature="()V">
+              <lines>
+                <line number="67" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_16)" hits="0" signature="()V">
+              <lines>
+                <line number="74" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_17)" hits="0" signature="()V">
+              <lines>
+                <line number="124" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_18)" hits="0" signature="()V">
+              <lines>
+                <line number="170" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_19)" hits="0" signature="()V">
+              <lines>
+                <line number="211" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_20)" hits="0" signature="()V">
+              <lines>
+                <line number="250" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_21)" hits="0" signature="()V">
+              <lines>
+                <line number="290" hits="0"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="2" branch="false"/>
+            <line number="2" hits="2" branch="false"/>
+            <line number="3" hits="2" branch="false"/>
+            <line number="4" hits="2" branch="false"/>
+            <line number="5" hits="2" branch="false"/>
+            <line number="6" hits="2" branch="false"/>
+            <line number="7" hits="2" branch="false"/>
+            <line number="8" hits="2" branch="false"/>
+            <line number="9" hits="2" branch="false"/>
+            <line number="10" hits="2" branch="false"/>
+            <line number="11" hits="2" branch="false"/>
+            <line number="35" hits="2" branch="false"/>
+            <line number="36" hits="5" branch="false"/>
+            <line number="37" hits="4" branch="false"/>
+            <line number="38" hits="4" branch="false"/>
+            <line number="40" hits="4" branch="false"/>
+            <line number="41" hits="4" branch="true" condition-coverage="20% (1/5)"/>
+            <line number="43" hits="0" branch="false"/>
+            <line number="45" hits="0" branch="false"/>
+            <line number="47" hits="0" branch="false"/>
+            <line number="49" hits="0" branch="false"/>
+            <line number="51" hits="4" branch="false"/>
+            <line number="55" hits="4" branch="false"/>
+            <line number="56" hits="0" branch="false"/>
+            <line number="59" hits="4" branch="false"/>
+            <line number="60" hits="4" branch="false"/>
+            <line number="61" hits="4" branch="false"/>
+            <line number="62" hits="4" branch="false"/>
+            <line number="63" hits="0" branch="false"/>
+            <line number="66" hits="4" branch="false"/>
+            <line number="67" hits="4" branch="false"/>
+            <line number="68" hits="0" branch="false"/>
+            <line number="71" hits="4" branch="false"/>
+            <line number="72" hits="4" branch="false"/>
+            <line number="73" hits="4" branch="false"/>
+            <line number="74" hits="4" branch="false"/>
+            <line number="84" hits="4" branch="false"/>
+            <line number="125" hits="0" branch="false"/>
+            <line number="170" hits="0" branch="false"/>
+            <line number="211" hits="0" branch="false"/>
+            <line number="250" hits="0" branch="false"/>
+            <line number="290" hits="0" branch="false"/>
+            <line number="333" hits="2" branch="false"/>
+          </lines>
+        </class>
+        <class name="ImpactScreen.tsx" filename="src/components/Screens/ImpactScreen.tsx" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="(anonymous_7)" hits="11" signature="()V">
+              <lines>
+                <line number="15" hits="11"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="2" branch="false"/>
+            <line number="2" hits="2" branch="false"/>
+            <line number="3" hits="2" branch="false"/>
+            <line number="4" hits="2" branch="false"/>
+            <line number="6" hits="2" branch="false"/>
+            <line number="15" hits="2" branch="false"/>
+            <line number="16" hits="11" branch="false"/>
+            <line number="18" hits="10" branch="false"/>
+            <line number="47" hits="2" branch="false"/>
+          </lines>
+        </class>
+        <class name="MainDisplay.tsx" filename="src/components/Screens/MainDisplay.tsx" line-rate="0" branch-rate="0">
+          <methods>
+            <method name="(anonymous_1)" hits="0" signature="()V">
+              <lines>
+                <line number="14" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_2)" hits="0" signature="()V">
+              <lines>
+                <line number="33" hits="0"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="0" branch="false"/>
+            <line number="2" hits="0" branch="false"/>
+            <line number="4" hits="0" branch="false"/>
+            <line number="5" hits="0" branch="false"/>
+            <line number="14" hits="0" branch="false"/>
+            <line number="16" hits="0" branch="true" condition-coverage="0% (0/1)"/>
+            <line number="17" hits="0" branch="true" condition-coverage="0% (0/1)"/>
+            <line number="20" hits="0" branch="true" condition-coverage="0% (0/1)"/>
+            <line number="21" hits="0" branch="true" condition-coverage="0% (0/1)"/>
+            <line number="24" hits="0" branch="true" condition-coverage="0% (0/1)"/>
+            <line number="25" hits="0" branch="true" condition-coverage="0% (0/1)"/>
+            <line number="29" hits="0" branch="false"/>
+            <line number="34" hits="0" branch="false"/>
+            <line number="38" hits="0" branch="false"/>
+          </lines>
+        </class>
+>>>>>>> testing
         <class name="MonitorAnalyticsScreen.tsx" filename="src/components/Screens/MonitorAnalyticsScreen.tsx" line-rate="0.9333" branch-rate="0.9375">
           <methods>
             <method name="(anonymous_7)" hits="10" signature="()V">
@@ -322,6 +2246,7 @@
             </method>
           </methods>
           <lines>
+<<<<<<< HEAD
             <line number="1" hits="1" branch="false"/>
             <line number="2" hits="1" branch="false"/>
             <line number="3" hits="1" branch="false"/>
@@ -334,6 +2259,20 @@
             <line number="10" hits="1" branch="false"/>
             <line number="11" hits="1" branch="false"/>
             <line number="15" hits="1" branch="false"/>
+=======
+            <line number="1" hits="2" branch="false"/>
+            <line number="2" hits="2" branch="false"/>
+            <line number="3" hits="2" branch="false"/>
+            <line number="4" hits="2" branch="false"/>
+            <line number="5" hits="2" branch="false"/>
+            <line number="6" hits="2" branch="false"/>
+            <line number="7" hits="2" branch="false"/>
+            <line number="8" hits="2" branch="false"/>
+            <line number="9" hits="2" branch="false"/>
+            <line number="10" hits="2" branch="false"/>
+            <line number="11" hits="2" branch="false"/>
+            <line number="15" hits="2" branch="false"/>
+>>>>>>> testing
             <line number="16" hits="10" branch="false"/>
             <line number="17" hits="10" branch="false"/>
             <line number="18" hits="4" branch="false"/>
@@ -351,7 +2290,62 @@
             <line number="80" hits="1" branch="false"/>
             <line number="89" hits="1" branch="false"/>
             <line number="98" hits="1" branch="false"/>
+<<<<<<< HEAD
             <line number="116" hits="1" branch="false"/>
+=======
+            <line number="116" hits="2" branch="false"/>
+          </lines>
+        </class>
+        <class name="MonitorScreen.tsx" filename="src/components/Screens/MonitorScreen.tsx" line-rate="0.7333" branch-rate="0.7142000000000001">
+          <methods>
+            <method name="(anonymous_7)" hits="12" signature="()V">
+              <lines>
+                <line number="32" hits="12"/>
+              </lines>
+            </method>
+            <method name="toggleGauge" hits="0" signature="()V">
+              <lines>
+                <line number="52" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_9)" hits="72" signature="()V">
+              <lines>
+                <line number="56" hits="72"/>
+              </lines>
+            </method>
+            <method name="(anonymous_10)" hits="0" signature="()V">
+              <lines>
+                <line number="71" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_11)" hits="0" signature="()V">
+              <lines>
+                <line number="79" hits="0"/>
+              </lines>
+            </method>
+            <method name="(anonymous_12)" hits="0" signature="()V">
+              <lines>
+                <line number="90" hits="0"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="2" branch="false"/>
+            <line number="2" hits="2" branch="false"/>
+            <line number="3" hits="2" branch="false"/>
+            <line number="4" hits="2" branch="false"/>
+            <line number="5" hits="2" branch="false"/>
+            <line number="18" hits="2" branch="false"/>
+            <line number="32" hits="2" branch="false"/>
+            <line number="46" hits="12" branch="false"/>
+            <line number="53" hits="0" branch="false"/>
+            <line number="56" hits="72" branch="false"/>
+            <line number="58" hits="12" branch="false"/>
+            <line number="71" hits="0" branch="false"/>
+            <line number="79" hits="0" branch="false"/>
+            <line number="90" hits="0" branch="false"/>
+            <line number="98" hits="2" branch="false"/>
+>>>>>>> testing
           </lines>
         </class>
         <class name="SettingScreen.tsx" filename="src/components/Screens/SettingScreen.tsx" line-rate="1" branch-rate="1">
@@ -363,10 +2357,45 @@
             </method>
           </methods>
           <lines>
+<<<<<<< HEAD
             <line number="1" hits="1" branch="false"/>
             <line number="3" hits="1" branch="false"/>
             <line number="4" hits="4" branch="false"/>
             <line number="47" hits="1" branch="false"/>
+=======
+            <line number="1" hits="2" branch="false"/>
+            <line number="3" hits="2" branch="false"/>
+            <line number="4" hits="4" branch="false"/>
+            <line number="47" hits="2" branch="false"/>
+          </lines>
+        </class>
+      </classes>
+    </package>
+    <package name="src.components.SliderWidget" line-rate="1" branch-rate="1">
+      <classes>
+        <class name="Slider.tsx" filename="src/components/SliderWidget/Slider.tsx" line-rate="1" branch-rate="1">
+          <methods>
+            <method name="valuetext" hits="10" signature="()V">
+              <lines>
+                <line number="20" hits="10"/>
+              </lines>
+            </method>
+            <method name="(anonymous_8)" hits="10" signature="()V">
+              <lines>
+                <line number="24" hits="10"/>
+              </lines>
+            </method>
+          </methods>
+          <lines>
+            <line number="1" hits="2" branch="false"/>
+            <line number="2" hits="2" branch="false"/>
+            <line number="3" hits="2" branch="false"/>
+            <line number="5" hits="2" branch="false"/>
+            <line number="21" hits="10" branch="false"/>
+            <line number="24" hits="2" branch="false"/>
+            <line number="25" hits="10" branch="false"/>
+            <line number="84" hits="2" branch="false"/>
+>>>>>>> testing
           </lines>
         </class>
       </classes>

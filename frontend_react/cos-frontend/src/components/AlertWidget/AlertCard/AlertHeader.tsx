@@ -1,5 +1,5 @@
 import React from "react";
-import icon from "./lightning_icon.svg"
+import Bolt from '@mui/icons-material/Bolt';
 
 interface AlertHeaderProps {
   alertType: string;
@@ -7,9 +7,15 @@ interface AlertHeaderProps {
 
 const AlertHeader: React.FC<AlertHeaderProps> = ({ alertType }) => {
   return (
-    <div className="flex gap-1">
-      <div className="grow font-inter">{alertType}</div>
-      <img src={icon} alt="Lightning icon"  className="object-contain shrink-0 w-4 aspect-square" />
+    <div className="flex flex-row items-center ml-2">
+      <div className="grow text-white font-inter">{alertType}</div>
+      <Bolt
+      sx={{
+        color: 'white',
+        width: '15px',
+        height: '15px',
+      }}
+      />
     </div>
   );
 };
