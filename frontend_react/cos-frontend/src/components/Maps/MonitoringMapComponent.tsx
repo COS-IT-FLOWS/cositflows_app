@@ -123,4 +123,4 @@ const MonitoringMapComponent: React.FC<MonitoringMapComponentProps> = React.memo
   );
 });
 
-export { MonitoringMapComponent };
+export default MonitoringMapComponent;

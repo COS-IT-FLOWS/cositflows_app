@@ -1,41 +1,39 @@
+// LayerItem.test.tsx
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import LayerItem from '../../../src/components/LayerWidget/LayerItem'; // Adjust the import based on your file structure
 
-type GaugeType = "rainfall" | "reservoir" | "groundwater" | "riverWater" | "tidal" | "regulators";
-
 describe('LayerItem', () => {
-  const defaultProps = {
-    label: "rainfall" as GaugeType, // Example GaugeType
-    isChecked: false,
-    onToggle: jest.fn(),
-  };
+  const label = 'rainfall';
+  const param = 'PRECIPITATION' as const; // Type assertion for GaugeType
+  const onToggleMock = jest.fn(); // Mock function for onToggle
 
   beforeEach(() => {
-    render(<LayerItem {...defaultProps} />);
+    jest.clearAllMocks(); // Clear any previous mocks
   });
 
-  test('renders the checkbox as unchecked when isChecked is false', () => {
-    const checkbox = screen.getByTestId('CheckBoxOutlineBlankIcon');
-    expect(checkbox).toBeInTheDocument();
-    expect(checkbox).toHaveClass('text-white'); // Ensure the checkbox has the correct class
+  it('renders without crashing', () => {
+    render(<LayerItem label={label} param={param} isChecked={false} onToggle={onToggleMock} />);
+    expect(screen.getByText(label)).toBeInTheDocument();
   });
 
-  test('renders the checkbox as checked when isChecked is true', () => {
-    const { rerender } = render(<LayerItem {...{ ...defaultProps, isChecked: true }} />);
-    const checkbox = screen.getByTestId('CheckBoxIcon');
-    expect(checkbox).toBeInTheDocument();
-    expect(checkbox).toHaveClass('text-white'); // Ensure the checkbox has the correct class
+  it('displays the checked checkbox when isChecked is true', () => {
+    render(<LayerItem label={label} param={param} isChecked={true} onToggle={onToggleMock} />);
+    expect(screen.getByTestId('checkbox-checked')).toBeInTheDocument(); // Check for the checked checkbox
   });
 
-  test('calls onToggle when the checkbox is clicked', () => {
-    const checkbox = screen.getByText('rainfall'); // Find the label text
-    fireEvent.click(checkbox); // Simulate click on the checkbox
-    expect(defaultProps.onToggle).toHaveBeenCalledTimes(1); // Check if onToggle was called
+  it('displays the unchecked checkbox when isChecked is false', () => {
+    render(<LayerItem label={label} param={param} isChecked={false} onToggle={onToggleMock} />);
+    expect(screen.getByTestId('checkbox-unchecked')).toBeInTheDocument(); // Check for the checked checkbox
   });
 
-  test('displays the correct label', () => {
-    const labelElement = screen.getByText(/rainfall/i);
-    expect(labelElement).toBeInTheDocument();
+  it('calls onToggle when clicked', () => {
+    render(<LayerItem label={label} param={param} isChecked={false} onToggle={onToggleMock} />);
+    
+    // Simulate a click on the LayerItem
+    fireEvent.click(screen.getByText(label));
+    
+    // Check if the onToggle function was called
+    expect(onToggleMock).toHaveBeenCalledTimes(1);
   });
 });

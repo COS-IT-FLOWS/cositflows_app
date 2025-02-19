@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid2';
 import theme from '../theme';
 import { BarChart, LineChart, Bar, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell, Area } from 'recharts';
 import Papa from 'papaparse';
-import { MonitoringMapComponent } from '../Maps/MonitoringMapComponent';
+import MonitoringMapComponent from '../Maps/MonitoringMapComponent';
 
 interface FullData {
   [gaugeName: string]: number[];

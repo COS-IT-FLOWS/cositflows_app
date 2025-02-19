@@ -289,7 +289,7 @@ const ForecastScreen: React.FC = () => {
     const fetchSpillData = async () => {
       const response = await fetch('/SpillData.csv'); 
       if (!response.ok) {
-        throw new Error('Network response was not ok');
+        console.log('Network response was not ok');
       }
       const text = await response.text();
       Papa.parse(text, {

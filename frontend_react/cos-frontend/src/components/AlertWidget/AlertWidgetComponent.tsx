@@ -7,7 +7,7 @@ interface AlertWidget{
   OnClose: () => void;
 }
 
-const MyComponent: React.FC<AlertWidget> = ({visibleAlerts, OnClose}) => {
+const AlertWidgetComponent: React.FC<AlertWidget> = ({visibleAlerts, OnClose}) => {
   const [selectedAlert,setSelectedAlert]=useState<Alert | null>(null);
   const [showOverlay, setShowOverlay]= useState(false);
 
@@ -97,4 +97,4 @@ const MyComponent: React.FC<AlertWidget> = ({visibleAlerts, OnClose}) => {
   );
 };
 
-export default MyComponent;
+export default AlertWidgetComponent;

@@ -4,7 +4,7 @@ import { Card, CardContent, Typography, ThemeProvider } from '@mui/material';
 import Grid from '@mui/material/Grid2';
 import theme from '../theme';
 import { BarChart, LineChart, Bar, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine, Cell, Area } from 'recharts';
-import { MonitoringMapComponent } from '../Maps/MonitoringMapComponent';
+import MonitoringMapComponent from '../Maps/MonitoringMapComponent';
 
 
 
