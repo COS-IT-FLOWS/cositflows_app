@@ -4,7 +4,7 @@ import { Card, CardContent, Typography, ThemeProvider, Toolbar } from '@mui/mate
 import Grid from '@mui/material/Grid2';
 import theme from '../theme';
 import { useEffect, useState } from 'react';
-import { MonitoringMapComponent } from '../Maps/MonitoringMapComponent';
+import MonitoringMapComponent from '../Maps/MonitoringMapComponent';
 
 interface RiverStation {
     Station_ID: string;
@@ -149,6 +149,15 @@ const RiverWidgets: React.FC = () => {
     
       const renderLineChart = (station: RiverStation) => {
         const data = station.timeSeriesData;
+        if (data === undefined || data.length == 0 ) {
+          return (
+            <Card>
+              <CardContent>
+                <Typography>No Data Available</Typography>
+              </CardContent>
+            </Card>
+          )
+        }
         const latestLevel = data && data.length > 0 ? data[data.length - 1]['CurrentLevel(m)'] : null;
         console.log('1 Time Series Data:', data);
         console.log('Latest Level:', latestLevel);

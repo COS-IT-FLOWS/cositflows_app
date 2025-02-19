@@ -32,10 +32,10 @@ const AlertWidget: React.FC<AlertWidgetProps> = ({ location, alerts, onAlertClic
 
   return (
     <Draggable>
-    <div className={`text-white ${isCollapsed ? "bg-opacity-90" : "bg-opacity-80"} bg-zinc-900 pr-4 pl-4 pb-4 pt-3.5 rounded-3xl w-[200px] max-w-[200px] h-auto shadow-[0px_4px_4px_rgba(0,0,0,0.25)]`}>
-      <header className={`flex items-center text-base ${isCollapsed ? "gap-[9px]" : "gap-[0px]"} justify-between w-full`}>
-        <h2 className={`flex text-[15px] font-inter mb-3 whitespace-nowrap`}>Alerts in {location}</h2>
-        <div className="flex items-center"> 
+    <div className={`text-white ${isCollapsed ? "bg-opacity-90 pb-3 pt-3 rounded-[18px]" : " bg-opacity-80 pb-3 pt-4 rounded-3xl"} bg-zinc-900 pr-3 pl-3 w-[180px] max-w-[200px] h-auto shadow-[0px_4px_4px_rgba(0,0,0,0.25)]`}>
+      <header className={`flex items-center text-base ${isCollapsed ? "gap-[9px] mb-1.5" : "gap-0 mb-2"} justify-between`}>
+        <div className={`flex text-base font-inter font-[500] ml-2 whitespace-nowrap`}>Alerts</div>
+        <div className="flex items-center justify-center"> 
             {isCollapsed ? (
                 <AddIcon
                     className="text-white cursor-pointer"
@@ -63,7 +63,7 @@ const AlertWidget: React.FC<AlertWidgetProps> = ({ location, alerts, onAlertClic
       {/* MAIN SECTION */}
       {!isCollapsed && (
       <div className="max-h-[270px] overflow-hidden overflow-y-auto">
-        <div className="flex flex-col gap-[9px] font-inter overflow-y-auto">
+        <div className="flex flex-col gap-[5px] font-inter overflow-y-auto">
           {alerts.map((alert:Alert, index:number) => (
             <AlertCard
               key={index}

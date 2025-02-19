@@ -37,11 +37,14 @@ const MenuList: React.FC<MenuListProps> = ({activeControl, activeView, setActive
           >
             <div className="flex items-center justify-center bg-transparent gap-3 no-underline" > 
               <icon.object 
-               className={`${icon.view === activeView? "bg-black " : "bg-zinc-800 bg-opacity-90"} px-2 py-2 rounded-full`}
-               sx={{width: 25,height: 25, color: 'white'}}
+               className={`${icon.view === activeView? "bg-argentina-300" : "bg-black bg-opacity-80 text-opacity-60"}  text-white px-2 py-2 rounded-full`}
+               style={{border: '0.5px solid rgba(97, 179, 255, 0.5)'}}
+               sx={{width: 25,height: 25}}
               />
             </div>
-            <span className={` text-white font-inter bg-transparent ${ activeView.toLowerCase() === icon.string.toLowerCase() ? "font-semibold text-[11px]" : "text-3xs"}`}>
+            <span 
+            className={` text-white font-inter bg-transparent ${ activeView.toLowerCase() === icon.string.toLowerCase() ? "text-[11px]" : "text-3xs text-opacity-60"}`}
+            >
                 {icon.string}
             </span> 
           </Link>

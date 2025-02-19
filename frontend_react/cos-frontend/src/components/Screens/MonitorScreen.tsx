@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import AlertWidgetComponent from "../AlertWidget/AlertWidgetComponent";
 import LayerComponent from "../LayerWidget/LayersComponent";
 import Legend from "../LegendWidget/Legend";
-import { MonitoringMapComponent } from "../Maps/MonitoringMapComponent";
+import MonitoringMapComponent from "../Maps/MonitoringMapComponent";
 
 // type GaugeType = "PRECIPITATION" | "RESERVOIR" | "TIDAL" | "GROUNDWATER" | "RIVER" | "REGULATOR";
 

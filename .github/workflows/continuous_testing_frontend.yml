@@ -14,7 +14,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.ref }}
+          ref: ${{ github.ref }}  # This will use the current branch
+
+
           
       # Generate code coverage shields.io badge
       - name: Code Coverage Summary

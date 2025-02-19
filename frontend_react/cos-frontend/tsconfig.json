@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2015",
+    "downlevelIteration": true,
     "lib": [
       "dom",
       "dom.iterable",
@@ -23,5 +24,5 @@
   },
   "include": [
     "src"
-  ]
+, "__mocks__/fileMock.js"  ]
 }

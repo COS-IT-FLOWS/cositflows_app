@@ -18,21 +18,7 @@ const WidgetSelector: React.FC<WidgetSelectorProps> = ({ onWidgetToggle, visible
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  // const [widgetVisibility, setWidgetVisibility]= useState ({
-  //   alerts: false,
-  //   layers: false,
-  //   legend: false,
-  // });
-
-  // const handleToggleWidget = (widget: "alerts" | "layers" | "legend") => {
-  //   const newVisibility = !widgetVisibility[widget];
-  //   setWidgetVisibility (prev => ({...prev, [widget]: newVisibility}));
-  //   onWidgetToggle(widget, newVisibility);
-  //   handleClose();
-  // };
-
-
+  
   return (
     <div>
       <div className="flex justify-center w-[100px] bg-teal-100 bg-opacity-80 rounded-full">
@@ -42,6 +28,15 @@ const WidgetSelector: React.FC<WidgetSelectorProps> = ({ onWidgetToggle, visible
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
           onClick={handleClick}
+          sx={{ 
+            border: '0.5px solid rgba(97, 179, 255, 0.5)',
+            backgroundColor: 'rgb(0,0,0)',
+            height: '35px',
+            color: '#61B3FF',
+            borderRadius: '20px',
+            paddingX: '20px',
+            justifyContent: 'center',
+          }}
         >
           <span 
            style={{ textTransform: 'capitalize' }}
@@ -57,6 +52,14 @@ const WidgetSelector: React.FC<WidgetSelectorProps> = ({ onWidgetToggle, visible
         onClose={handleClose}
         MenuListProps={{
           "aria-labelledby": "basic-button",
+        }}
+        slotProps={{
+          paper: {
+            sx : {
+              backgroundColor: '#18181b',
+              color: '#fff',
+            },
+          },
         }}
       >
         <MenuItem onClick={() => onWidgetToggle("alerts", !visibleWidgets.alerts)}>

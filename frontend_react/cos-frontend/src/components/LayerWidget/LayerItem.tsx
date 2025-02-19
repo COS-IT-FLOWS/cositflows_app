@@ -16,9 +16,10 @@ interface LayerItemProps {
 const LayerItem: React.FC<LayerItemProps> = ({ label, isChecked, onToggle }) => (
   <div className="flex gap-1 items-center cursor-pointer" onClick={onToggle}>
     {isChecked ? (
-      <CheckBox style={{ width:"18px", height: "18px"}} className="text-white" />
+      <CheckBox data-testid='checkbox-checked' style={{ width:"18px", height: "18px"}} className="text-white" />
     ) : (
      <CheckBoxBlankIcon
+     data-testid='checkbox-unchecked'
      style={{width:"18px", height:"18px"}}
      className="text-white"/>
     )}

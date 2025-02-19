@@ -7,7 +7,7 @@ interface AlertWidget{
   OnClose: () => void;
 }
 
-const MyComponent: React.FC<AlertWidget> = ({visibleAlerts, OnClose}) => {
+const AlertWidgetComponent: React.FC<AlertWidget> = ({visibleAlerts, OnClose}) => {
   const [selectedAlert,setSelectedAlert]=useState<Alert | null>(null);
   const [showOverlay, setShowOverlay]= useState(false);
 
@@ -80,7 +80,7 @@ const MyComponent: React.FC<AlertWidget> = ({visibleAlerts, OnClose}) => {
       )}
 
         {showOverlay && selectedAlert && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30">
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
                 <AlertOverlay
                     alertType={selectedAlert.alertType}
                     date={selectedAlert.date}
@@ -97,4 +97,4 @@ const MyComponent: React.FC<AlertWidget> = ({visibleAlerts, OnClose}) => {
   );
 };
 
-export default MyComponent;
+export default AlertWidgetComponent;
