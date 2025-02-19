@@ -5,13 +5,7 @@ import '../styles.css';
 import { useConfig } from "../../ConfigContext";
 import * as maptilersdk from '@maptiler/sdk';
 import "@maptiler/sdk/dist/maptiler-sdk.css";
-<<<<<<< HEAD
-import { LogoControl, NavigationControl } from '@maptiler/sdk';
-import { AddCircleOutlineSharp } from '@mui/icons-material';
-import { generateCustomMarker, incrementState } from '../Layers/misc';
-=======
 import { addBoundaryLayer, addBoundaryLayerLocal, addBoundarySource, removeBoundaryLayer } from '../../layers/PolygonLayer';
->>>>>>> testing
 
 interface ImpactMapComponentProps {
   selectedMap: string

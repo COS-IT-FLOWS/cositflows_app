@@ -1,10 +1,6 @@
 import * as turf from '@turf/turf';
 import maplibregl from 'maplibre-gl';
-<<<<<<< HEAD:frontend_react/cos-frontend/src/components/Layers/misc.js
-import { userConfig } from '../../ConfigContext';
-=======
 import { useconfig } from '../ConfigContext';
->>>>>>> testing:frontend_react/cos-frontend/src/layers/misc.js
 
 function centerLatLngFromFeature(feature) {
     const centroid = turf.centroid(feature.geometry);
